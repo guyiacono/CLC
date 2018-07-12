@@ -1,31 +1,30 @@
 //
-//  Sign_In.swift
+//  MyProfileBiographyViewController.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 5/22/18.
+//  Created by Michael Karolewicz on 7/10/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
-class Sign_In: UIViewController
+class MyProfileBiographyViewController: UIViewController
 {
+    let currentUserID = Auth.auth().currentUser?.uid
+    var userModel = UserModel.sharedInstance
+    var displayedUser: User!
     
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
-    
-    @IBOutlet weak var loginButton: UIButton!
-    @IBAction func login(_ sender: UIButton)
-    {
-        
-    }
-    
+    @IBOutlet weak var bio: UITextView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        displayedUser = userModel.findUser(uid: currentUserID!)
+        bio.text = displayedUser.bio
+        
         // Do any additional setup after loading the view.
     }
 
