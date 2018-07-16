@@ -73,7 +73,6 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="0tZ-Ma-L2h" eventType="touchUpInside" id="tlX-B6-UII"/>
-                                    <segue destination="0H7-Xs-52c" kind="presentation" animates="NO" id="qRn-4d-uud"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-Ze-f0m">
@@ -88,6 +87,8 @@
                         <outlet property="email" destination="vnI-sP-S0D" id="29l-2O-7XB"/>
                         <outlet property="loginButton" destination="5Ud-hO-46l" id="z1q-XM-9Nc"/>
                         <outlet property="password" destination="GW4-7n-CZO" id="8UH-1q-Mf4"/>
+                        <segue destination="0H7-Xs-52c" kind="presentation" identifier="signUpPass" id="ZRp-da-KGT"/>
+                        <segue destination="O8O-QB-Gpy" kind="presentation" identifier="loginpass" id="dUS-1c-WW3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vef-Fh-NJ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1021,10 +1022,10 @@
             </objects>
             <point key="canvasLocation" x="6317.6000000000004" y="1574.6626686656673"/>
         </scene>
-        <!--View Controller-->
+        <!--Stranger Profile View Controller-->
         <scene sceneID="tut-vj-OWG">
             <objects>
-                <viewController id="pL5-Wp-Vvn" sceneMemberID="viewController">
+                <viewController id="pL5-Wp-Vvn" customClass="StrangerProfileViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7D8-p9-NAF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1080,13 +1081,20 @@
                                     <color key="titleColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="alA-lm-eit" kind="show" id="fjx-T0-ZEQ"/>
+                                    <action selector="moreInfoButton:" destination="pL5-Wp-Vvn" eventType="touchUpInside" id="JYY-x1-VJN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="dY7-z1-40w"/>
                     </view>
+                    <connections>
+                        <outlet property="age" destination="JcY-dZ-1QI" id="AfZ-Iv-r4R"/>
+                        <outlet property="bio" destination="vu7-L9-Wgq" id="hne-VK-wWh"/>
+                        <outlet property="mainProfileImage" destination="tBG-9S-SYM" id="UQQ-Ij-z3n"/>
+                        <outlet property="name" destination="okH-aY-hVt" id="RbL-X3-11R"/>
+                        <segue destination="alA-lm-eit" kind="show" identifier="toUserProfile" id="ML9-0j-CO9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGd-Hs-5Ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1144,7 +1152,6 @@
                                 <connections>
                                     <outlet property="datalabel" destination="FNT-Lw-rsq" id="65v-bg-8wQ"/>
                                     <outlet property="photo" destination="AIZ-SS-bxO" id="ATi-fk-5th"/>
-                                    <segue destination="pL5-Wp-Vvn" kind="show" id="FGU-gt-Ke1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1153,6 +1160,9 @@
                             <outlet property="delegate" destination="JLN-Qh-Elz" id="9z0-jY-Uyp"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="pL5-Wp-Vvn" kind="show" identifier="profileInfoSegue" id="vsp-9C-E3G"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMs-U7-MHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2567,10 +2577,10 @@
             </objects>
             <point key="canvasLocation" x="10158" y="628"/>
         </scene>
-        <!--View Controller-->
+        <!--My Profile Basic Info View Controller-->
         <scene sceneID="7Bv-Tb-whK">
             <objects>
-                <viewController id="Dfs-P9-Spl" sceneMemberID="viewController">
+                <viewController id="Dfs-P9-Spl" customClass="MyProfileBasicInfoViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Omd-Ch-cTU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2650,6 +2660,13 @@
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Nuj-S6-hP6"/>
                     </view>
+                    <connections>
+                        <outlet property="dateOfBirth" destination="ZcV-sh-dQQ" id="nPK-T8-gHs"/>
+                        <outlet property="firstName" destination="5GH-l3-Q1g" id="5gZ-We-8Wf"/>
+                        <outlet property="hometown" destination="UIo-ZA-dSh" id="tHF-de-lwM"/>
+                        <outlet property="lastName" destination="Xqg-hC-EYm" id="1t1-yd-UYX"/>
+                        <outlet property="recoveryDate" destination="Jve-UH-bPs" id="oaa-RE-eHv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJS-tR-frV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2658,7 +2675,7 @@
         <!--Settings-->
         <scene sceneID="3mr-U7-M4c">
             <objects>
-                <viewController title="Settings" id="mm8-mu-hDo" sceneMemberID="viewController">
+                <viewController title="Settings" id="mm8-mu-hDo" customClass="MyProfilePreferencesViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="24W-mG-mwA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2701,6 +2718,10 @@
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="7Hx-Ov-fXn"/>
                     </view>
+                    <connections>
+                        <outlet property="pref1" destination="kbe-wZ-sap" id="UMm-8M-dgf"/>
+                        <outlet property="pref2" destination="A34-qR-3qz" id="stq-h3-KNk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OC8-gF-VKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2864,10 +2885,10 @@
             </objects>
             <point key="canvasLocation" x="5548" y="2995"/>
         </scene>
-        <!--View Controller-->
+        <!--My Profile Biography View Controller-->
         <scene sceneID="aSB-nl-q8S">
             <objects>
-                <viewController id="YMJ-nG-9zm" sceneMemberID="viewController">
+                <viewController id="YMJ-nG-9zm" customClass="MyProfileBiographyViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gdo-7J-iXg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2884,15 +2905,18 @@
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="XOo-AD-97y"/>
                     </view>
+                    <connections>
+                        <outlet property="bio" destination="t5n-zP-Eh8" id="ZIy-dP-rUN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bia-Pv-Znv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6318" y="2303"/>
         </scene>
-        <!--View Controller-->
+        <!--My Profile Photos View Controller-->
         <scene sceneID="tKt-et-GeB">
             <objects>
-                <viewController id="Ely-zS-oky" sceneMemberID="viewController">
+                <viewController id="Ely-zS-oky" customClass="MyProfilePhotosViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cV2-q5-6jx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2927,6 +2951,11 @@
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="LIC-tF-8J6"/>
                     </view>
+                    <connections>
+                        <outlet property="photo1" destination="Va9-QR-q2W" id="yQH-HC-S32"/>
+                        <outlet property="photo2" destination="dn0-1X-SM5" id="cVm-2H-96M"/>
+                        <outlet property="photo3" destination="TnX-sy-4Rt" id="Hsh-6F-ZyU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9H-Og-41u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3702,10 +3731,10 @@
             </objects>
             <point key="canvasLocation" x="956" y="3604"/>
         </scene>
-        <!--View Controller-->
+        <!--Stranger Profile Info View Controller-->
         <scene sceneID="Yb7-nV-JyP">
             <objects>
-                <viewController id="alA-lm-eit" sceneMemberID="viewController">
+                <viewController id="alA-lm-eit" customClass="StrangerProfileInfoViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ux8-dB-7qc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3796,6 +3825,21 @@
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="n2W-0U-adl"/>
                     </view>
+                    <connections>
+                        <outlet property="age" destination="ybx-gt-K2d" id="ut1-Wk-cjs"/>
+                        <outlet property="education" destination="Scb-Zr-ZKy" id="JgY-kT-BNQ"/>
+                        <outlet property="name" destination="XPE-dE-Dp3" id="x08-Vr-bWt"/>
+                        <outlet property="orientation" destination="5bm-IG-930" id="Mza-7T-f6N"/>
+                        <outlet property="photo1" destination="rPR-18-XLl" id="8jk-eb-siT"/>
+                        <outlet property="photo2" destination="mRl-TJ-yND" id="A7n-gg-fPp"/>
+                        <outlet property="photo3" destination="hYB-q0-BdN" id="T9U-Vn-AFC"/>
+                        <outlet property="recovery" destination="I9K-Sf-yAr" id="PMz-XQ-NNC"/>
+                        <outlet property="relation" destination="Yak-u2-PGF" id="rlS-97-PsO"/>
+                        <outlet property="religious" destination="Qie-sR-c8d" id="bzr-eX-srH"/>
+                        <outlet property="smokes" destination="sNO-XM-V5j" id="Tuj-eI-af2"/>
+                        <outlet property="spiritual" destination="LOB-OI-SBM" id="JnA-3e-AIW"/>
+                        <outlet property="support" destination="IiE-iC-aJ3" id="BYD-sm-4vR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qfa-oK-JWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3864,8 +3908,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="o8L-k0-9lL"/>
-        <segue reference="1hS-gP-fSO"/>
+        <segue reference="vsp-9C-E3G"/>
         <segue reference="zAV-dg-gYH"/>
+        <segue reference="dUS-1c-WW3"/>
         <segue reference="1VA-CE-J3k"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

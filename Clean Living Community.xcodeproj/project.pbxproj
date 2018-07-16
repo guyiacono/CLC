@@ -14,6 +14,13 @@
 		E400B5B720E9D52A000D2146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E400B5B620E9D52A000D2146 /* GoogleService-Info.plist */; };
 		E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */; };
 		E414C54720C8236C003AB56C /* My Connections 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E414C54620C8236B003AB56C /* My Connections 2.png */; };
+		E42CFA5420F68B60001CEE58 /* StrangerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5120F68B5F001CEE58 /* StrangerProfileViewController.swift */; };
+		E42CFA5520F68B60001CEE58 /* StrangerProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5220F68B5F001CEE58 /* StrangerProfileInfoViewController.swift */; };
+		E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5320F68B60001CEE58 /* FindConnectionsInitialViewController.swift */; };
+		E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5720F6940A001CEE58 /* MyProfileBasicInfoViewController.swift */; };
+		E42CFA5C20F69414001CEE58 /* MyProfilePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5920F69413001CEE58 /* MyProfilePhotosViewController.swift */; };
+		E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5A20F69413001CEE58 /* MyProfilePreferencesViewController.swift */; };
+		E42CFA5E20F69414001CEE58 /* MyProfileBiographyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5B20F69414001CEE58 /* MyProfileBiographyViewController.swift */; };
 		E431C2E620CEB824007D0107 /* ProfileFinish1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E520CEB824007D0107 /* ProfileFinish1.swift */; };
 		E431C2E820CEB83E007D0107 /* ProfileFinish2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */; };
 		E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E920CEB855007D0107 /* ProfileFinish3.swift */; };
@@ -55,8 +62,6 @@
 		E4FDE48920C5833900DFC488 /* My Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE48720C5833800DFC488 /* My Profile.png */; };
 		E4FDE48A20C5833900DFC488 /* My Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE48720C5833800DFC488 /* My Profile.png */; };
 		E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */; };
-		E4FDE48D20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */; };
-		E4FDE48E20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */; };
 		E4FDE49020C5B7BD00DFC488 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */; };
 		E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDE49120C5BAF300DFC488 /* ListofMessagesTableViewCell.swift */; };
 		E4FDEF7C20D1557300CEF5A0 /* EventCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */; };
@@ -96,6 +101,13 @@
 		E400B5B620E9D52A000D2146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish.swift; sourceTree = "<group>"; };
 		E414C54620C8236B003AB56C /* My Connections 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My Connections 2.png"; sourceTree = "<group>"; };
+		E42CFA5120F68B5F001CEE58 /* StrangerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrangerProfileViewController.swift; sourceTree = "<group>"; };
+		E42CFA5220F68B5F001CEE58 /* StrangerProfileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrangerProfileInfoViewController.swift; sourceTree = "<group>"; };
+		E42CFA5320F68B60001CEE58 /* FindConnectionsInitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindConnectionsInitialViewController.swift; sourceTree = "<group>"; };
+		E42CFA5720F6940A001CEE58 /* MyProfileBasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileBasicInfoViewController.swift; sourceTree = "<group>"; };
+		E42CFA5920F69413001CEE58 /* MyProfilePhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfilePhotosViewController.swift; sourceTree = "<group>"; };
+		E42CFA5A20F69413001CEE58 /* MyProfilePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfilePreferencesViewController.swift; sourceTree = "<group>"; };
+		E42CFA5B20F69414001CEE58 /* MyProfileBiographyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileBiographyViewController.swift; sourceTree = "<group>"; };
 		E431C2E520CEB824007D0107 /* ProfileFinish1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish1.swift; sourceTree = "<group>"; };
 		E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish2.swift; sourceTree = "<group>"; };
 		E431C2E920CEB855007D0107 /* ProfileFinish3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish3.swift; sourceTree = "<group>"; };
@@ -135,7 +147,7 @@
 		E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		E4FDE49120C5BAF300DFC488 /* ListofMessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListofMessagesTableViewCell.swift; sourceTree = "<group>"; };
 		E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategoryTableViewController.swift; sourceTree = "<group>"; };
-		E4FDEF7D20D155DA00CEF5A0 /* EventCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventCategoryTableViewCell.swift; path = "Clean Living Community/Views/EventCategoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		E4FDEF7D20D155DA00CEF5A0 /* EventCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventCategoryTableViewCell.swift; path = "Clean Living Community/Views/Everything/EventCategoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsTableViewController.swift; sourceTree = "<group>"; };
 		E4FDEF8120D1637A00CEF5A0 /* FindEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsTableViewCell.swift; sourceTree = "<group>"; };
 		E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsTableViewController.swift; sourceTree = "<group>"; };
@@ -193,12 +205,50 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E4A42ECF20B5C2E90012FE2C /* Views */ = {
+		E42CFA4E20F68AF2001CEE58 /* Sign_Up */ = {
+			isa = PBXGroup;
+			children = (
+				E44DCA2320B4819200281955 /* Sign_In.swift */,
+				E44DCA2720B49A9400281955 /* Surveyp1.swift */,
+				E4A3102420B7265300AE2D1A /* SurveyFinal.swift */,
+				E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */,
+				E431C2E520CEB824007D0107 /* ProfileFinish1.swift */,
+				E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */,
+				E431C2E920CEB855007D0107 /* ProfileFinish3.swift */,
+				E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */,
+			);
+			path = Sign_Up;
+			sourceTree = "<group>";
+		};
+		E42CFA4F20F68AFF001CEE58 /* Find_Connections */ = {
+			isa = PBXGroup;
+			children = (
+				E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */,
+				E42CFA5320F68B60001CEE58 /* FindConnectionsInitialViewController.swift */,
+				E42CFA5220F68B5F001CEE58 /* StrangerProfileInfoViewController.swift */,
+				E42CFA5120F68B5F001CEE58 /* StrangerProfileViewController.swift */,
+			);
+			path = Find_Connections;
+			sourceTree = "<group>";
+		};
+		E42CFA5020F68B17001CEE58 /* My_Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E4FC83FA20D0E37300613A99 /* PersonalInfoProfileChange.swift */,
+				E4FC83F820D0CFB100613A99 /* MyProfileSuperViewController.swift */,
+				E42CFA5720F6940A001CEE58 /* MyProfileBasicInfoViewController.swift */,
+				E42CFA5B20F69414001CEE58 /* MyProfileBiographyViewController.swift */,
+				E42CFA5A20F69413001CEE58 /* MyProfilePreferencesViewController.swift */,
+				E42CFA5920F69413001CEE58 /* MyProfilePhotosViewController.swift */,
+			);
+			path = My_Profile;
+			sourceTree = "<group>";
+		};
+		E42CFA5F20F69497001CEE58 /* Everything */ = {
 			isa = PBXGroup;
 			children = (
 				E4A42ECD20B5C2BD0012FE2C /* SurveyScrollView.swift */,
 				E4FDEF7D20D155DA00CEF5A0 /* EventCategoryTableViewCell.swift */,
-				E4FA11D620B4664500E485BC /* Main.storyboard */,
 				E4FDEF8120D1637A00CEF5A0 /* FindEventsTableViewCell.swift */,
 				E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */,
 				E476490320BDDDA100253EE2 /* SurveySlider.swift */,
@@ -206,25 +256,26 @@
 				E4FDE49120C5BAF300DFC488 /* ListofMessagesTableViewCell.swift */,
 				E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */,
 			);
+			path = Everything;
+			sourceTree = "<group>";
+		};
+		E4A42ECF20B5C2E90012FE2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E42CFA5F20F69497001CEE58 /* Everything */,
+				E4FA11D620B4664500E485BC /* Main.storyboard */,
+			);
 			path = Views;
 			sourceTree = "<group>";
 		};
 		E4A42ED020B5C2F70012FE2C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E42CFA5020F68B17001CEE58 /* My_Profile */,
+				E42CFA4F20F68AFF001CEE58 /* Find_Connections */,
+				E42CFA4E20F68AF2001CEE58 /* Sign_Up */,
 				E463F3B220D99AD100153FF5 /* EventMapViewController.swift */,
 				E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */,
-				E44DCA2720B49A9400281955 /* Surveyp1.swift */,
-				E44DCA2320B4819200281955 /* Sign_In.swift */,
-				E4A3102420B7265300AE2D1A /* SurveyFinal.swift */,
-				E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */,
-				E4FC83FA20D0E37300613A99 /* PersonalInfoProfileChange.swift */,
-				E431C2E520CEB824007D0107 /* ProfileFinish1.swift */,
-				E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */,
-				E431C2E920CEB855007D0107 /* ProfileFinish3.swift */,
-				E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */,
-				E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */,
-				E4FC83F820D0CFB100613A99 /* MyProfileSuperViewController.swift */,
 				E4D66D2E20D1A01600CC0FB1 /* MyEventsViewController.swift */,
 				E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */,
 				E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */,
@@ -578,16 +629,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E42CFA5420F68B60001CEE58 /* StrangerProfileViewController.swift in Sources */,
 				E431C2E820CEB83E007D0107 /* ProfileFinish2.swift in Sources */,
 				E4D66D2F20D1A01700CC0FB1 /* MyEventsViewController.swift in Sources */,
 				E4FDEF8420D1663A00CEF5A0 /* MyConnectionsTableViewController.swift in Sources */,
+				E42CFA5520F68B60001CEE58 /* StrangerProfileInfoViewController.swift in Sources */,
+				E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */,
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
+				E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */,
 				E4FDE49020C5B7BD00DFC488 /* MessagesViewController.swift in Sources */,
 				E400B5B520E9D2B3000D2146 /* User.swift in Sources */,
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
 				E4A3102520B7265300AE2D1A /* SurveyFinal.swift in Sources */,
 				E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
+				E42CFA5E20F69414001CEE58 /* MyProfileBiographyViewController.swift in Sources */,
 				E4FDEF8020D15BC000CEF5A0 /* FindEventsTableViewController.swift in Sources */,
 				E44DCA2820B49A9400281955 /* Surveyp1.swift in Sources */,
 				E4FC83F920D0CFB100613A99 /* MyProfileSuperViewController.swift in Sources */,
@@ -598,9 +654,11 @@
 				E463F3B320D99AD100153FF5 /* EventMapViewController.swift in Sources */,
 				E4FDEF7E20D155DA00CEF5A0 /* EventCategoryTableViewCell.swift in Sources */,
 				E44A8A1A20C6FDD80048EC60 /* ConnectionsTableViewController.swift in Sources */,
+				E42CFA5C20F69414001CEE58 /* MyProfilePhotosViewController.swift in Sources */,
 				E431C2E620CEB824007D0107 /* ProfileFinish1.swift in Sources */,
 				E463F3B120D9932300153FF5 /* FindEventsNewViewController.swift in Sources */,
 				E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */,
+				E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */,
 				E4A42ECE20B5C2BD0012FE2C /* SurveyScrollView.swift in Sources */,
 				E4FA11D320B4664500E485BC /* AppDelegate.swift in Sources */,
 				E44DCA2420B4819200281955 /* Sign_In.swift in Sources */,
@@ -614,7 +672,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4FA11E820B4664600E485BC /* Clean_Living_CommunityTests.swift in Sources */,
-				E4FDE48D20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +680,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4FA11F320B4664600E485BC /* Clean_Living_CommunityUITests.swift in Sources */,
-				E4FDE48E20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

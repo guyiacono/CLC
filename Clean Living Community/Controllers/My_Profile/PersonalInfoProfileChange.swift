@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate
 {
-
+    let currentUserID = Auth.auth().currentUser?.uid
+    var userModel = UserModel.sharedInstance
+    var displayedUser: User!
+    
     let edupicker = UIPickerView()
     let relationpicker = UIPickerView()
     let orientationpicker = UIPickerView()
@@ -28,7 +34,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     @IBOutlet weak var smokeField: UITextField!
     @IBOutlet weak var supportField: UITextField!
     
-  
+    
     @IBAction func eduChanged(_ sender: UITextField)
     {
         selectedfield = eduField
@@ -49,7 +55,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     {
         selectedfield = spiritualField
     }
-  
+    
     @IBAction func smokeChanged(_ sender: UITextField)
     {
         selectedfield = smokeField
@@ -99,6 +105,16 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
         orientationField.inputView = orientationpicker
         supportField.inputView = supportpicker
         
+        var userlist = userModel.users
+        displayedUser = userModel.findUser(uid: currentUserID!)
+        
+        eduField.text = displayedUser.education
+        relationField.text = displayedUser.relationship
+        religiousField.text = displayedUser.religious
+        spiritualField.text = displayedUser.spiritual
+        smokeField.text = displayedUser.smoker
+        orientationField.text = displayedUser.orientation
+        supportField.text = displayedUser.support
         
         // datepicker.setValue(DesignHelper.getOffWhiteColor(), forKey: "textColor")
         // datepicker.performSelector(inBackground: "setHighlightsToday", with: <#T##Any?#>)
@@ -199,3 +215,4 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
      */
     
 }
+
