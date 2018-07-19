@@ -10,7 +10,17 @@ import UIKit
 
 class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate
 {
-
+    
+    var email: String?
+    var password: String?
+    
+    var fname: String?
+    var lname: String?
+    var dob: String?
+    var home: String?
+    var dor: String?
+    var qAnswer: [Int]?
+    
     let edupicker = UIPickerView()
     let relationpicker = UIPickerView()
     let orientationpicker = UIPickerView()
@@ -176,6 +186,8 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         }
         
     }
+    
+   
     /*
     // MARK: - Navigation
 
@@ -185,5 +197,35 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBOutlet weak var nextButton: UIButton!
+    @IBAction func nextButtonAction(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toProfileFinish3", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "toProfileFinish3")
+        {
+            let destinationVC = segue.destination as! ProfileFinish3
+            destinationVC.qAnswer = qAnswer
+            destinationVC.email = email
+            destinationVC.password = password
+            destinationVC.fname = fname
+            destinationVC.lname = lname
+            destinationVC.dob = dob
+            destinationVC.home = home
+            destinationVC.dor = dor
+            
+            destinationVC.edu = eduField.text
+            destinationVC.rel = relationField.text
+            destinationVC.reli = religiousField.text
+            destinationVC.ori = orientationField.text
+            destinationVC.spt = spiritualField.text
+            destinationVC.smk = smokeField.text
+            destinationVC.sup = supportField.text
+        }
+    }
+    
+    
 }
