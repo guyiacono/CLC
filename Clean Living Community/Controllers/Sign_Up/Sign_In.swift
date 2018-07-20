@@ -11,6 +11,30 @@ import Firebase
 import Foundation
 import FirebaseAuth
 
+extension UITextField {
+    func setBottomBorder(bottom_border : String) {
+        var borderColor : CGColor = UIColor.white.cgColor
+        
+        if bottom_border == "teal" {
+            borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+        } else if bottom_border == "blue" {
+            borderColor = UIColor(red:0.25, green:0.58, blue:0.95, alpha:1.0).cgColor
+        }
+        
+        self.borderStyle = .none
+        
+        self.layer.backgroundColor = UIColor.clear.cgColor
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = borderColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
+}
+
 class Sign_In: UIViewController
 {
     let usermodel = UserModel.sharedInstance
@@ -63,8 +87,14 @@ class Sign_In: UIViewController
     {
         super.viewDidLoad()
         
-        
+                
         // Do any additional setup after loading the view.
+        
+        email.setBottomBorder(bottom_border: "teal")
+        password.setBottomBorder(bottom_border: "blue")
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
