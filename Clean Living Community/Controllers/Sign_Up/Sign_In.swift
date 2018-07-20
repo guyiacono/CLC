@@ -82,7 +82,15 @@ class Sign_In: UIViewController
         }
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "signUpPass")
+        {
+            let destinationVC = segue.destination as! SurveyIntroViewController
+            destinationVC.email = email.text
+            destinationVC.password = password.text
+        }
+    }
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -101,6 +109,7 @@ class Sign_In: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "signUpPass"
@@ -111,7 +120,7 @@ class Sign_In: UIViewController
             }
         }
     }
-    
+    */
     /*
      // MARK: - Navigation
      
@@ -121,5 +130,8 @@ class Sign_In: UIViewController
      // Pass the selected object to the new view controller.
      }
      */
-    
+    @IBAction func unwindToSignin(_ sender: UIStoryboardSegue)
+    {
+        
+    }
 }

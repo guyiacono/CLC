@@ -1,8 +1,8 @@
 //
-//  SurveyFinal.swift
+//  SurveyP5.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 5/24/18.
+//  Created by Michael Karolewicz on 7/19/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
@@ -12,7 +12,15 @@ import TGPControls
 
 
 
-class SurveyFinal: UIViewController {
+class SurveyP5: UIViewController {
+    
+    var qAnswer: [Int]?
+    
+    var email: String?
+    var password: String?
+    
+    
+    
     
     
     @IBOutlet weak var q1custom: TGPDiscreteSlider!
@@ -28,27 +36,45 @@ class SurveyFinal: UIViewController {
     @IBOutlet weak var q4Label: TGPCamelLabels!
     @IBOutlet weak var q5Label: TGPCamelLabels!
     
- 
+    
     /*
-    @IBOutlet weak var q1: UISlider!
-    @IBOutlet weak var q2: UISlider!
-    @IBOutlet weak var q3: UISlider!
-    @IBOutlet weak var q4: UISlider!
-    @IBOutlet weak var q5: UISlider!
-    */
+     @IBOutlet weak var q1: UISlider!
+     @IBOutlet weak var q2: UISlider!
+     @IBOutlet weak var q3: UISlider!
+     @IBOutlet weak var q4: UISlider!
+     @IBOutlet weak var q5: UISlider!
+     */
     
     @IBAction func endSurvey(_ sender: UIButton)
     {
+        qAnswer![20] = Int(q1custom.value)
+        qAnswer![21] = Int(q2custom.value)
+        qAnswer![22] = Int(q3custom.value)
+        qAnswer![23] = Int(q4custom.value)
+        qAnswer![24] = Int(q5custom.value)
         performSegue(withIdentifier: "endSurvey", sender: self)
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "endSurvey")
+        {
+            let destinationVC = segue.destination as! ProfileFinish1
+            destinationVC.qArray = qAnswer
+            destinationVC.email = email
+            destinationVC.password = password
+            
+            
+        }
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-    
+        
         q1Label.names = ["Strongly Disagree", "Disagree", "Neutral", "Agree","Strongly Agree"]
-       // let typeString = String(describing: type(of: q1Label.names))
+        // let typeString = String(describing: type(of: q1Label.names))
         
         q1Label.upFontSize = 9
         q1Label.downFontSize = 9
@@ -73,7 +99,7 @@ class SurveyFinal: UIViewController {
         q5Label.upFontSize = 9
         q5Label.downFontSize = 9
         q5custom.ticksListener = q5Label
- 
+        
         
         
     }
@@ -81,32 +107,15 @@ class SurveyFinal: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     /*
-    @IBAction func q2changed(_ sender: UISlider) {
-        q2.value = roundf(q2.value)
-    }
-    @IBAction func q1changed(_ sender: UISlider) {
-        q1.value = roundf(q1.value)
-    }
-    @IBAction func q3changed(_ sender: UISlider) {
-        q3.value = roundf(q3.value)
-    }
-    @IBAction func q4changed(_ sender: UISlider) {
-        q4.value = roundf(q4.value)
-    }
-    @IBAction func q5changed(_ sender: UISlider) {
-        q5.value = roundf(q5.value)
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

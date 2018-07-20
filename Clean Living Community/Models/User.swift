@@ -15,13 +15,7 @@ struct User
 {
     let key: String
     
-    /*
-     let Q1: Int
-     let Q2: Int
-     let Q3: Int
-     let Q4: Int
-     let Q5: Int
-     */
+   
     let first: String
     let last: String
     let DOB: String
@@ -44,22 +38,25 @@ struct User
     var url2: String?
     var url3: String?
     
+    let questionair: [Int]
+    /*
+    let Q1: Int
+    let Q2: Int
+    let Q3: Int
+    let Q4: Int
+    let Q5: Int
+    */
     let ref: DatabaseReference?
     
     init(snapshot: DataSnapshot)
     {
         key = snapshot.key
-        let snapshotValue = snapshot.childSnapshot(forPath: "/Profile").value as! [String: AnyObject]
+        var snapshotValue = snapshot.childSnapshot(forPath: "/Profile").value as! [String: AnyObject]
         
         
         
-        /*
-         Q1 = snapshotValue["Q1"] as! Int
-         Q2 = snapshotValue["Q2"] as! Int
-         Q3 = snapshotValue["Q3"] as! Int
-         Q4 = snapshotValue["Q4"] as! Int
-         Q5 = snapshotValue["Q5"] as! Int
-         */
+
+ 
         first = snapshotValue["First Name"] as! String
         last = snapshotValue["Last Name"] as! String
         DOB = snapshotValue["DOB"] as! String
@@ -78,10 +75,23 @@ struct User
         url1 = snapshotValue["Photo1"] as! String
         url2 = snapshotValue["Photo2"] as! String
         url3 = snapshotValue["Photo3"] as! String
+        
+      
+        
+        snapshotValue = snapshot.childSnapshot(forPath: "/Questionair").value as! [String: AnyObject]
+        questionair = Array(repeating: 0, count: 100)
+
+        /*
+        Q1 = snapshotValue["Q1"] as! Int
+        Q2 = snapshotValue["Q2"] as! Int
+        Q3 = snapshotValue["Q3"] as! Int
+        Q4 = snapshotValue["Q4"] as! Int
+        Q5 = snapshotValue["Q5"] as! Int
+        */
         ref = snapshot.ref
+ 
     }
-    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String,
-         rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String)
+    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, questionair: [Int])
     {
         self.first = fname
         self.last = lname
@@ -99,6 +109,7 @@ struct User
         self.pref2 = p2
         self.key = key
         self.bio = bio
+        self.questionair = questionair
         self.ref = nil
     }
     func toAnyObject() -> Any
@@ -121,12 +132,22 @@ struct User
                 "Preference2" : pref2,
                 "key" : key,
                 "Bio" : bio,
-                
                 "Photo1": url1,
                 "Photo2": url2,
                 "Photo3": url3
                 
         ]
+    }
+    func toQuestionairResults() -> Any
+    {
+        var answers : [String:Int] = [:]
+        for(index, element) in (questionair.enumerated())
+        {
+            let key = "Q\(index+1)"
+            let val = questionair[index]
+            answers[key] = val
+        }
+        return answers
     }
 }
 

@@ -1,14 +1,14 @@
 //
-//  ProfileFinish3.swift
+//  ProfileFinish4.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 6/11/18.
+//  Created by Michael Karolewicz on 7/17/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
 
-class ProfileFinish3: UIViewController
+class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate
 {
     var email: String?
     var password: String?
@@ -30,35 +30,31 @@ class ProfileFinish3: UIViewController
     
     var bio: String?
     
-
-    @IBOutlet weak var bioSpace: UITextView!
-    
- 
-    
-    
+    @IBOutlet weak var profileImage1: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
+       
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func changePhoto(_ sender: UIGestureRecognizer)
+    {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var nextButton: UIButton!
-    @IBAction func nextButtonAction(_ sender: UIButton)
-    {
-        performSegue(withIdentifier: "toProfileFinish4", sender: self)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if(segue.identifier == "toProfileFinish4")
+        if(segue.identifier == "toProfileFinish5")
         {
-            let destinationVC = segue.destination as! ProfileFinish4
+            let destinationVC = segue.destination as! ProfileFinish5
             destinationVC.qAnswer = qAnswer
             destinationVC.email = email
             destinationVC.password = password
@@ -76,9 +72,15 @@ class ProfileFinish3: UIViewController
             destinationVC.smk = smk
             destinationVC.sup = sup
             
-            destinationVC.bio = bioSpace.text
+            destinationVC.bio = bio
         }
     }
+    @IBOutlet weak var finish: UIButton!
+    @IBAction func finishSurvey(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toProfileFinish5", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -89,4 +91,7 @@ class ProfileFinish3: UIViewController
     }
     */
 
+    
+
+    
 }
