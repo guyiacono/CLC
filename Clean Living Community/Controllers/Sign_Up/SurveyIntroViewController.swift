@@ -8,7 +8,10 @@
 
 import UIKit
 
-class SurveyIntroViewController: UIViewController {
+class SurveyIntroViewController: UIViewController
+{
+    var email: String?
+    var password: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +23,24 @@ class SurveyIntroViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "toSurveyP1")
+        {
+            let destinationVC = segue.destination as! SurveyFinal
+            destinationVC.email = email
+            destinationVC.password = password
+            
+            
+        }
+    }
     
-
+    @IBOutlet weak var nextButton: UIButton!
+    @IBAction func startSurvey(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toSurveyP1", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

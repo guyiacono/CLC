@@ -30,6 +30,8 @@
 		E44DCA2420B4819200281955 /* Sign_In.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DCA2320B4819200281955 /* Sign_In.swift */; };
 		E44DCA2620B4863C00281955 /* SurveyIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */; };
 		E44DCA2820B49A9400281955 /* Surveyp1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DCA2720B49A9400281955 /* Surveyp1.swift */; };
+		E45FF4DB20FE888700BD5FB7 /* ProfileFinish4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45FF4DA20FE888700BD5FB7 /* ProfileFinish4.swift */; };
+		E45FF4DD20FE935B00BD5FB7 /* ProfileFinish5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45FF4DC20FE935B00BD5FB7 /* ProfileFinish5.swift */; };
 		E463F3B120D9932300153FF5 /* FindEventsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463F3B020D9932300153FF5 /* FindEventsNewViewController.swift */; };
 		E463F3B320D99AD100153FF5 /* EventMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463F3B220D99AD100153FF5 /* EventMapViewController.swift */; };
 		E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E471EE6120EA6A2D00447915 /* UserModel.swift */; };
@@ -69,6 +71,10 @@
 		E4FDEF8020D15BC000CEF5A0 /* FindEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */; };
 		E4FDEF8220D1637A00CEF5A0 /* FindEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF8120D1637A00CEF5A0 /* FindEventsTableViewCell.swift */; };
 		E4FDEF8420D1663A00CEF5A0 /* MyConnectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */; };
+		E4FF1CFD2101159200101E6E /* SurveyP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1CFC2101159200101E6E /* SurveyP2.swift */; };
+		E4FF1CFF2101181800101E6E /* SurveyP3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1CFE2101181800101E6E /* SurveyP3.swift */; };
+		E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1D002101193000101E6E /* SurveyP4.swift */; };
+		E4FF1D032101193E00101E6E /* SurveyP5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1D022101193E00101E6E /* SurveyP5.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +123,8 @@
 		E44DCA2320B4819200281955 /* Sign_In.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sign_In.swift; sourceTree = "<group>"; };
 		E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyIntroViewController.swift; sourceTree = "<group>"; };
 		E44DCA2720B49A9400281955 /* Surveyp1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Surveyp1.swift; sourceTree = "<group>"; };
+		E45FF4DA20FE888700BD5FB7 /* ProfileFinish4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish4.swift; sourceTree = "<group>"; };
+		E45FF4DC20FE935B00BD5FB7 /* ProfileFinish5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish5.swift; sourceTree = "<group>"; };
 		E463F3B020D9932300153FF5 /* FindEventsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsNewViewController.swift; sourceTree = "<group>"; };
 		E463F3B220D99AD100153FF5 /* EventMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapViewController.swift; sourceTree = "<group>"; };
 		E471EE6120EA6A2D00447915 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -151,6 +159,10 @@
 		E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsTableViewController.swift; sourceTree = "<group>"; };
 		E4FDEF8120D1637A00CEF5A0 /* FindEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsTableViewCell.swift; sourceTree = "<group>"; };
 		E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsTableViewController.swift; sourceTree = "<group>"; };
+		E4FF1CFC2101159200101E6E /* SurveyP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SurveyP2.swift; path = "Clean Living Community/Controllers/Sign_Up/Survery_Pages/SurveyP2.swift"; sourceTree = SOURCE_ROOT; };
+		E4FF1CFE2101181800101E6E /* SurveyP3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP3.swift; sourceTree = "<group>"; };
+		E4FF1D002101193000101E6E /* SurveyP4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP4.swift; sourceTree = "<group>"; };
+		E4FF1D022101193E00101E6E /* SurveyP5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP5.swift; sourceTree = "<group>"; };
 		FA03FE55BFDB70FC138E8691 /* Pods-Clean Living CommunityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clean Living CommunityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Clean Living CommunityTests/Pods-Clean Living CommunityTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,13 +220,15 @@
 		E42CFA4E20F68AF2001CEE58 /* Sign_Up */ = {
 			isa = PBXGroup;
 			children = (
+				E45FF4D920FE728000BD5FB7 /* Survery_Pages */,
 				E44DCA2320B4819200281955 /* Sign_In.swift */,
 				E44DCA2720B49A9400281955 /* Surveyp1.swift */,
-				E4A3102420B7265300AE2D1A /* SurveyFinal.swift */,
 				E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */,
 				E431C2E520CEB824007D0107 /* ProfileFinish1.swift */,
 				E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */,
 				E431C2E920CEB855007D0107 /* ProfileFinish3.swift */,
+				E45FF4DA20FE888700BD5FB7 /* ProfileFinish4.swift */,
+				E45FF4DC20FE935B00BD5FB7 /* ProfileFinish5.swift */,
 				E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */,
 			);
 			path = Sign_Up;
@@ -257,6 +271,18 @@
 				E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */,
 			);
 			path = Everything;
+			sourceTree = "<group>";
+		};
+		E45FF4D920FE728000BD5FB7 /* Survery_Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E4A3102420B7265300AE2D1A /* SurveyFinal.swift */,
+				E4FF1CFC2101159200101E6E /* SurveyP2.swift */,
+				E4FF1CFE2101181800101E6E /* SurveyP3.swift */,
+				E4FF1D002101193000101E6E /* SurveyP4.swift */,
+				E4FF1D022101193E00101E6E /* SurveyP5.swift */,
+			);
+			path = Survery_Pages;
 			sourceTree = "<group>";
 		};
 		E4A42ECF20B5C2E90012FE2C /* Views */ = {
@@ -638,11 +664,14 @@
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
 				E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */,
 				E4FDE49020C5B7BD00DFC488 /* MessagesViewController.swift in Sources */,
+				E45FF4DB20FE888700BD5FB7 /* ProfileFinish4.swift in Sources */,
 				E400B5B520E9D2B3000D2146 /* User.swift in Sources */,
+				E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */,
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
 				E4A3102520B7265300AE2D1A /* SurveyFinal.swift in Sources */,
 				E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
+				E45FF4DD20FE935B00BD5FB7 /* ProfileFinish5.swift in Sources */,
 				E42CFA5E20F69414001CEE58 /* MyProfileBiographyViewController.swift in Sources */,
 				E4FDEF8020D15BC000CEF5A0 /* FindEventsTableViewController.swift in Sources */,
 				E44DCA2820B49A9400281955 /* Surveyp1.swift in Sources */,
@@ -659,11 +688,14 @@
 				E463F3B120D9932300153FF5 /* FindEventsNewViewController.swift in Sources */,
 				E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */,
 				E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */,
+				E4FF1D032101193E00101E6E /* SurveyP5.swift in Sources */,
 				E4A42ECE20B5C2BD0012FE2C /* SurveyScrollView.swift in Sources */,
 				E4FA11D320B4664500E485BC /* AppDelegate.swift in Sources */,
 				E44DCA2420B4819200281955 /* Sign_In.swift in Sources */,
 				E4FC83FB20D0E37300613A99 /* PersonalInfoProfileChange.swift in Sources */,
 				E4FDEF7C20D1557300CEF5A0 /* EventCategoryTableViewController.swift in Sources */,
+				E4FF1CFD2101159200101E6E /* SurveyP2.swift in Sources */,
+				E4FF1CFF2101181800101E6E /* SurveyP3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
