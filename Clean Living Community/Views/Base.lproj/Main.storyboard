@@ -2038,9 +2038,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="lVj-c7-6kO">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="lVj-c7-6kO">
                                 <rect key="frame" x="9" y="125" width="357" height="357"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="MfA-Tl-65i" appends="YES" id="hVU-NH-ffB"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BB-z9-ZsD">
                                 <rect key="frame" x="167" y="579" width="41" height="30"/>
@@ -2052,14 +2055,24 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="t0j-QE-gye"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="MfA-Tl-65i" appends="YES" id="wLE-O3-EK3"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="finish" destination="5BB-z9-ZsD" id="jKJ-TQ-5bY"/>
+                        <outlet property="profileImage1" destination="lVj-c7-6kO" id="duc-NC-AGT"/>
                         <segue destination="k0u-o6-Cqf" kind="show" identifier="toProfileFinish5" id="81n-jo-id9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajU-EK-wCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <gestureRecognizer id="MfA-Tl-65i">
+                    <connections>
+                        <action selector="changePhoto:" destination="IeL-NG-dto" id="FIu-cj-yas"/>
+                    </connections>
+                </gestureRecognizer>
             </objects>
             <point key="canvasLocation" x="6992.8000000000002" y="-80.50974512743629"/>
         </scene>
