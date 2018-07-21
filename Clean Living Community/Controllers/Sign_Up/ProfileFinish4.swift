@@ -35,7 +35,9 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
        
-       
+        profileImage1.layer.masksToBounds = true
+        profileImage1.clipsToBounds = true
+        profileImage1.layer.cornerRadius = profileImage1.frame.height/2
         // Do any additional setup after loading the view.
     }
 

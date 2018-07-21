@@ -38,6 +38,8 @@ class ProfileFinish5: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        pref1Option.layer.cornerRadius = 7
+        
         // Do any additional setup after loading the view.
     }
 

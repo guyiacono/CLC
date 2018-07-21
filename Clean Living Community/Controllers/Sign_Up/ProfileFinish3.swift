@@ -40,6 +40,7 @@ class ProfileFinish3: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bioSpace.layer.cornerRadius = 7
         // Do any additional setup after loading the view.
     }
 
