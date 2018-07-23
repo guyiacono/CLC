@@ -127,7 +127,7 @@ struct User
                 "Religious" : religious,
                 "Spiritual" : spiritual,
                 "Smoker" : smoker,
-                "Support Group" : support,
+                "Support Groups" : support,
                 "Preference1" : pref1,
                 "Preference2" : pref2,
                 "key" : key,
