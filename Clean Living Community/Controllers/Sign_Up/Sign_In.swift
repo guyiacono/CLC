@@ -100,9 +100,7 @@ class Sign_In: UIViewController
         
         email.setBottomBorder(bottom_border: "teal")
         password.setBottomBorder(bottom_border: "blue")
-        
-        
-        
+
     }
     
     override func didReceiveMemoryWarning() {
