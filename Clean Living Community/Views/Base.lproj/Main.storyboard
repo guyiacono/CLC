@@ -3355,7 +3355,6 @@
                                 <connections>
                                     <outlet property="datalabel" destination="Ay3-qj-Xx4" id="WEp-Er-umN"/>
                                     <outlet property="photo" destination="qti-2K-Rz4" id="xw9-W9-UHq"/>
-                                    <segue destination="pL5-Wp-Vvn" kind="show" id="1hS-gP-fSO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3365,15 +3364,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Connections" id="cev-tr-K03"/>
+                    <connections>
+                        <segue destination="vjM-WO-qLi" kind="show" identifier="toFriendProfile" id="KS1-X6-2iF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K62-TS-Fh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2550" y="2370"/>
         </scene>
-        <!--View Controller-->
+        <!--Friend Profile View Controller-->
         <scene sceneID="MJB-eU-qc2">
             <objects>
-                <viewController id="vjM-WO-qLi" sceneMemberID="viewController">
+                <viewController id="vjM-WO-qLi" customClass="FriendProfileViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OSi-Ss-3Ro">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3406,20 +3408,54 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izx-ge-FcE">
-                                <rect key="frame" x="148" y="559" width="78" height="30"/>
+                                <rect key="frame" x="16" y="556" width="78" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Disconnect">
                                     <color key="titleColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="disconnectAction:" destination="vjM-WO-qLi" eventType="touchUpInside" id="4r4-j3-bdx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMN-zK-2EC">
+                                <rect key="frame" x="156" y="556" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Message">
+                                    <color key="titleColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="messageAction:" destination="vjM-WO-qLi" eventType="touchUpInside" id="v59-eX-8VF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEy-Dd-XgW">
+                                <rect key="frame" x="294" y="556" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="More Info">
+                                    <color key="titleColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="moreInfoAction:" destination="vjM-WO-qLi" eventType="touchUpInside" id="2QG-sF-aVR"/>
+                                    <action selector="moreInfoButton:" destination="pL5-Wp-Vvn" eventType="touchUpInside" id="hDK-Lv-bPZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="gF5-bl-ca1"/>
                     </view>
+                    <connections>
+                        <outlet property="age" destination="apR-Gt-Ota" id="5Yi-wu-DnO"/>
+                        <outlet property="bio" destination="3H3-J3-uDM" id="MQ9-aK-Loj"/>
+                        <outlet property="disconnect" destination="izx-ge-FcE" id="RCI-V6-xRh"/>
+                        <outlet property="messageButton" destination="SMN-zK-2EC" id="UT1-dR-0B7"/>
+                        <outlet property="moreInfoButton" destination="iEy-Dd-XgW" id="Stw-Rl-Spo"/>
+                        <outlet property="name" destination="z94-rG-piR" id="PmW-S0-J8G"/>
+                        <outlet property="profileImage" destination="wb1-Xj-19a" id="ye9-0b-0nH"/>
+                        <segue destination="5Y0-Kd-2I1" kind="show" identifier="toFriendProfileDetail" id="rS5-jq-W5o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62s-Tv-xyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1712.8" y="2369.8650674662672"/>
+            <point key="canvasLocation" x="1657" y="2370"/>
         </scene>
         <!--My Events-->
         <scene sceneID="j3c-3w-jD9">
@@ -5822,6 +5858,120 @@
             </objects>
             <point key="canvasLocation" x="4494" y="-2936"/>
         </scene>
+        <!--Stranger Profile Info View Controller-->
+        <scene sceneID="VyJ-jl-qI1">
+            <objects>
+                <viewController id="5Y0-Kd-2I1" customClass="StrangerProfileInfoViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NZN-hg-bnM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kcn-qu-Hy9">
+                                <rect key="frame" x="11" y="84" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="MV7-34-CvH">
+                                <rect key="frame" x="152" y="84" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="NiW-1W-gRS">
+                                <rect key="frame" x="292" y="84" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Education: High School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2u-W6-yOG">
+                                <rect key="frame" x="13" y="250" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Relationship Status: In a relationship" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGM-ks-KQA">
+                                <rect key="frame" x="11" y="279" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sexual Orientation: Gay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfI-1u-ZRa">
+                                <rect key="frame" x="13" y="308" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Religious: No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahA-3b-7vT">
+                                <rect key="frame" x="13" y="337" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Spiritual No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIR-os-mDg">
+                                <rect key="frame" x="13" y="366" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Smokes: No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7za-Ys-Pg4">
+                                <rect key="frame" x="13" y="395" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attend support groups: Occasionally" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8QA-LD-JJZ">
+                                <rect key="frame" x="11" y="424" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date of Recovery: 1/1/1990" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pra-jn-gRJ">
+                                <rect key="frame" x="11" y="453" width="205" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGA-5C-502">
+                                <rect key="frame" x="13" y="192" width="200" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age: 25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR9-CZ-ny4">
+                                <rect key="frame" x="13" y="221" width="200" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Jjw-rh-IL7"/>
+                    </view>
+                    <connections>
+                        <outlet property="age" destination="cR9-CZ-ny4" id="Cpz-CW-riw"/>
+                        <outlet property="education" destination="P2u-W6-yOG" id="hmW-W3-2A7"/>
+                        <outlet property="name" destination="NGA-5C-502" id="Y7p-d8-rD7"/>
+                        <outlet property="orientation" destination="wfI-1u-ZRa" id="XUY-nx-AdB"/>
+                        <outlet property="photo1" destination="kcn-qu-Hy9" id="hFe-A4-O6w"/>
+                        <outlet property="photo2" destination="MV7-34-CvH" id="lgV-4o-MZ2"/>
+                        <outlet property="photo3" destination="NiW-1W-gRS" id="dPr-JC-GkR"/>
+                        <outlet property="recovery" destination="pra-jn-gRJ" id="jOk-16-hcM"/>
+                        <outlet property="relation" destination="QGM-ks-KQA" id="c2D-VW-4tG"/>
+                        <outlet property="religious" destination="ahA-3b-7vT" id="MYS-O2-EJW"/>
+                        <outlet property="smokes" destination="7za-Ys-Pg4" id="LcS-7m-Xpr"/>
+                        <outlet property="spiritual" destination="LIR-os-mDg" id="0qI-M6-220"/>
+                        <outlet property="support" destination="8QA-LD-JJZ" id="fPn-Ch-ssZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5M-jl-1gW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="2370"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Base.png" width="1023" height="1125"/>
@@ -5840,8 +5990,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="o8L-k0-9lL"/>
-        <segue reference="vsp-9C-E3G"/>
-        <segue reference="zAV-dg-gYH"/>
+        <segue reference="M6b-JZ-ioV"/>
         <segue reference="Esm-xT-Dv4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

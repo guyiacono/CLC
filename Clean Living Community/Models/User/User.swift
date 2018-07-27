@@ -39,13 +39,16 @@ struct User
     var url3: String?
     
     let questionair: [Int]
-    /*
-    let Q1: Int
-    let Q2: Int
-    let Q3: Int
-    let Q4: Int
-    let Q5: Int
-    */
+    
+   // var connections: [String]
+   
+    var mainPhoto: String?
+    var connectionName: String?
+    var request: String?
+    
+    
+    
+    
     let ref: DatabaseReference?
     
     init(snapshot: DataSnapshot)
@@ -79,19 +82,20 @@ struct User
       
         
         snapshotValue = snapshot.childSnapshot(forPath: "/Questionair").value as! [String: AnyObject]
-        questionair = Array(repeating: 0, count: 100)
-
+        
         /*
-        Q1 = snapshotValue["Q1"] as! Int
-        Q2 = snapshotValue["Q2"] as! Int
-        Q3 = snapshotValue["Q3"] as! Int
-        Q4 = snapshotValue["Q4"] as! Int
-        Q5 = snapshotValue["Q5"] as! Int
-        */
+        questionair = Array(repeating: 0, count: 0)
+        for i in 1...100
+        {
+            questionair[i-1] = snapshotValue["Q\(i+1)"] as! Int
+        }
+ */
+        questionair = Array(repeating: 0, count: 100)
+        
         ref = snapshot.ref
  
     }
-    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, questionair: [Int])
+    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, url1: String, url2: String, url3: String, questionair: [Int])
     {
         self.first = fname
         self.last = lname
@@ -110,6 +114,9 @@ struct User
         self.key = key
         self.bio = bio
         self.questionair = questionair
+        self.url1 = url1
+        self.url2 = url2
+        self.url3 = url3
         self.ref = nil
     }
     func toAnyObject() -> Any
@@ -136,6 +143,7 @@ struct User
                 "Photo2": url2,
                 "Photo3": url3
                 
+                
         ]
     }
     func toQuestionairResults() -> Any
@@ -149,5 +157,15 @@ struct User
         }
         return answers
     }
+    /*
+    func toConnections() -> Any
+    {
+        [
+            "MainPhoto" : mainPhoto,
+            "Name" : connectionName,
+            "Request": request
+        ]
+    }
+ */
 }
 

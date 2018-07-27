@@ -1,21 +1,24 @@
 //
-//  MessagesViewController.swift
+//  MessageContactsTableViewController.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 6/4/18.
+//  Created by Michael Karolewicz on 7/26/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
 
-class MessagesViewController: UITableViewController
+class MessageContactsTableViewController: UITableViewController
 {
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,34 +30,23 @@ class MessagesViewController: UITableViewController
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 25
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listofmessages", for: indexPath) as! ListofMessagesTableViewCell
-        
-        cell.photo.image = UIImage(named: "No Photo.png")
-        cell.name.text = "Person # \(indexPath.row)"
-        cell.preview.text = "sample text"
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        let date = Date()
-        let stringDate: String = formatter.string(from: date)
-        cell.date.font = cell.date.font.withSize(10)
-        cell.date.text = "\(stringDate)"
-        
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
         // Configure the cell...
+
         return cell
     }
- 
+    */
 
     /*
     // Override to support conditional editing of the table view.

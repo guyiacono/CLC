@@ -56,7 +56,7 @@ class Sign_In: UIViewController
                     in
                     if (success)
                     {
-                        print(self.usermodel.users)
+                        //print(self.usermodel.users)
                     }
                 })
                 self.performSegue(withIdentifier: "loginpass", sender: Sign_In.self)

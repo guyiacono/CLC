@@ -12,6 +12,9 @@
 		3A610E8AE16FB8321730F028 /* Pods_Clean_Living_Community.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F83BADC05ED9342A38EE57 /* Pods_Clean_Living_Community.framework */; };
 		E400B5B520E9D2B3000D2146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400B5B420E9D2B2000D2146 /* User.swift */; };
 		E400B5B720E9D52A000D2146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E400B5B620E9D52A000D2146 /* GoogleService-Info.plist */; };
+		E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */; };
+		E4049EAB210AD122007125FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAA210AD122007125FD /* Message.swift */; };
+		E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAC210ADD40007125FD /* MessageModel.swift */; };
 		E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */; };
 		E414C54720C8236C003AB56C /* My Connections 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E414C54620C8236B003AB56C /* My Connections 2.png */; };
 		E42CFA5420F68B60001CEE58 /* StrangerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42CFA5120F68B5F001CEE58 /* StrangerProfileViewController.swift */; };
@@ -27,6 +30,7 @@
 		E44A8A1820C6FD010048EC60 /* ConnectionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */; };
 		E44A8A1A20C6FDD80048EC60 /* ConnectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */; };
 		E44A8A1C20C7035C0048EC60 /* No Photo.png in Resources */ = {isa = PBXBuildFile; fileRef = E44A8A1B20C7035C0048EC60 /* No Photo.png */; };
+		E44CEFAF2107BB3B008DB175 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44CEFAE2107BB3B008DB175 /* FriendProfileViewController.swift */; };
 		E44DCA2420B4819200281955 /* Sign_In.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DCA2320B4819200281955 /* Sign_In.swift */; };
 		E44DCA2620B4863C00281955 /* SurveyIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */; };
 		E44DCA2820B49A9400281955 /* Surveyp1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DCA2720B49A9400281955 /* Surveyp1.swift */; };
@@ -103,8 +107,11 @@
 		86DAD1E9A126EC376D6A41B4 /* Pods-Clean Living Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clean Living Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-Clean Living Community/Pods-Clean Living Community.release.xcconfig"; sourceTree = "<group>"; };
 		98F83BADC05ED9342A38EE57 /* Pods_Clean_Living_Community.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clean_Living_Community.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EFD074556E51FB2A7F441C /* Pods-Clean Living CommunityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clean Living CommunityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Clean Living CommunityUITests/Pods-Clean Living CommunityUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		E400B5B420E9D2B2000D2146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "Clean Living Community/Models/User.swift"; sourceTree = SOURCE_ROOT; };
+		E400B5B420E9D2B2000D2146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "Clean Living Community/Models/User/User.swift"; sourceTree = SOURCE_ROOT; };
 		E400B5B620E9D52A000D2146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileDetailViewController.swift; sourceTree = "<group>"; };
+		E4049EAA210AD122007125FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		E4049EAC210ADD40007125FD /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish.swift; sourceTree = "<group>"; };
 		E414C54620C8236B003AB56C /* My Connections 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My Connections 2.png"; sourceTree = "<group>"; };
 		E42CFA5120F68B5F001CEE58 /* StrangerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrangerProfileViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +127,7 @@
 		E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsTableViewCell.swift; sourceTree = "<group>"; };
 		E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsTableViewController.swift; sourceTree = "<group>"; };
 		E44A8A1B20C7035C0048EC60 /* No Photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "No Photo.png"; sourceTree = "<group>"; };
+		E44CEFAE2107BB3B008DB175 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		E44DCA2320B4819200281955 /* Sign_In.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sign_In.swift; sourceTree = "<group>"; };
 		E44DCA2520B4863C00281955 /* SurveyIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyIntroViewController.swift; sourceTree = "<group>"; };
 		E44DCA2720B49A9400281955 /* Surveyp1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Surveyp1.swift; sourceTree = "<group>"; };
@@ -217,6 +225,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E4049EA7210ACD72007125FD /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		E4049EAE210ADD4C007125FD /* User */ = {
+			isa = PBXGroup;
+			children = (
+				E400B5B420E9D2B2000D2146 /* User.swift */,
+				E471EE6120EA6A2D00447915 /* UserModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		E4049EAF210ADD5A007125FD /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				E4049EAA210AD122007125FD /* Message.swift */,
+				E4049EAC210ADD40007125FD /* MessageModel.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		E4049EB0210ADD74007125FD /* Event */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		E42CFA4E20F68AF2001CEE58 /* Sign_Up */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +314,16 @@
 			path = Everything;
 			sourceTree = "<group>";
 		};
+		E44CEFAD2107BAB9008DB175 /* My Connections */ = {
+			isa = PBXGroup;
+			children = (
+				E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */,
+				E44CEFAE2107BB3B008DB175 /* FriendProfileViewController.swift */,
+				E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */,
+			);
+			path = "My Connections";
+			sourceTree = "<group>";
+		};
 		E45FF4D920FE728000BD5FB7 /* Survery_Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,16 +348,16 @@
 		E4A42ED020B5C2F70012FE2C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4049EA7210ACD72007125FD /* Messages */,
+				E44CEFAD2107BAB9008DB175 /* My Connections */,
 				E42CFA5020F68B17001CEE58 /* My_Profile */,
 				E42CFA4F20F68AFF001CEE58 /* Find_Connections */,
 				E42CFA4E20F68AF2001CEE58 /* Sign_Up */,
 				E463F3B220D99AD100153FF5 /* EventMapViewController.swift */,
 				E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */,
 				E4D66D2E20D1A01600CC0FB1 /* MyEventsViewController.swift */,
-				E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */,
 				E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */,
 				E463F3B020D9932300153FF5 /* FindEventsNewViewController.swift */,
-				E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -314,8 +365,9 @@
 		E4A42ED120B5C30E0012FE2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E400B5B420E9D2B2000D2146 /* User.swift */,
-				E471EE6120EA6A2D00447915 /* UserModel.swift */,
+				E4049EB0210ADD74007125FD /* Event */,
+				E4049EAF210ADD5A007125FD /* Message */,
+				E4049EAE210ADD4C007125FD /* User */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -667,10 +719,12 @@
 				E45FF4DB20FE888700BD5FB7 /* ProfileFinish4.swift in Sources */,
 				E400B5B520E9D2B3000D2146 /* User.swift in Sources */,
 				E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */,
+				E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */,
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
 				E4A3102520B7265300AE2D1A /* SurveyFinal.swift in Sources */,
 				E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
+				E4049EAB210AD122007125FD /* Message.swift in Sources */,
 				E45FF4DD20FE935B00BD5FB7 /* ProfileFinish5.swift in Sources */,
 				E42CFA5E20F69414001CEE58 /* MyProfileBiographyViewController.swift in Sources */,
 				E4FDEF8020D15BC000CEF5A0 /* FindEventsTableViewController.swift in Sources */,
@@ -678,6 +732,7 @@
 				E4FC83F920D0CFB100613A99 /* MyProfileSuperViewController.swift in Sources */,
 				E476490420BDDDA100253EE2 /* SurveySlider.swift in Sources */,
 				E4FDEF8220D1637A00CEF5A0 /* FindEventsTableViewCell.swift in Sources */,
+				E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */,
 				E44A8A1820C6FD010048EC60 /* ConnectionsTableViewCell.swift in Sources */,
 				E44DCA2620B4863C00281955 /* SurveyIntroViewController.swift in Sources */,
 				E463F3B320D99AD100153FF5 /* EventMapViewController.swift in Sources */,
@@ -685,6 +740,7 @@
 				E44A8A1A20C6FDD80048EC60 /* ConnectionsTableViewController.swift in Sources */,
 				E42CFA5C20F69414001CEE58 /* MyProfilePhotosViewController.swift in Sources */,
 				E431C2E620CEB824007D0107 /* ProfileFinish1.swift in Sources */,
+				E44CEFAF2107BB3B008DB175 /* FriendProfileViewController.swift in Sources */,
 				E463F3B120D9932300153FF5 /* FindEventsNewViewController.swift in Sources */,
 				E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */,
 				E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */,

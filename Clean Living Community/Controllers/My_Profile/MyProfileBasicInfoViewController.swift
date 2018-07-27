@@ -34,6 +34,8 @@ class MyProfileBasicInfoViewController: UIViewController
         hometown.text = displayedUser.hometown
         recoveryDate.text = displayedUser.recoveryDate
         // Do any additional setup after loading the view.
+        
+        print(displayedUser.questionair)
     }
 
     override func didReceiveMemoryWarning() {

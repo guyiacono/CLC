@@ -1,23 +1,38 @@
 //
-//  MyConnectionsTableViewController.swift
+//  MessagesViewController.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 6/13/18.
+//  Created by Michael Karolewicz on 6/4/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseAuth
+import FirebaseCore
 
-class MyConnectionsTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+class MessagesViewController: UITableViewController
+{
+    var userModel = UserModel.sharedInstance
+    let currentUserID = Auth.auth().currentUser?.uid
+    var message : [String: String]?
+    var messagesSorted: [(key: String, value: String)]?
+    var sortedMessageUIDS: [String] = []
+    
+    
+    override func viewDidLoad()
+    {
+        print("about to look for messages")
+        userModel.listAllMessages(withUID: currentUserID, completion: {(list)
+            in
+            if (list.count >= 0)
+            {
+                print("looking for messages")
+                self.message = list
+                self.messagesSorted = (self.message?.sorted(by: {$0.value < $1.value}))!
+                self.tableView.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,25 +43,52 @@ class MyConnectionsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        if(messagesSorted != nil)
+        {
+            return (messagesSorted?.count)!
+        }
+        else
+        {
+            return(0)
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 25
+        return (messagesSorted?.count)!
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "connectionscell", for: indexPath) as! ConnectionsTableViewCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listofmessages", for: indexPath) as! ListofMessagesTableViewCell
+        
+        var tempUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
+        setImageFromURl(stringImageUrl: (tempUser?.url1)!, forImage: cell.photo)
+        cell.name.text = (tempUser?.first)! + " " + (tempUser?.last)!
+        cell.preview.text = "sample text"
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let date = Date()
+        let stringDate: String = formatter.string(from: date)
+        cell.date.font = cell.date.font.withSize(10)
+        cell.date.text = "\(stringDate)"
+        
+        
         // Configure the cell...
-        cell.photo.image = UIImage(named: "No Photo.png")
-        cell.datalabel.text = "Person #\(indexPath.row)"
         return cell
     }
+ 
     
+    func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
+    {
+        
+        if let url = NSURL(string: url) {
+            if let data = NSData(contentsOf: url as URL) {
+                image.image = UIImage(data: data as Data)
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

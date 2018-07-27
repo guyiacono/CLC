@@ -35,6 +35,10 @@ class ProfileFinish5: UIViewController
     
     var pref1: String?
 
+    var profileImage1: UIImage?
+    var profileImage2: UIImage?
+    var profileImage3: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,7 +66,7 @@ class ProfileFinish5: UIViewController
             pref1 = "No"
         }
         
-        usermodel.registerUser(withEmail: email!, withPassword: password!, withFirst: fname!, withLast: lname!, withDOB: dob!, withTown: home!, withEdu: edu!, withOrientation: ori!, withRecovery: dor!, withRomance: rel!, withReligion: reli!, withSpiritual: spt!, isSmoke: smk!, attendSupport: sup!, withOpt1: pref1!, withOpt2: "Yes", withBio: bio!, withQuestionair: qAnswer!, completion: {(success)
+        usermodel.registerUser(withEmail: email!, withPassword: password!, withFirst: fname!, withLast: lname!, withDOB: dob!, withTown: home!, withEdu: edu!, withOrientation: ori!, withRecovery: dor!, withRomance: rel!, withReligion: reli!, withSpiritual: spt!, isSmoke: smk!, attendSupport: sup!, withOpt1: pref1!, withOpt2: "Yes", withBio: bio!, withImage1: profileImage1!, withImage2: profileImage2!, withImage3: profileImage3!, withQuestionair: qAnswer!, completion: {(success)
             in
             if (success)
             {
