@@ -211,202 +211,6 @@
             </objects>
             <point key="canvasLocation" x="952.79999999999995" y="-80.50974512743629"/>
         </scene>
-        <!--Survey-->
-        <scene sceneID="fK5-bR-y4V">
-            <objects>
-                <viewController title="Survey" id="h4x-Lq-DgC" customClass="SurveyFinal" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="siQ-OB-FeB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="887"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCR-fB-Vg6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZ0-0I-6Jn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="825"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="96.   I go with my &quot;gut&quot; when making decisions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kp-RP-yfH">
-                                                <rect key="frame" x="16" y="16" width="343" height="63"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="98.   I am happy with the life that I have" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uat-s9-K5J">
-                                                <rect key="frame" x="16" y="331" width="343" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99.  Even if I am satisfied with my current job, I still look for other positions out of curiosity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sr0-O7-sEx">
-                                                <rect key="frame" x="16" y="485" width="343" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="97.   I find it easy to let go of mistakes I've made and learn from them" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kw-Fr-tS5">
-                                                <rect key="frame" x="16" y="195" width="343" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100.  I don't consider myself a perfectionist" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7w-eC-E1E">
-                                                <rect key="frame" x="16" y="580" width="343" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-2" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="DaR-an-wH8" customClass="SurveySlider" customModule="Clean_Living_Community" customModuleProvider="target">
-                                                <rect key="frame" x="14" y="644" width="347" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" label="Agree"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="thumbimage" value="Leaf-Slider"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="q5changed:" destination="h4x-Lq-DgC" eventType="valueChanged" id="gOz-ER-aec"/>
-                                                </connections>
-                                            </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Disagree" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZi-dW-9qA">
-                                                <rect key="frame" x="8" y="682" width="68" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Agree" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVj-d1-yhL">
-                                                <rect key="frame" x="313" y="682" width="46" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKA-Zh-opn">
-                                                <rect key="frame" x="311" y="767" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Finish">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="endSurvey:" destination="h4x-Lq-DgC" eventType="touchUpInside" id="3t9-do-iLH"/>
-                                                    <segue destination="3XF-nM-F1P" kind="presentation" identifier="endSurvey" id="TWZ-9u-Rdt"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCt-8e-iw9" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                                <rect key="frame" x="36" y="142" width="290" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="tickSize">
-                                                        <size key="value" width="4" height="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="Leaf-Slider"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="incrementValue">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                                                        <real key="value" value="3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="thumbSize">
-                                                        <size key="value" width="40" height="40"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Smf-ey-h3g" customClass="TGPCamelLabels" customModule="TGPControls">
-                                                <rect key="frame" x="36" y="101" width="290" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="ticksDistance">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="upFontColor">
-                                                        <color key="value" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="downFontColor">
-                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="offCenter">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="emphasisLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="regularLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="825" id="g5I-Me-WMi"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="lZ0-0I-6Jn" firstAttribute="top" secondItem="eCR-fB-Vg6" secondAttribute="top" id="N3f-rZ-4OW"/>
-                                    <constraint firstItem="lZ0-0I-6Jn" firstAttribute="leading" secondItem="eCR-fB-Vg6" secondAttribute="leading" id="wIB-4G-tah"/>
-                                    <constraint firstAttribute="bottom" secondItem="lZ0-0I-6Jn" secondAttribute="bottom" id="yg2-ve-AfK"/>
-                                    <constraint firstAttribute="trailing" secondItem="lZ0-0I-6Jn" secondAttribute="trailing" id="yin-Vc-YTo"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="lZ0-0I-6Jn" firstAttribute="width" secondItem="siQ-OB-FeB" secondAttribute="width" id="4wg-kB-Tfc"/>
-                            <constraint firstItem="eCR-fB-Vg6" firstAttribute="top" secondItem="dwA-UO-DZc" secondAttribute="top" id="bG7-FZ-1p1"/>
-                            <constraint firstItem="eCR-fB-Vg6" firstAttribute="bottom" secondItem="dwA-UO-DZc" secondAttribute="bottom" id="bT4-G4-mh3"/>
-                            <constraint firstItem="eCR-fB-Vg6" firstAttribute="leading" secondItem="dwA-UO-DZc" secondAttribute="leading" id="g8v-qu-jtI"/>
-                            <constraint firstItem="eCR-fB-Vg6" firstAttribute="trailing" secondItem="dwA-UO-DZc" secondAttribute="trailing" id="gw5-WP-yEk"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="dwA-UO-DZc"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Survey" id="B0G-c3-Fay">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="m9B-Ky-5O0"/>
-                    </navigationItem>
-                    <size key="freeformSize" width="375" height="887"/>
-                    <connections>
-                        <outlet property="q1Label" destination="Smf-ey-h3g" id="g8X-h5-N4d"/>
-                        <outlet property="q1custom" destination="hCt-8e-iw9" id="GNE-BQ-up2"/>
-                        <outlet property="q5" destination="DaR-an-wH8" id="mOU-Gb-wcG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JhU-sv-c7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3588" y="-80.50974512743629"/>
-        </scene>
         <!--Profile Finish1-->
         <scene sceneID="fGi-Pb-Yev">
             <objects>
@@ -625,313 +429,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpD-jT-Wrr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4493.6000000000004" y="-80.50974512743629"/>
-        </scene>
-        <!--Survey-->
-        <scene sceneID="4SJ-KJ-QAa">
-            <objects>
-                <viewController title="Survey" id="7oi-4N-Xfw" customClass="Surveyp1" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YYW-fI-ec9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="887"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ikq-xj-InD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="867"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1L-V8-gUc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="825"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.   I respond to unread emails as soon as possible and hate seeing unread emails" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxd-fI-eXB">
-                                                <rect key="frame" x="16" y="16" width="343" height="63"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3.   My personal and professional spaces are very well organized" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrr-ph-NcN">
-                                                <rect key="frame" x="16" y="339" width="343" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.  When booking trips, I create a minute by minute itinerary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktn-Nq-UIi">
-                                                <rect key="frame" x="16" y="504" width="343" height="41"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.  I know what I will eat for dinner 2 days before I have it" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cis-Zm-eW7">
-                                                <rect key="frame" x="16" y="579" width="343" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2.   Being organized is better than being flexible" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ynl-fX-A6B">
-                                                <rect key="frame" x="16" y="181" width="343" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kr-Wv-1tm">
-                                                <rect key="frame" x="309" y="767" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Next">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="h4x-Lq-DgC" kind="show" id="Ymj-Uc-blX"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Po-ng-PKl" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                                <rect key="frame" x="42" y="128" width="290" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="tickSize">
-                                                        <size key="value" width="4" height="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="Leaf-Slider"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="incrementValue">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                                                        <real key="value" value="3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="thumbSize">
-                                                        <size key="value" width="40" height="40"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVH-nJ-8h3" customClass="TGPCamelLabels" customModule="TGPControls">
-                                                <rect key="frame" x="42" y="87" width="290" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="ticksDistance">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="upFontColor">
-                                                        <color key="value" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="downFontColor">
-                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="offCenter">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="emphasisLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="regularLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrT-7D-Oac" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                                <rect key="frame" x="42" y="286" width="290" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="tickSize">
-                                                        <size key="value" width="4" height="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="Leaf-Slider"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="incrementValue">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                                                        <real key="value" value="3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="thumbSize">
-                                                        <size key="value" width="40" height="40"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWu-z7-efh" customClass="TGPCamelLabels" customModule="TGPControls">
-                                                <rect key="frame" x="42" y="245" width="290" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="ticksDistance">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="upFontColor">
-                                                        <color key="value" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="downFontColor">
-                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="offCenter">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="emphasisLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="regularLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJ1-Sf-rfq" customClass="TGPDiscreteSlider" customModule="TGPControls">
-                                                <rect key="frame" x="42" y="444" width="290" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="tickSize">
-                                                        <size key="value" width="4" height="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="Leaf-Slider"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbTintColor">
-                                                        <color key="value" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="thumbStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="incrementValue">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                                                        <real key="value" value="3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="thumbSize">
-                                                        <size key="value" width="40" height="40"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackStyle">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UIK-K3-jWW" customClass="TGPCamelLabels" customModule="TGPControls">
-                                                <rect key="frame" x="42" y="403" width="290" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="tickCount">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="ticksDistance">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="upFontColor">
-                                                        <color key="value" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="downFontColor">
-                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="offCenter">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="emphasisLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="regularLayout">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="825" id="5r4-5k-AU5"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="V1L-V8-gUc" secondAttribute="trailing" id="7oB-Ew-2xJ"/>
-                                    <constraint firstItem="V1L-V8-gUc" firstAttribute="leading" secondItem="ikq-xj-InD" secondAttribute="leading" id="9ms-B7-WgJ"/>
-                                    <constraint firstItem="V1L-V8-gUc" firstAttribute="top" secondItem="ikq-xj-InD" secondAttribute="top" id="SSU-w1-ScB"/>
-                                    <constraint firstAttribute="bottom" secondItem="V1L-V8-gUc" secondAttribute="bottom" id="bLt-iO-NHZ"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ikq-xj-InD" firstAttribute="leading" secondItem="fZ9-Qn-FFI" secondAttribute="leading" id="12i-3c-wxG"/>
-                            <constraint firstItem="ikq-xj-InD" firstAttribute="top" secondItem="fZ9-Qn-FFI" secondAttribute="top" id="9bD-P5-HdF"/>
-                            <constraint firstItem="V1L-V8-gUc" firstAttribute="width" secondItem="YYW-fI-ec9" secondAttribute="width" id="GZS-xl-B3J"/>
-                            <constraint firstItem="ikq-xj-InD" firstAttribute="trailing" secondItem="fZ9-Qn-FFI" secondAttribute="trailing" id="ers-rG-AdB"/>
-                            <constraint firstItem="ikq-xj-InD" firstAttribute="bottom" secondItem="fZ9-Qn-FFI" secondAttribute="bottom" id="mQG-su-PSH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="fZ9-Qn-FFI"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Survey" id="cjT-wG-219">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Kbn-1s-j4O"/>
-                    </navigationItem>
-                    <size key="freeformSize" width="375" height="887"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R0S-nF-jgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2759" y="-80"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zsk-re-bw2">
@@ -1417,48 +914,6 @@
             </objects>
             <point key="canvasLocation" x="2549.5999999999999" y="1574.6626686656673"/>
         </scene>
-        <!--Home Screen-->
-        <scene sceneID="wRO-aq-uff">
-            <objects>
-                <viewController title="Home Screen" id="ujH-FY-4Ha" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SRt-vC-WN5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Base.png" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-Dh-3i0">
-                                <rect key="frame" x="0.0" y="64" width="375" height="132"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGo-5v-pZY">
-                                <rect key="frame" x="16" y="225" width="152" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="Connect.png"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlG-8e-FZa">
-                                <rect key="frame" x="207" y="225" width="152" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="My Connections 2.png"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96i-LB-xzZ">
-                                <rect key="frame" x="16" y="419" width="152" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="Events.png"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EC-Q4-Yok">
-                                <rect key="frame" x="207" y="419" width="152" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="My Profile.png"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="7Yz-7F-Q6G"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="H8E-3j-X46"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sDD-Tx-WOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-154" y="692"/>
-        </scene>
         <!--Survey-->
         <scene sceneID="tUl-F0-DJu">
             <objects>
@@ -1866,7 +1321,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-k3-MST">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-k3-MST">
                                                 <rect key="frame" x="0.0" y="1050" width="375" height="50"/>
                                                 <color key="backgroundColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -2778,92 +2233,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0O-9I-1HJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7366" y="629"/>
-        </scene>
-        <!--Events-->
-        <scene sceneID="Eah-iX-mvR">
-            <objects>
-                <tableViewController title="Events" id="9ho-0P-nsq" customClass="FindEventsTableViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wMm-5B-3DZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexBackgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="search a name, location, or zip code" id="VhQ-Kh-xWm">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="barTintColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="foundEventCell" rowHeight="170" id="4Yr-fp-RLo" customClass="FindEventsTableViewCell" customModule="Clean_Living_Community" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="170"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Yr-fp-RLo" id="1IN-CK-N6Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="169.66666666666666"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name Event Name Event Name Event Name Event Name Event Name " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogR-lQ-f1G">
-                                            <rect key="frame" x="20" y="11" width="374" height="70"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization/subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R00-6j-nzY">
-                                            <rect key="frame" x="20" y="89" width="374" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="17" id="gOd-s4-jE5"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9T-bx-CBM">
-                                            <rect key="frame" x="20" y="114" width="200" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="B9S-TD-VSA"/>
-                                                <constraint firstAttribute="height" constant="17" id="Wrv-nC-W82"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZs-0x-Fw4">
-                                            <rect key="frame" x="20" y="132" width="200" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="17" id="SX8-N6-4tk"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="ogR-lQ-f1G" firstAttribute="trailing" secondItem="1IN-CK-N6Z" secondAttribute="trailingMargin" id="4oS-FT-jwl"/>
-                                        <constraint firstItem="ogR-lQ-f1G" firstAttribute="leading" secondItem="R00-6j-nzY" secondAttribute="leading" id="5ZM-j2-sfw"/>
-                                        <constraint firstItem="R00-6j-nzY" firstAttribute="leading" secondItem="a9T-bx-CBM" secondAttribute="leading" id="Bri-h8-OTp"/>
-                                        <constraint firstItem="R00-6j-nzY" firstAttribute="top" secondItem="ogR-lQ-f1G" secondAttribute="bottom" constant="8" symbolic="YES" id="Pad-G2-par"/>
-                                        <constraint firstItem="a9T-bx-CBM" firstAttribute="trailing" secondItem="HZs-0x-Fw4" secondAttribute="trailing" id="Rh1-2D-FZ2"/>
-                                        <constraint firstItem="a9T-bx-CBM" firstAttribute="top" secondItem="R00-6j-nzY" secondAttribute="bottom" constant="8" symbolic="YES" id="XAv-a7-mY2"/>
-                                        <constraint firstItem="ogR-lQ-f1G" firstAttribute="leading" secondItem="1IN-CK-N6Z" secondAttribute="leadingMargin" id="XPo-1S-fL6"/>
-                                        <constraint firstItem="HZs-0x-Fw4" firstAttribute="top" secondItem="a9T-bx-CBM" secondAttribute="bottom" constant="1" id="YB4-jU-o5Z"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="HZs-0x-Fw4" secondAttribute="bottom" constant="10" id="dC6-Wv-bb5"/>
-                                        <constraint firstItem="ogR-lQ-f1G" firstAttribute="trailing" secondItem="R00-6j-nzY" secondAttribute="trailing" id="nqs-gg-A2p"/>
-                                        <constraint firstItem="a9T-bx-CBM" firstAttribute="leading" secondItem="HZs-0x-Fw4" secondAttribute="leading" id="s6v-nd-IbY"/>
-                                        <constraint firstItem="ogR-lQ-f1G" firstAttribute="top" secondItem="1IN-CK-N6Z" secondAttribute="topMargin" id="t2A-8j-rUG"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="9ho-0P-nsq" id="JjK-eA-lev"/>
-                            <outlet property="delegate" destination="9ho-0P-nsq" id="rYX-Vp-tPD"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mBD-KH-lS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8996" y="-631"/>
         </scene>
         <!--Event Map-->
         <scene sceneID="cYP-2w-04E">
@@ -3834,7 +3203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="search a name, location, or zip code" id="DPn-xE-9mT">
+                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" text="" placeholder="search a name, location, or zip code" id="DPn-xE-9mT">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4047,7 +3416,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="search a name, location, or zip code" id="bhG-w0-meY">
+                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" text="" placeholder="search a name, location, or zip code" id="bhG-w0-meY">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="barTintColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4771,7 +4140,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov2-Fv-kQF">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov2-Fv-kQF">
                                                 <rect key="frame" x="0.0" y="1050" width="375" height="50"/>
                                                 <color key="backgroundColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -5242,7 +4611,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-iq-CkB">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-iq-CkB">
                                                 <rect key="frame" x="0.0" y="1050" width="375" height="50"/>
                                                 <color key="backgroundColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -5712,7 +5081,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHB-WK-LEv">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHB-WK-LEv">
                                                 <rect key="frame" x="0.0" y="1050" width="375" height="50"/>
                                                 <color key="backgroundColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -5790,7 +5159,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQq-OC-WRK">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-TT-tgH">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R76-TT-tgH">
                                                 <rect key="frame" x="0.0" y="1050" width="375" height="50"/>
                                                 <color key="backgroundColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -6251,7 +5620,7 @@
             <objects>
                 <viewController id="5Y0-Kd-2I1" customClass="StrangerProfileInfoViewController" customModule="Clean_Living_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NZN-hg-bnM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="kcn-qu-Hy9">
@@ -6362,12 +5731,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Base.png" width="1023" height="1125"/>
-        <image name="Connect.png" width="1023" height="1125"/>
-        <image name="Events.png" width="1023" height="1125"/>
         <image name="Leaf-Slider" width="40" height="40"/>
-        <image name="My Connections 2.png" width="1023" height="1125"/>
-        <image name="My Profile.png" width="1023" height="1125"/>
         <image name="No Photo.png" width="720" height="720"/>
         <image name="background" width="320" height="480"/>
         <image name="brickwall" width="722" height="480"/>
@@ -6378,9 +5742,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="o8L-k0-9lL"/>
-        <segue reference="vsp-9C-E3G"/>
         <segue reference="M6b-JZ-ioV"/>
-        <segue reference="Esm-xT-Dv4"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
