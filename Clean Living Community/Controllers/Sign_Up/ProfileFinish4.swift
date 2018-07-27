@@ -38,11 +38,11 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         profileImage1.layer.masksToBounds = true
         profileImage1.clipsToBounds = true
         profileImage1.layer.cornerRadius = profileImage1.frame.height/2
-        /*
-        profileImage1.isUserInteractionEnabled = true
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped:"))
-        profileImage1.addGestureRecognizer(tapRecognizer)
-        */
+        
+        //profileImage1.isUserInteractionEnabled = true
+        //let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped:"))
+        //profileImage1.addGestureRecognizer(tapRecognizer)
+        
         // Do any additional setup after loading the view.
     }
 
