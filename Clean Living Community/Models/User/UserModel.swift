@@ -135,113 +135,18 @@ class UserModel
                                             
                                             print("user registered")
                                             
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
                                         }
                                     }
                                 })
                                 
-                                
-                                
-                                
-                                
-                                
+        
                             }
                         }
                     })
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-
+        
                 }
             }
         })
-        
-        /*
-        // Photo 2
-        
-        let image2Ref = Storage.storage().reference().child("\(uid)/pic2.jpg")
-        imageData = UIImageJPEGRepresentation(image2, 0.8)!
-        _ = image2Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
-            guard metadata != nil else
-            {
-                print(error!)
-                return
-            }
-            Storage.storage().reference().child("\(uid)/pic2.jpg").downloadURL{url, error in
-                if let error = error
-                {
-                    print(error)
-                }
-                else
-                {
-                    photo2URL = (url?.absoluteString)!
-
-                    
-                }
-            }
-        })
-        
-        
-        // Photo 3
-        let image3Ref = Storage.storage().reference().child("\(uid)/pic3.jpg")
-        imageData = UIImageJPEGRepresentation(image3, 0.8)!
-        _ = image3Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
-            guard metadata != nil else
-            {
-                print(error!)
-                return
-            }
-            Storage.storage().reference().child("\(uid)/pic3.jpg").downloadURL{url, error in
-                if let error = error
-                {
-                    print(error)
-                }
-                else
-                {
-                    
-                    
-                    photo3URL = (url?.absoluteString)!
-                
-                    
-                    
-                }
-            }
-        })
-        
-        
-        
-        let usersRef = Database.database().reference(withPath: "Users")
-        let newUser = User(fname: fname, lname: lname, dob: dob, home: home, edu: edu, orient: orient, recovery: recovery, relation: relation, rel: rel, spirit: spirit, smoke: smoke, sup: sup, p1: p1, p2: p2, key: uid, bio: bio, url1: photo1URL, url2: photo2URL, url3: photo3URL, questionair : questionair)
-        
-        var uRef = usersRef.child(uid).child("Profile")
-        uRef.setValue(newUser.toAnyObject())
-        
-        
-        uRef = usersRef.child(uid).child("Questionair")
-        uRef.setValue(newUser.toQuestionairResults())
-        
-        
-        
-        
-        print("user registered")
-        
- */
         
     }
         
@@ -278,23 +183,28 @@ class UserModel
         return(list)
     }
     
-    func listAllConnections(withUID UID : String!,completion: @escaping(_ list: [String: String]) -> Void)
+    func getUnderConnections(withUID UID : String!,completion: @escaping(_ list: [[String : String]]) -> Void)
     {
         
-        var connections = [String: String]()
+        var connections = [[String : String]]()
         let path = "Users/" + UID + "/Connections"
         
         let ref = Database.database().reference(withPath: path)
         ref.observeSingleEvent(of: .value, with: {snapshot in
              //print(snapshot)
-            for child in snapshot.children
+            for (child) in snapshot.children
             {
+                var tempdict : [String : String] = [:]
                 let snap = child as! DataSnapshot
-                let uid = snap.key
-                let name = snap.value
-                connections[uid] = name as? String
-                
-                
+                let photoSnap = snap.childSnapshot(forPath: "MainPhoto")
+                tempdict[(photoSnap.key)] = photoSnap.value as? String
+                let nameSnap = snap.childSnapshot(forPath: "Name")
+                tempdict[nameSnap.key] = nameSnap.value as? String
+                let requestSnap = snap.childSnapshot(forPath: "Request")
+                tempdict[requestSnap.key] = requestSnap.value as? String
+                let uidSnap = snap.childSnapshot(forPath: "UID")
+                tempdict[uidSnap.key] = uidSnap.value as? String
+                connections.append(tempdict)
             }
            completion(connections)
         }

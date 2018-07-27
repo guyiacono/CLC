@@ -15,20 +15,31 @@ class MyConnectionsTableViewController: UITableViewController
 
     let userModel = UserModel.sharedInstance
     let currentUserID = Auth.auth().currentUser?.uid
-    var connections : [String: String]?
-    var connectionsSorted: [(key: String, value: String)]?
+    var connections : [[String: String]]?
+    var connectionsSorted: [[String : String]]?
     var sortedConnectionUIDS: [String] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userModel.listAllConnections(withUID: currentUserID,completion: {(list)
+        userModel.getUnderConnections(withUID: currentUserID,completion: {(list)
             in
             if (list.count >= 0)
             {
                 self.connections = list
-                self.connectionsSorted = (self.connections?.sorted(by: {$0.value < $1.value}))!
+                self.connectionsSorted = self.connections
+                
+                /*
+                self.connectionsSorted = (self.connections?.sorted(by: {,<#arg#> $0 as String: String["Name"] as! String < $1 as String: String["Name"] as! String}))!
+                
+                let connectionsSorted = connections.sort { left, right -> Bool in
+                    guard let rightKey = right["Name"] as? String else { return true }
+                    guard let leftKey = left["Name"] as? String else { return false }
+                    return leftKey < rightKey
+                }
+ 
+ */
                 self.tableView.reloadData()
                 
                 
@@ -53,6 +64,17 @@ class MyConnectionsTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        if(connections != nil)
+        {
+            return (connections!.count)
+        }
+        else
+        {
+            return(0)
+        }
+        
+        
+        /*
         
         if(connectionsSorted != nil)
         {
@@ -62,6 +84,8 @@ class MyConnectionsTableViewController: UITableViewController
         {
             return(0)
         }
+ 
+ */
     }
 
     
@@ -70,16 +94,11 @@ class MyConnectionsTableViewController: UITableViewController
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectionscell", for: indexPath) as! ConnectionsTableViewCell
 
         // Configure the cell...
-       
+        setImageFromURl(stringImageUrl: connectionsSorted![indexPath.row]["MainPhoto"]!, forImage: cell.photo)
         
-        cell.photo.image = UIImage(named: "No Photo.png")
-        cell.datalabel.text = connectionsSorted![indexPath.row].value
-        sortedConnectionUIDS.append(connectionsSorted![indexPath.row].key)
+        cell.datalabel.text = connectionsSorted![indexPath.row]["Name"]
+        sortedConnectionUIDS.append((connectionsSorted![indexPath.row]["UID"])!)
         print(sortedConnectionUIDS)
-        print(connectionsSorted![indexPath.row].key)
-        let tempUser = userModel.findUser(uid: connectionsSorted![indexPath.row].key)
-        
-        setImageFromURl(stringImageUrl: (tempUser?.url1)!, forImage: cell.photo)
         return cell
        
  
