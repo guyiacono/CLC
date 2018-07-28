@@ -82,7 +82,6 @@ class ConnectionsTableViewController: UITableViewController{
         
         
         setImageFromURl(stringImageUrl: (person.url1)!, forImage: cell.photo)
-//        cell.photo.image = UIImage(named: "No Photo.png")
         cell.photo.layer.masksToBounds = true
         cell.photo.clipsToBounds = true
         cell.photo.layer.cornerRadius = cell.photo.frame.height/2
