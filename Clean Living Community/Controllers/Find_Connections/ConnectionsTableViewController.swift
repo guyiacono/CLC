@@ -19,6 +19,13 @@ class ConnectionsTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backgroundImage = UIImage(named: "findCon2")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFill
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         list = usermodel.users
         
         // Uncomment the following line to preserve selection between presentations
@@ -53,7 +60,6 @@ class ConnectionsTableViewController: UITableViewController{
         return list.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         for (index,person) in list.enumerated()
@@ -66,11 +72,21 @@ class ConnectionsTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectionscell", for: indexPath) as! ConnectionsTableViewCell
         
         // Configure the cell...
+        cell.backgroundColor = .clear
         
         let person = list[indexPath.row]
-        cell.photo.image = UIImage(named: "No Photo.png")
         cell.datalabel.font = cell.datalabel.font.withSize(14)
-        cell.datalabel.text = "\(person.first) \(person.last) / \(indexPath.row)% Compatible / \(indexPath.row) MI Away"
+        
+        let userInfo = "\(person.first) \(person.last) / \(indexPath.row) MI Away"
+        cell.datalabel.text = userInfo.uppercased()
+        
+        
+        setImageFromURl(stringImageUrl: (person.url1)!, forImage: cell.photo)
+        cell.photo.layer.masksToBounds = true
+        cell.photo.clipsToBounds = true
+        cell.photo.layer.cornerRadius = cell.photo.frame.height/2
+        cell.photo.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+        cell.photo.layer.borderWidth = 2.0
         
         return cell
     }
@@ -95,6 +111,16 @@ class ConnectionsTableViewController: UITableViewController{
             let destinationVC = segue.destination as! StrangerProfileViewController
             destinationVC.thisUser = sender as? User
             
+        }
+    }
+    
+    func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
+    {
+        
+        if let url = NSURL(string: url) {
+            if let data = NSData(contentsOf: url as URL) {
+                image.image = UIImage(data: data as Data)
+            }
         }
     }
     /*

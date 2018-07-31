@@ -18,6 +18,9 @@ class StrangerProfileViewController: UIViewController
     @IBOutlet weak var bio: UITextView!
     @IBOutlet weak var mainProfileImage: UIImageView!
     
+    @IBOutlet weak var Connect: UIButton!
+    @IBOutlet weak var Message: UIButton!
+    @IBOutlet weak var MoreInfo: UIButton!
     
     
     @IBAction func moreInfoButton(_ sender: UIButton)
@@ -32,8 +35,19 @@ class StrangerProfileViewController: UIViewController
         print("This user: \(thisUser)")
         name.text = (thisUser?.first)! + " " +  (thisUser?.last)!
         bio.text = thisUser?.bio
-        age.text = "Age: " + calculateAge(withDOB: (thisUser?.DOB)!)
+        age.text = calculateAge(withDOB: (thisUser?.DOB)!)
         setImageFromURl(stringImageUrl: (thisUser?.url1)!, forImage: mainProfileImage)
+        
+        mainProfileImage.layer.masksToBounds = true
+        mainProfileImage.clipsToBounds = true
+        mainProfileImage.layer.cornerRadius = mainProfileImage.frame.height/2
+        mainProfileImage.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+        mainProfileImage.layer.borderWidth = 2.0
+        
+        Connect.layer.cornerRadius = 15.0
+        Message.layer.cornerRadius = 15.0
+        MoreInfo.layer.cornerRadius = 15.0
+        
         
         // Do any additional setup after loading the view.
     }

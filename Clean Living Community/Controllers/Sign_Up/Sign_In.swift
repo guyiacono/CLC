@@ -95,12 +95,11 @@ class Sign_In: UIViewController
     {
         super.viewDidLoad()
         
-                
         // Do any additional setup after loading the view.
-        
+
         email.setBottomBorder(bottom_border: "teal")
         password.setBottomBorder(bottom_border: "blue")
-
+        
     }
     
     override func didReceiveMemoryWarning() {
