@@ -26,7 +26,9 @@ struct Message
     init(snapshot: DataSnapshot)
     {
         key = snapshot.key
-        var snapshotValue = snapshot.childSnapshot(forPath: "/Messages").value as! [String: AnyObject]
+        //print(snapshot)
+        
+        let snapshotValue = snapshot.value as! [String : AnyObject]
     
         sender = snapshotValue["Sender"] as! String
         reciever = snapshotValue["Reciever"] as! String

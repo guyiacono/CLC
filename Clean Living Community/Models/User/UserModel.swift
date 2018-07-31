@@ -247,7 +247,6 @@ class UserModel
                 let messageID = snap.value
                 messages[personID] = messageID as? String
                 
-                
             }
             completion(messages)
         }

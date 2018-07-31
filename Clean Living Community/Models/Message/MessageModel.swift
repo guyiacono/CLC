@@ -31,6 +31,78 @@ class MessageModel
         }
         return(nil)
     }
+    func listAllMessages(completion: @escaping(Bool)->Void)
+    {
+        messages.removeAll()
+        let path = "Messages/"
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            // print(snapshot)
+            for child in snapshot.children
+            {
+                let message = Message(snapshot:child as! DataSnapshot)
+                self.messages.append(message)
+            }
+            completion(true)
+        }
+        )
+    }
+    func getMessageData(messageID: String, completion: @escaping([[String : String]]) -> Void)
+    {
+        var messageText = [[String : String]]()
+        let path = "Messages/" + (messageID)
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            // print(snapshot)
+            for child in snapshot.children
+            {
+                let snap = child as! DataSnapshot
+                if(snap.key != "Sender" && snap.key != "Reciever")
+                {
+                    for text in snap.children
+                    {
+
+                        let messageInfo = text as! DataSnapshot
+                        var pair = [String : String]()
+                        pair[messageInfo.key] = messageInfo.value as? String
+                        messageText.append(pair)
+                    }
+                }
+                //messageText[snap.key] = snap.value as? String
+            }
+            completion(messageText)
+        }
+        )
+        
+    }
+    /*
+    
+    func listAllMessages(withUID UID : String!,completion: @escaping(_ list: [String: String]) -> Void)
+    {
+        
+        var messages = [String: String]()
+        let path = "Users/" + (UID) + "/Messages"
+        
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            //print(snapshot)
+            for child in snapshot.children
+            {
+                let snap = child as! DataSnapshot
+                let personID = snap.key
+                
+                let messageID = snap.value
+                messages[personID] = messageID as? String
+                
+                
+            }
+            completion(messages)
+        }
+        )
+    }
+    
+    */
+    
     /*
     
     func createMessage (withEmail email: String, withPassword password: String, withFirst fname: String, withLast lname: String, withDOB dob: String, withTown home: String, withEdu edu: String, withOrientation orient: String, withRecovery recovery: String, withRomance relation: String, withReligion rel: String, withSpiritual spirit: String, isSmoke smoke: String, attendSupport sup: String, withOpt1 p1: String, withOpt2 p2: String, withBio bio: String,  withImage1 image1: UIImage, withImage2 image2: UIImage, withImage3 image3: UIImage, withQuestionair questionair : [Int], completion: @escaping(Bool)->Void)

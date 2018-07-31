@@ -13,7 +13,12 @@ class MyProfileSuperViewController: UIViewController
 
 
     @IBOutlet weak var pages: UISegmentedControl!
-  
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBAction func save(_ sender: UIBarButtonItem)
+    {
+        
+    }
+    
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl)
     {

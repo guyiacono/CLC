@@ -19,15 +19,16 @@ class MessagesViewController: UITableViewController
     var messagesSorted: [(key: String, value: String)]?
     var sortedMessageUIDS: [String] = []
     
+    var sentMessageUID : String?
+    var otherUser : User?
+    
     
     override func viewDidLoad()
     {
-        print("about to look for messages")
         userModel.listAllMessages(withUID: currentUserID, completion: {(list)
             in
             if (list.count >= 0)
             {
-                print("looking for messages")
                 self.message = list
                 self.messagesSorted = (self.message?.sorted(by: {$0.value < $1.value}))!
                 self.tableView.reloadData()
@@ -43,6 +44,11 @@ class MessagesViewController: UITableViewController
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+       return(1)
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         if(messagesSorted != nil)
         {
             return (messagesSorted?.count)!
@@ -51,11 +57,6 @@ class MessagesViewController: UITableViewController
         {
             return(0)
         }
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return (messagesSorted?.count)!
     }
 
     
@@ -74,6 +75,7 @@ class MessagesViewController: UITableViewController
         cell.date.font = cell.date.font.withSize(10)
         cell.date.text = "\(stringDate)"
         
+        sortedMessageUIDS.append(messagesSorted![indexPath.row].value)
         
         // Configure the cell...
         return cell
@@ -89,7 +91,33 @@ class MessagesViewController: UITableViewController
             }
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        
+        for uid in sortedMessageUIDS
+        {
+            if(uid == sortedMessageUIDS[indexPath.row])
+            {
+                sentMessageUID = uid
+                otherUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
+                
+            }
+        }
+        performSegue(withIdentifier: "toConversation", sender: self)
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "toConversation"
+        {
+            let destinationVC = segue.destination as! ConversationViewController
+            destinationVC.thisMessageUID = sentMessageUID
+            destinationVC.otherUser = otherUser
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

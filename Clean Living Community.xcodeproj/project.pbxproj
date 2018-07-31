@@ -12,6 +12,9 @@
 		3A610E8AE16FB8321730F028 /* Pods_Clean_Living_Community.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F83BADC05ED9342A38EE57 /* Pods_Clean_Living_Community.framework */; };
 		E400B5B520E9D2B3000D2146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400B5B420E9D2B2000D2146 /* User.swift */; };
 		E400B5B720E9D52A000D2146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E400B5B620E9D52A000D2146 /* GoogleService-Info.plist */; };
+		E400FE30210F43D900A86CA2 /* MyConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */; };
+		E400FE32210F7C5D00A86CA2 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */; };
+		E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */; };
 		E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */; };
 		E4049EAB210AD122007125FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAA210AD122007125FD /* Message.swift */; };
 		E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAC210ADD40007125FD /* MessageModel.swift */; };
@@ -109,6 +112,9 @@
 		A8EFD074556E51FB2A7F441C /* Pods-Clean Living CommunityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clean Living CommunityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Clean Living CommunityUITests/Pods-Clean Living CommunityUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E400B5B420E9D2B2000D2146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "Clean Living Community/Models/User/User.swift"; sourceTree = SOURCE_ROOT; };
 		E400B5B620E9D52A000D2146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsViewController.swift; sourceTree = "<group>"; };
+		E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileDetailViewController.swift; sourceTree = "<group>"; };
 		E4049EAA210AD122007125FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E4049EAC210ADD40007125FD /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */,
+				E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -310,6 +317,7 @@
 				E4FA11DB20B4664600E485BC /* LaunchScreen.storyboard */,
 				E4FDE49120C5BAF300DFC488 /* ListofMessagesTableViewCell.swift */,
 				E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */,
+				E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */,
 			);
 			path = Everything;
 			sourceTree = "<group>";
@@ -320,6 +328,7 @@
 				E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */,
 				E44CEFAE2107BB3B008DB175 /* FriendProfileViewController.swift */,
 				E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */,
+				E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */,
 			);
 			path = "My Connections";
 			sourceTree = "<group>";
@@ -715,10 +724,13 @@
 				E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */,
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
 				E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */,
+				E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */,
 				E4FDE49020C5B7BD00DFC488 /* MessagesViewController.swift in Sources */,
 				E45FF4DB20FE888700BD5FB7 /* ProfileFinish4.swift in Sources */,
+				E400FE30210F43D900A86CA2 /* MyConnectionsViewController.swift in Sources */,
 				E400B5B520E9D2B3000D2146 /* User.swift in Sources */,
 				E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */,
+				E400FE32210F7C5D00A86CA2 /* ConversationViewController.swift in Sources */,
 				E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */,
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
