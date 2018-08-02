@@ -36,7 +36,10 @@ class MessageModel
         messages.removeAll()
         let path = "Messages/"
         let ref = Database.database().reference(withPath: path)
-        ref.observeSingleEvent(of: .value, with: {snapshot in
+     
+        ref.observe(.value, with: {snapshot in
+       
+       // ref.observeSingleEvent(of: .value, with: {snapshot in
             // print(snapshot)
             for child in snapshot.children
             {
@@ -73,6 +76,14 @@ class MessageModel
             completion(messageText)
         }
         )
+        
+    }
+    func sendNewText(messageID: String, dateTime: String, senderUID: String, text: String, completion: @escaping (Bool) -> Void)
+    {
+        let path = "Messages/" + (messageID) + "/" + dateTime
+        let ref = Database.database().reference(withPath: path)
+        ref.setValue([senderUID : text])
+        completion(true)
         
     }
     /*

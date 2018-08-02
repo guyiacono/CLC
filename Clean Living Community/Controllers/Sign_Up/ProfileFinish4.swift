@@ -49,6 +49,7 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         // Do any additional setup after loading the view.
     }
 
+    
      @IBAction func changePhoto(_ sender: UIGestureRecognizer)
      {
         print("image tapped!")

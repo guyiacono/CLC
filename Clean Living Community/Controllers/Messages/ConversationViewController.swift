@@ -19,9 +19,47 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     let signedInUserID = Auth.auth().currentUser?.uid
     var messageText : [[String : String]]?
     
+    var textContents: String?
+    
     var otherUser : User?
     
     @IBOutlet weak var table: UITableView!
+    
+    
+    
+    @IBOutlet weak var entryField: UITextField!
+    
+    @IBAction func entryFieldChanged(_ sender: UITextField)
+    {
+        textContents = sender.text
+    }
+    
+    
+    
+    @IBOutlet weak var sendButton: UIButton!
+    @IBAction func sendAction(_ sender: UIButton)
+    {
+        if (textContents != "")
+        {
+            let today = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMddyyyyHHmmss"
+            let printDate = formatter.string(from: today)
+           
+            
+            
+            messageModel.sendNewText(messageID: thisMessageUID!, dateTime: printDate, senderUID: signedInUserID!, text: textContents!, completion: {(success)
+                in
+                    if (success)
+                    {
+                        //self.viewDidLoad()
+                        self.entryField.text = ""
+                    }
+                })
+        }
+    }
+    
+   
 
     override func viewDidLoad()
     {
@@ -59,12 +97,10 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     {
         if(messageText != nil)
         {
-            print("not zero rows")
             return messageText!.count
         }
         else
         {
-            print(" 0 rows")
             return 0
         }
     }
@@ -79,8 +115,8 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         {
             cell.messageText.text = temp[signedInUserID!]
             print(temp[signedInUserID!]!)
-          
-       
+            
+            
         }
         else
         {
@@ -88,10 +124,17 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             print(temp[(otherUser?.key)!]!)
          
         }
+        
         return cell
         
     }
 
+    
+    
+    
+    
+    
+    
     /*
     // MARK: - Navigation
 
