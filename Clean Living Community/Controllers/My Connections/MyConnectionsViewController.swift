@@ -94,13 +94,13 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = connectionsTable.dequeueReusableCell(withIdentifier: "connectionscell", for: indexPath) as! ConnectionsTableViewCell
-        
+        cell.imageView?.image = nil
         // Configure the cell...
         setImageFromURl(stringImageUrl: connectionsSorted![indexPath.row]["MainPhoto"]!, forImage: cell.photo)
+        print(connectionsSorted![indexPath.row]["MainPhoto"]!)
         
         cell.datalabel.text = connectionsSorted![indexPath.row]["Name"]
         sortedConnectionUIDS.append((connectionsSorted![indexPath.row]["UID"])!)
-        print(sortedConnectionUIDS)
         return cell
         
         

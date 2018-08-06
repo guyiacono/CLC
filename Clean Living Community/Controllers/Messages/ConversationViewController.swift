@@ -22,6 +22,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     var textContents: String?
     
     var otherUser : User?
+    var otherUserPhoto = UIImageView()
     
     @IBOutlet weak var table: UITableView!
     
@@ -39,8 +40,10 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func sendAction(_ sender: UIButton)
     {
+        entryField.isEnabled = false
         if (textContents != "")
         {
+            self.entryField.text = ""
             let today = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "MMddyyyyHHmmss"
@@ -52,11 +55,16 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                 in
                     if (success)
                     {
-                        //self.viewDidLoad()
-                        self.entryField.text = ""
+                       
+                        
+                        //self.viewDidAppear(false)
                     }
                 })
         }
+        textContents = ""
+        self.entryField.isEnabled = true
+    
+       
     }
     
    
@@ -66,6 +74,9 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         table.dataSource = self
         table.delegate = self
+        let otherURL = otherUser?.url1
+        setImageFromURl(stringImageUrl: otherURL!, forImage: otherUserPhoto)
+        
         messageModel.listAllMessages(completion: {(success)
         in
             if (success)
@@ -76,6 +87,8 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                     {
                         self.messageText = list
                         self.table.reloadData()
+                        self.scrollToLastRow()
+
                     }
                     })
             }
@@ -108,32 +121,53 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = table.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! ConversationTableViewCell
-        let temp = messageText![indexPath.row]
+        cell.otherPhoto.image = nil
+        
+        
+        let IDcontentSet = messageText![indexPath.row]
         
         print(messageText![indexPath.row])
-        if(temp[(signedInUserID)!] != nil)
+        if(IDcontentSet[(signedInUserID)!] != nil )
         {
-            cell.messageText.text = temp[signedInUserID!]
-            print(temp[signedInUserID!]!)
+            cell.messageText.text = IDcontentSet[signedInUserID!]
+            cell.messageText.sizeToFit()
+            print(IDcontentSet[signedInUserID!]!)
+            cell.messageText.numberOfLines = 0
             
             
         }
         else
         {
-            cell.messageText.text = temp[(otherUser?.key)!]
-            print(temp[(otherUser?.key)!]!)
-         
+            cell.messageText.text = IDcontentSet[(otherUser?.key)!]
+            cell.messageText.sizeToFit()
+            print(IDcontentSet[(otherUser?.key)!]!)
+            cell.messageText.numberOfLines = 0
+            cell.otherPhoto.image = otherUserPhoto.image
+
         }
         
         return cell
         
     }
 
+    func scrollToLastRow()
+    {
+        let indexPath = NSIndexPath(row: (messageText?.count)! - 1, section: 0)
+        self.table.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
+    }
     
     
     
+    /*
+    override func viewWillAppear(_ animated: Bool)
+    {
+        table.estimatedRowHeight = 100
+        table.rowHeight = UITableViewAutomaticDimension
+    }
     
     
+    
+    */
     
     /*
     // MARK: - Navigation
@@ -145,4 +179,15 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     }
     */
 
+    
+    func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
+    {
+        
+        if let url = NSURL(string: url) {
+            if let data = NSData(contentsOf: url as URL) {
+                image.image = UIImage(data: data as Data)
+            }
+        }
+    }
+    
 }

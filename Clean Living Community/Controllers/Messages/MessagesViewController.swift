@@ -21,6 +21,13 @@ class MessagesViewController: UITableViewController
     
     var sentMessageUID : String?
     var otherUser : User?
+   
+    
+    @IBOutlet weak var newMessageButton: UIButton!
+    @IBAction func newMessageAction(_ sender: UIButton)
+    {
+        
+    }
     
     
     override func viewDidLoad()
