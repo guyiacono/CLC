@@ -196,6 +196,7 @@ class UserModel
         let ref = Database.database().reference(withPath: path)
         ref.observe(.value, with: {snapshot in
              //print(snapshot)
+            connections.removeAll()
             for (child) in snapshot.children
             {
                 var tempdict : [String : String] = [:]
@@ -214,6 +215,38 @@ class UserModel
         }
         )
     }
+    
+    
+    func getUnderConnectionsSnapshot(withUID UID : String!,completion: @escaping(_ list: [[String : String]]) -> Void)
+    {
+        
+        var connections = [[String : String]]()
+        let path = "Users/" + UID + "/Connections"
+        
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            
+            for (child) in snapshot.children
+            {
+                var tempdict : [String : String] = [:]
+                let snap = child as! DataSnapshot
+                let photoSnap = snap.childSnapshot(forPath: "MainPhoto")
+                tempdict[(photoSnap.key)] = photoSnap.value as? String
+                let nameSnap = snap.childSnapshot(forPath: "Name")
+                tempdict[nameSnap.key] = nameSnap.value as? String
+                let requestSnap = snap.childSnapshot(forPath: "Request")
+                tempdict[requestSnap.key] = requestSnap.value as? String
+                let uidSnap = snap.childSnapshot(forPath: "UID")
+                tempdict[uidSnap.key] = uidSnap.value as? String
+                connections.append(tempdict)
+            }
+            completion(connections)
+        }
+        )
+    }
+    
+    
+    
     
     func sendFriendRequest(withFriendUID: String!, withMyUID: String!, withMyPhotoURL : String!, withMyName: String!, withRequestStatus: String, completion: @escaping(Bool)->Void )
     {

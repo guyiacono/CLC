@@ -31,6 +31,8 @@
 		E431C2E620CEB824007D0107 /* ProfileFinish1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E520CEB824007D0107 /* ProfileFinish1.swift */; };
 		E431C2E820CEB83E007D0107 /* ProfileFinish2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */; };
 		E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E920CEB855007D0107 /* ProfileFinish3.swift */; };
+		E4330035211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4330034211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift */; };
+		E4330037211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4330036211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift */; };
 		E44A8A1820C6FD010048EC60 /* ConnectionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */; };
 		E44A8A1A20C6FDD80048EC60 /* ConnectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */; };
 		E44A8A1C20C7035C0048EC60 /* No Photo.png in Resources */ = {isa = PBXBuildFile; fileRef = E44A8A1B20C7035C0048EC60 /* No Photo.png */; };
@@ -132,6 +134,8 @@
 		E431C2E520CEB824007D0107 /* ProfileFinish1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish1.swift; sourceTree = "<group>"; };
 		E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish2.swift; sourceTree = "<group>"; };
 		E431C2E920CEB855007D0107 /* ProfileFinish3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish3.swift; sourceTree = "<group>"; };
+		E4330034211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectionsNoMessageTableViewController.swift; path = "/Users/michaelkarolewicz/Documents/CleanLivingComunityCloned/Clean Living Community/Controllers/Messages/ConnectionsNoMessageTableViewController.swift"; sourceTree = "<absolute>"; };
+		E4330036211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionWithNoMessageTableViewCell.swift; sourceTree = "<group>"; };
 		E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsTableViewCell.swift; sourceTree = "<group>"; };
 		E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsTableViewController.swift; sourceTree = "<group>"; };
 		E44A8A1B20C7035C0048EC60 /* No Photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "No Photo.png"; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			children = (
 				E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */,
 				E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */,
+				E4330034211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				E4FDE49120C5BAF300DFC488 /* ListofMessagesTableViewCell.swift */,
 				E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */,
 				E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */,
+				E4330036211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift */,
 			);
 			path = Everything;
 			sourceTree = "<group>";
@@ -727,6 +733,8 @@
 				E42CFA5520F68B60001CEE58 /* StrangerProfileInfoViewController.swift in Sources */,
 				E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */,
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
+				E4330035211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift in Sources */,
+				E4330037211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift in Sources */,
 				E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */,
 				E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */,
 				E4FDE49020C5B7BD00DFC488 /* MessagesViewController.swift in Sources */,
@@ -941,8 +949,9 @@
 			baseConfigurationReference = 0D46F6F41C093A0ABB8DF561 /* Pods-Clean Living Community.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RHV2743782;
+				DEVELOPMENT_TEAM = W3782C8CM2;
 				INFOPLIST_FILE = "Clean Living Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -951,6 +960,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "CLC.Clean-Living-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -961,8 +971,9 @@
 			baseConfigurationReference = 86DAD1E9A126EC376D6A41B4 /* Pods-Clean Living Community.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RHV2743782;
+				DEVELOPMENT_TEAM = W3782C8CM2;
 				INFOPLIST_FILE = "Clean Living Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -971,6 +982,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "CLC.Clean-Living-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

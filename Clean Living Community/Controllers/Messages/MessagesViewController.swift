@@ -22,11 +22,10 @@ class MessagesViewController: UITableViewController
     var sentMessageUID : String?
     var otherUser : User?
    
-    
-    @IBOutlet weak var newMessageButton: UIButton!
-    @IBAction func newMessageAction(_ sender: UIButton)
+    @IBOutlet weak var new: UIButton!
+    @IBAction func newPressed(_ sender: UIButton)
     {
-        
+        performSegue(withIdentifier: "toConnectionsWithoutMessage", sender: Any?.self)
     }
     
     

@@ -28,7 +28,7 @@ class ConnectionsTableViewController: UITableViewController{
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         list = usermodel.users
-        usermodel.getUnderConnections(withUID: currentUserID, completion: {(connectionList)
+        usermodel.getUnderConnectionsSnapshot(withUID: currentUserID, completion: {(connectionList)
             in
             if (connectionList.count > 0)
             {
@@ -38,7 +38,6 @@ class ConnectionsTableViewController: UITableViewController{
                 {
                     for (index,user) in self.list.enumerated()
                     {
-                        print(person["UID"]! + " \(user.key)")
                         if(user.key == person["UID"]!)
                         {
                             self.list.remove(at: index)

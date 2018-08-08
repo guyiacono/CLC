@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/michaelkarolewicz/Documents/CleanLivingComunityCloned/Clean Living Community/Controllers/Messages/ConnectionsNoMessageTableViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Clean Living Community.xcodeproj">
    </FileRef>
    <FileRef

@@ -66,8 +66,6 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 }
                 self.connectionsTable.reloadData()
-                print(self.acceptedConnectionsSorted)
-                print(self.unacceptedConnectionsSorted)
                 
             }
         })
@@ -98,20 +96,6 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         {
             return(unacceptedConnectionsSorted.count)
         }
-        
-        
-        /*
-         
-         if(connectionsSorted != nil)
-         {
-         return (connectionsSorted?.count)!
-         }
-         else
-         {
-         return(0)
-         }
-         
-         */
     }
     
     
@@ -127,7 +111,6 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
             setImageFromURl(stringImageUrl: acceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
             
             cell.datalabel.text = acceptedConnectionsSorted[indexPath.row]["Name"]
-            //sortedConnectionUIDS.append((acceptedConnectionsSorted[indexPath.row]["UID"])!)
             return cell
         }
         else
@@ -135,13 +118,8 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
             setImageFromURl(stringImageUrl: unacceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
             
             cell.datalabel.text = unacceptedConnectionsSorted[indexPath.row]["Name"]
-            //sortedConnectionUIDS.append((unacceptedConnectionsSorted[indexPath.row]["UID"])!)
             return cell
         }
-        
-        
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -174,9 +152,6 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
     }
-    
-    
-    
     
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
     {
