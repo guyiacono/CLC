@@ -106,6 +106,14 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         orientationField.inputView = orientationpicker
         supportField.inputView = supportpicker
         
+        eduField.setBottomBorder(bottom_border: "teal")
+        relationField.setBottomBorder(bottom_border: "teal")
+        orientationField.setBottomBorder(bottom_border: "teal")
+        religiousField.setBottomBorder(bottom_border: "teal")
+        spiritualField.setBottomBorder(bottom_border: "teal")
+        smokeField.setBottomBorder(bottom_border: "teal")
+        supportField.setBottomBorder(bottom_border: "teal")
+        
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
     }
