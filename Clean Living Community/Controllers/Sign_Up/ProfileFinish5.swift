@@ -70,7 +70,18 @@ class ProfileFinish5: UIViewController
             in
             if (success)
             {
-                self.performSegue(withIdentifier: "toSignIn", sender: ProfileFinish5.self)
+                Auth.auth().signIn(withEmail: self.email!, password: self.password!)
+                {user, error in
+                    if error == nil && user != nil
+                    {
+                        self.performSegue(withIdentifier: "toNewProfile", sender: ProfileFinish5.self)
+                    }
+                    else
+                    {
+                        print("authentication failed")
+                         self.performSegue(withIdentifier: "toSignIn", sender: ProfileFinish5.self)
+                    }
+                }
             }
             else
             {

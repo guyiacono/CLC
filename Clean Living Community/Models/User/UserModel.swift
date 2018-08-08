@@ -48,13 +48,19 @@ class UserModel
         Auth.auth().createUser(withEmail: email, password: password) {myuser,error in
             if error == nil {
                let uid = myuser?.user.uid
-                self.addUserPofile(uid: uid!, withEmail: email, withFirst: fname, withLast: lname, withDOB: dob, withTown: home, withEdu: edu, withOrientation: orient, withRecovery: recovery, withRomance: relation, withReligion: rel, withSpiritual: spirit, isSmoke: smoke, attendSupport: sup, withOpt1: p1, withOpt2: p2, withBio: bio, withImage1: image1, withImage2: image2, withImage3: image3, withQuestionair: questionair)
+                self.addUserPofile(uid: uid!, withEmail: email, withFirst: fname, withLast: lname, withDOB: dob, withTown: home, withEdu: edu, withOrientation: orient, withRecovery: recovery, withRomance: relation, withReligion: rel, withSpiritual: spirit, isSmoke: smoke, attendSupport: sup, withOpt1: p1, withOpt2: p2, withBio: bio, withImage1: image1, withImage2: image2, withImage3: image3, withQuestionair: questionair, completion: {(success)
+                    in
+                    if(success)
+                    {
+                        completion(true)
+                    }
+                })
                 
             }
         }
-        completion(true)
+        
     }
-    func addUserPofile(uid: String, withEmail email: String, withFirst fname: String, withLast lname: String, withDOB dob: String, withTown home: String, withEdu edu: String, withOrientation orient: String, withRecovery recovery: String, withRomance relation: String, withReligion rel: String, withSpiritual spirit: String, isSmoke smoke: String, attendSupport sup: String, withOpt1 p1: String, withOpt2 p2: String, withBio bio: String, withImage1 image1: UIImage, withImage2 image2: UIImage, withImage3 image3: UIImage, withQuestionair questionair : [Int])
+    func addUserPofile(uid: String, withEmail email: String, withFirst fname: String, withLast lname: String, withDOB dob: String, withTown home: String, withEdu edu: String, withOrientation orient: String, withRecovery recovery: String, withRomance relation: String, withReligion rel: String, withSpiritual spirit: String, isSmoke smoke: String, attendSupport sup: String, withOpt1 p1: String, withOpt2 p2: String, withBio bio: String, withImage1 image1: UIImage, withImage2 image2: UIImage, withImage3 image3: UIImage, withQuestionair questionair : [Int], completion: @escaping(Bool)->Void)
     {
         var photo1URL = ""
         var photo2URL = ""
@@ -130,10 +136,8 @@ class UserModel
                                             uRef = usersRef.child(uid).child("Questionair")
                                             uRef.setValue(newUser.toQuestionairResults())
                                             
-                                            
-                                            
-                                            
                                             print("user registered")
+                                            completion(true)
                                             
                                         }
                                     }
@@ -190,7 +194,7 @@ class UserModel
         let path = "Users/" + UID + "/Connections"
         
         let ref = Database.database().reference(withPath: path)
-        ref.observeSingleEvent(of: .value, with: {snapshot in
+        ref.observe(.value, with: {snapshot in
              //print(snapshot)
             for (child) in snapshot.children
             {
@@ -209,27 +213,19 @@ class UserModel
            completion(connections)
         }
         )
- 
-        
-        /*
-        var listOfConnections
-        let path = "Users/" + UID + "/Connections"
-        let ref = Database.database().reference(withPath: path)
-        ref.observeSingleEvent(of: .value, with: {snapshot in
-            // print(snapshot)
-            for child in snapshot.children
-            {
-                let connection = 
-                self.users.append(user)
-            }
-            completion(true)
-        }
-        )
-        
-        */
-        
     }
     
+    func sendFriendRequest(withFriendUID: String!, withMyUID: String!, withMyPhotoURL : String!, withMyName: String!, withRequestStatus: String, completion: @escaping(Bool)->Void )
+    {
+        let path = "Users/" + withFriendUID + "/Connections/" + withMyUID
+        let ref = Database.database().reference(withPath: path)
+        ref.updateChildValues(["MainPhoto" : withMyPhotoURL])
+        ref.updateChildValues(["Name" : withMyName])
+        ref.updateChildValues(["UID" : withMyUID])
+        ref.updateChildValues(["Request" : withRequestStatus])
+        completion(true)
+       
+    }
     func listAllMessages(withUID UID : String!,completion: @escaping(_ list: [String: String]) -> Void)
     {
         
@@ -252,4 +248,6 @@ class UserModel
         }
         )
     }
+    
+    
 }

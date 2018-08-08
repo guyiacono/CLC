@@ -55,6 +55,9 @@ class ProfileFinish1: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileFinish1.viewTapped(gesture:)))
         
         view.addGestureRecognizer(tapGesture)
+        
+        handleDoneButtonOnKeyboard()
+        handleViewAdjustmentsFromKeyboard()
         // Do any additional setup after loading the view.
     }
     
@@ -115,6 +118,75 @@ class ProfileFinish1: UIViewController {
             destinationVC.dor = recoveryDate.text
         }
     }
+    
+    
+    // BEGIN KEYBOARD METHODS
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        view.endEditing(true)
+    }
+    
+    func handleDoneButtonOnKeyboard()
+    {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.doneClicked))
+        toolbar.setItems([flexibleSpace,doneButton], animated: false)
+        firstName.inputAccessoryView = toolbar
+        lastName.inputAccessoryView = toolbar
+        dateOfBirth.inputAccessoryView = toolbar
+        hometown.inputAccessoryView = toolbar
+        recoveryDate.inputAccessoryView = toolbar
+        
+    }
+    @objc func doneClicked()
+    {
+        view.endEditing(true)
+    }
+    
+    func handleViewAdjustmentsFromKeyboard()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    @objc func keyboardWillShow(notification: Notification)
+    {
+        if(hometown.isEditing || recoveryDate.isEditing)
+        {
+            guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+            {
+                return
+            }
+            view.frame.origin.y = -1 * keyboard.height
+        }
+        else if(firstName.isEditing || lastName.isEditing || dateOfBirth.isEditing)
+        {
+            view.frame.origin.y = 0
+        }
+        
+    }
+    @objc func keyboardWillHide(notification: Notification)
+    {
+        guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+        {
+            return
+        }
+        if(view.frame.origin.y != 0)
+        {
+            view.frame.origin.y += keyboard.height
+        }
+    }
+    
+    
+    
     
     
 }

@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate
 {
+    var usermodel = UserModel.sharedInstance
+    
     var email: String?
     var password: String?
     
@@ -36,27 +39,24 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       finish.isEnabled = true
+        
         profileImage1.layer.masksToBounds = true
         profileImage1.clipsToBounds = true
         profileImage1.layer.cornerRadius = profileImage1.frame.height/2
         
-        profileImage1.isUserInteractionEnabled = true
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        profileImage1.addGestureRecognizer(tapRecognizer)
+       
+       
  
         
         // Do any additional setup after loading the view.
     }
 
+    @IBOutlet weak var photoButton: UIButton!
     
-     @IBAction func changePhoto(_ sender: UIGestureRecognizer)
-     {
-        print("image tapped!")
-     }
- 
-    @objc func imageTapped(sender: UIImageView)
+    @IBAction func photoChanged(_ sender: UIButton)
     {
+        print("button Pushed")
         let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -64,14 +64,15 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         self.present(image, animated: true)
     }
     
+  
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        profileImage1.image = image
-        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+             profileImage1.image = image
+        }
         self.dismiss(animated: true, completion: nil)
-        
         
     }
     override func didReceiveMemoryWarning() {
@@ -113,8 +114,51 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
     @IBOutlet weak var finish: UIButton!
     @IBAction func finishSurvey(_ sender: UIButton)
     {
-        performSegue(withIdentifier: "toProfileFinish5", sender: self)
+        finish.isEnabled = false
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "MM/dd/YYYY"
+        let today = Date()
+        let recoveryDate = dateformatter.date(from: dor!)
+        let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .month, .year])
+        print(Calendar.current.dateComponents(components, from: today, to: recoveryDate!).year!)
+        if(Calendar.current.dateComponents(components, from: today, to: recoveryDate!).year! * -1 <= 3)
+        {
+            usermodel.registerUser(withEmail: email!, withPassword: password!, withFirst: fname!, withLast: lname!, withDOB: dob!, withTown: home!, withEdu: edu!, withOrientation: ori!, withRecovery: dor!, withRomance: rel!, withReligion: reli!, withSpiritual: spt!, isSmoke: smk!, attendSupport: sup!, withOpt1: "No", withOpt2: "Yes", withBio: bio!, withImage1: profileImage1.image!, withImage2: profileImage2!, withImage3: profileImage3!, withQuestionair: qAnswer!, completion: {(success)
+                in
+                if (success)
+                {
+                    Auth.auth().signIn(withEmail: self.email!, password: self.password!)
+                    {user, error in
+                        if error == nil && user != nil
+                        {
+                            print("should sign in immediately")
+                            self.performSegue(withIdentifier: "noMentorSegue", sender: ProfileFinish4.self)
+                        }
+                        else
+                        {
+                            print("authentication failed")
+                            self.performSegue(withIdentifier: "toSignIn", sender: ProfileFinish4.self)
+                        }
+                    }
+                }
+                else
+                {
+                   print("failed to register")
+                   self.finish.isEnabled = true
+                }
+            })
+        }
+        else
+        {
+            performSegue(withIdentifier: "toProfileFinish5", sender: self)
+        }
+        
     }
+    
+    
+    
+    
+    
     
     /*
     // MARK: - Navigation

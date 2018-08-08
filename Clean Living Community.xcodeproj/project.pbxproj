@@ -15,6 +15,7 @@
 		E400FE30210F43D900A86CA2 /* MyConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */; };
 		E400FE32210F7C5D00A86CA2 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */; };
 		E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */; };
+		E401701E211898D500F625FA /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401701D211898D500F625FA /* SignUp.swift */; };
 		E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */; };
 		E4049EAB210AD122007125FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAA210AD122007125FD /* Message.swift */; };
 		E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAC210ADD40007125FD /* MessageModel.swift */; };
@@ -115,6 +116,7 @@
 		E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsViewController.swift; sourceTree = "<group>"; };
 		E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		E401701D211898D500F625FA /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileDetailViewController.swift; sourceTree = "<group>"; };
 		E4049EAA210AD122007125FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E4049EAC210ADD40007125FD /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			children = (
 				E45FF4D920FE728000BD5FB7 /* Survery_Pages */,
 				E44DCA2320B4819200281955 /* Sign_In.swift */,
+				E401701D211898D500F625FA /* SignUp.swift */,
 				E44DCA2720B49A9400281955 /* Surveyp1.swift */,
 				E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */,
 				E431C2E520CEB824007D0107 /* ProfileFinish1.swift */,
@@ -716,6 +719,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E401701E211898D500F625FA /* SignUp.swift in Sources */,
 				E42CFA5420F68B60001CEE58 /* StrangerProfileViewController.swift in Sources */,
 				E431C2E820CEB83E007D0107 /* ProfileFinish2.swift in Sources */,
 				E4D66D2F20D1A01700CC0FB1 /* MyEventsViewController.swift in Sources */,

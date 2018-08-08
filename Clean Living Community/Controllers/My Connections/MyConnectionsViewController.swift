@@ -16,14 +16,32 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     let currentUserID = Auth.auth().currentUser?.uid
     var connections : [[String: String]]?
     var connectionsSorted: [[String : String]]?
+    
+    var acceptedConnectionsSorted = [[String : String]]()
+    var unacceptedConnectionsSorted = [[String : String]]()
     var sortedConnectionUIDS: [String] = []
     
     @IBOutlet weak var connectionsTable: UITableView!
+    
+    
+    @IBOutlet weak var myConnectionsSegmentedControl: UISegmentedControl!
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl)
+    {
+        connectionsTable.reloadData()
+    }
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         connectionsTable.delegate = self
         connectionsTable.dataSource = self
+        acceptedConnectionsSorted.removeAll()
+        unacceptedConnectionsSorted.removeAll()
+        connectionsSorted?.removeAll()
         
         userModel.getUnderConnections(withUID: currentUserID,completion: {(list)
             in
@@ -31,19 +49,25 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
             {
                 self.connections = list
                 self.connectionsSorted = self.connections
+                self.acceptedConnectionsSorted.removeAll()
+                self.unacceptedConnectionsSorted.removeAll()
+                self.unacceptedConnectionsSorted.removeAll()
+                self.acceptedConnectionsSorted.removeAll()
                 
-                /*
-                 self.connectionsSorted = (self.connections?.sorted(by: {,<#arg#> $0 as String: String["Name"] as! String < $1 as String: String["Name"] as! String}))!
-                 
-                 let connectionsSorted = connections.sort { left, right -> Bool in
-                 guard let rightKey = right["Name"] as? String else { return true }
-                 guard let leftKey = left["Name"] as? String else { return false }
-                 return leftKey < rightKey
-                 }
-                 
-                 */
+                for pair in self.connectionsSorted!
+                {
+                    if(pair["Request"] == "Accepted")
+                    {
+                        self.acceptedConnectionsSorted.append(pair)
+                    }
+                    else
+                    {
+                        self.unacceptedConnectionsSorted.append(pair)
+                    }
+                }
                 self.connectionsTable.reloadData()
-                
+                print(self.acceptedConnectionsSorted)
+                print(self.unacceptedConnectionsSorted)
                 
             }
         })
@@ -66,13 +90,13 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if(connections != nil)
+        if(myConnectionsSegmentedControl.selectedSegmentIndex == 0 )
         {
-            return (connections!.count)
+            return (acceptedConnectionsSorted.count)
         }
         else
         {
-            return(0)
+            return(unacceptedConnectionsSorted.count)
         }
         
         
@@ -96,12 +120,25 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = connectionsTable.dequeueReusableCell(withIdentifier: "connectionscell", for: indexPath) as! ConnectionsTableViewCell
         cell.imageView?.image = nil
         // Configure the cell...
-        setImageFromURl(stringImageUrl: connectionsSorted![indexPath.row]["MainPhoto"]!, forImage: cell.photo)
-        print(connectionsSorted![indexPath.row]["MainPhoto"]!)
         
-        cell.datalabel.text = connectionsSorted![indexPath.row]["Name"]
-        sortedConnectionUIDS.append((connectionsSorted![indexPath.row]["UID"])!)
-        return cell
+        
+        if(myConnectionsSegmentedControl.selectedSegmentIndex == 0)
+        {
+            setImageFromURl(stringImageUrl: acceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
+            
+            cell.datalabel.text = acceptedConnectionsSorted[indexPath.row]["Name"]
+            //sortedConnectionUIDS.append((acceptedConnectionsSorted[indexPath.row]["UID"])!)
+            return cell
+        }
+        else
+        {
+            setImageFromURl(stringImageUrl: unacceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
+            
+            cell.datalabel.text = unacceptedConnectionsSorted[indexPath.row]["Name"]
+            //sortedConnectionUIDS.append((unacceptedConnectionsSorted[indexPath.row]["UID"])!)
+            return cell
+        }
+        
         
         
         
@@ -110,14 +147,18 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         var sentUser : User?
-        print(sortedConnectionUIDS)
-        for uid in sortedConnectionUIDS
+       
+        if(myConnectionsSegmentedControl.selectedSegmentIndex == 0)
         {
-            if(uid == sortedConnectionUIDS[indexPath.row])
-            {
-                sentUser = userModel.findUser(uid: uid)
-            }
+            let otherUserUID = acceptedConnectionsSorted[indexPath.row]["UID"]
+            sentUser = userModel.findUser(uid: otherUserUID!)
         }
+        else
+        {
+            let otherUserUID = unacceptedConnectionsSorted[indexPath.row]["UID"]
+            sentUser = userModel.findUser(uid: otherUserUID!)
+        }
+        
         
         performSegue(withIdentifier: "toFriendProfile", sender: sentUser)
     }
@@ -128,6 +169,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         {
             let destinationVC = segue.destination as! FriendProfileViewController
             destinationVC.thisUser = sender as? User
+            destinationVC.segmentedStatus = myConnectionsSegmentedControl.selectedSegmentIndex
             
         }
         

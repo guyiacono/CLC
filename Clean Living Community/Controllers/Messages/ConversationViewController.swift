@@ -41,13 +41,12 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction func sendAction(_ sender: UIButton)
     {
         entryField.isEnabled = false
-        if (textContents != "")
+        if (textContents != "" && textContents != nil)
         {
             self.entryField.text = ""
             let today = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMddyyyyHHmmss"
-            let printDate = formatter.string(from: today)
+            
+            let printDate = convertToUTC(date: today)!
            
             
             
@@ -63,6 +62,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         }
         textContents = ""
         self.entryField.isEnabled = true
+        
     
        
     }
@@ -72,6 +72,8 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        handleViewAdjustmentsFromKeyboard()
+        handleDoneButtonOnKeyboard()
         table.dataSource = self
         table.delegate = self
         let otherURL = otherUser?.url1
@@ -189,5 +191,83 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
     }
+    
+    
+    func convertToUTC(date: Date) -> String?
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMddyyyyHHmmss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        let localDate = dateFormatter.string(from: date)
+        
+        return localDate
+    }
+    
+    
+    
+    
+    
+    // BEGIN KEYBOARD METHODS
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        view.endEditing(true)
+    }
+    
+    func handleDoneButtonOnKeyboard()
+    {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.doneClicked))
+        toolbar.setItems([flexibleSpace,doneButton], animated: false)
+         entryField.inputAccessoryView = toolbar
+    }
+    @objc func doneClicked()
+    {
+        view.endEditing(true)
+    }
+    
+    func handleViewAdjustmentsFromKeyboard()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    @objc func keyboardWillShow(notification: Notification)
+    {
+        if(entryField.isEditing)
+        {
+            guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+            {
+                return
+            }
+            view.frame.origin.y = -1 * keyboard.height + 50
+        }
+        else
+        {
+            view.frame.origin.y = 0
+        }
+        
+    }
+    @objc func keyboardWillHide(notification: Notification)
+    {
+        guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+        {
+            return
+        }
+        if(view.frame.origin.y != 0)
+        {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    
+    
     
 }

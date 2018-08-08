@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class StrangerProfileViewController: UIViewController
 {
+    let signedInID = Auth.auth().currentUser?.uid
+    
+    
+    let usermodel = UserModel.sharedInstance
     var thisUser: User?
     
+    var thisPersonsConnections : [[String: String]]?
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var age: UILabel!
@@ -19,13 +25,48 @@ class StrangerProfileViewController: UIViewController
     @IBOutlet weak var mainProfileImage: UIImageView!
     
     @IBOutlet weak var Connect: UIButton!
-    @IBOutlet weak var Message: UIButton!
     @IBOutlet weak var MoreInfo: UIButton!
     
     
     @IBAction func moreInfoButton(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toUserProfile", sender: thisUser)
+    }
+    @IBAction func friendRequest(_ sender: UIButton)
+    {
+        var foundRequestAlready = false
+        for person in thisPersonsConnections!
+        {
+            if(person["UID"] == signedInID)
+            {
+                foundRequestAlready = true
+            }
+        }
+        if(foundRequestAlready)
+        {
+            createAlert(title: "Connection Request Status", message: "Already sent a request!")
+        }
+        else
+        {
+            let me = usermodel.findUser(uid: signedInID!)
+            usermodel.sendFriendRequest(withFriendUID: thisUser?.key, withMyUID: signedInID, withMyPhotoURL: me?.url1, withMyName: ((me?.first)! + " " + (me?.last)!), withRequestStatus: "Unaccepted") { (success) in
+                if(success)
+                {
+                    self.usermodel.getUnderConnections(withUID: self.thisUser?.key) { (list) in
+                        
+                        self.thisPersonsConnections = list
+                        self.createAlert(title: "Connection Request Status", message: "Request Sent!")
+                    }
+                    
+                }
+                else
+                {
+                    self.createAlert(title: "Connection Request Status", message: "Failed to Send Request!")
+
+                }
+            }
+            
+        }
     }
     
     
@@ -45,8 +86,12 @@ class StrangerProfileViewController: UIViewController
         mainProfileImage.layer.borderWidth = 2.0
         
         Connect.layer.cornerRadius = 15.0
-        Message.layer.cornerRadius = 15.0
         MoreInfo.layer.cornerRadius = 15.0
+        
+        usermodel.getUnderConnections(withUID: thisUser?.key) { (list) in
+            
+            self.thisPersonsConnections = list
+        }
         
         
         // Do any additional setup after loading the view.
@@ -85,6 +130,16 @@ class StrangerProfileViewController: UIViewController
             }
         }
     }
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

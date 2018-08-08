@@ -15,6 +15,7 @@ class ConnectionsTableViewController: UITableViewController{
     let currentUserID = Auth.auth().currentUser?.uid
     var list: [User] = []
     var selectedIndex = 0
+    var currentConnections: [[String : String]]?
     
     
     override func viewDidLoad() {
@@ -27,6 +28,29 @@ class ConnectionsTableViewController: UITableViewController{
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         list = usermodel.users
+        usermodel.getUnderConnections(withUID: currentUserID, completion: {(connectionList)
+            in
+            if (connectionList.count > 0)
+            {
+                print("connection list greater than zero")
+                self.currentConnections = connectionList
+                for person in self.currentConnections!
+                {
+                    for (index,user) in self.list.enumerated()
+                    {
+                        print(person["UID"]! + " \(user.key)")
+                        if(user.key == person["UID"]!)
+                        {
+                            self.list.remove(at: index)
+                        }
+                    }
+                }
+            }
+            self.tableView.reloadData()
+            
+            
+        })
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
