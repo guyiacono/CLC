@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension UIImageView {
+    func setRadiusBorder(content: UIImageView) {
+        content.layer.masksToBounds = true
+        content.clipsToBounds = true
+        content.layer.cornerRadius = content.frame.height/2
+        content.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+        content.layer.borderWidth = 2.0
+    }
+}
+
 class StrangerProfileInfoViewController: UIViewController
 {
     var viewedUser: User?
@@ -28,13 +38,7 @@ class StrangerProfileInfoViewController: UIViewController
     @IBOutlet weak var photo3: UIImageView!
     
     
-    func setRadiusBorder(content: UIImageView) {
-        content.layer.masksToBounds = true
-        content.clipsToBounds = true
-        content.layer.cornerRadius = content.frame.height/2
-        content.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
-        content.layer.borderWidth = 2.0
-    }
+
     
     override func viewDidLoad()
     {
@@ -53,9 +57,9 @@ class StrangerProfileInfoViewController: UIViewController
         setImageFromURl(stringImageUrl: (viewedUser?.url2)!, forImage: photo2)
         setImageFromURl(stringImageUrl: (viewedUser?.url3)!, forImage: photo3)
         
-        setRadiusBorder(content: photo1)
-        setRadiusBorder(content: photo2)
-        setRadiusBorder(content: photo3)
+        photo1.setRadiusBorder(content: photo1)
+        photo2.setRadiusBorder(content: photo2)
+        photo2.setRadiusBorder(content: photo3)
         
         
 

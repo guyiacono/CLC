@@ -10,11 +10,13 @@ import UIKit
 
 class FindConnectionsInitialViewController: UIViewController
 { 
-
+    @IBOutlet weak var findConnectionsStart: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        findConnectionsStart.setButtonStyle(content: findConnectionsStart)
+        
         // Do any additional setup after loading the view.
     }
 

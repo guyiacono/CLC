@@ -1,30 +1,32 @@
 //
-//  MyProfileBiographyViewController.swift
+//  EventsViewController.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 7/10/18.
+//  Created by Tim Hilton on 8/8/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseDatabase
 
-class MyProfileBiographyViewController: UIViewController
-{
-    let currentUserID = Auth.auth().currentUser?.uid
-    var userModel = UserModel.sharedInstance
-    var displayedUser: User!
+extension UIButton {
+    func setButtonStyle(content: UIButton) {
+        content.layer.masksToBounds = true
+        content.clipsToBounds = true
+        content.layer.cornerRadius = content.frame.height/2
+    }
+}
+
+class EventsViewController: UIViewController {
+    @IBOutlet weak var findEvent: UIButton!
+    @IBOutlet weak var hostEvent: UIButton!
     
-    @IBOutlet weak var bio: UITextView!
+
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        displayedUser = userModel.findUser(uid: currentUserID!)
-        bio.text = displayedUser.bio
-        bio.layer.cornerRadius = 12.0
+
+        findEvent.setButtonStyle(content: findEvent)
+        hostEvent.setButtonStyle(content: hostEvent)
         
         // Do any additional setup after loading the view.
     }

@@ -43,6 +43,12 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         unacceptedConnectionsSorted.removeAll()
         connectionsSorted?.removeAll()
         
+        let backgroundImage = UIImage(named: "findCon2")
+        let imageView = UIImageView(image: backgroundImage)
+        self.connectionsTable.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFill
+        connectionsTable.tableFooterView = UIView(frame: CGRect.zero)
+        
         userModel.getUnderConnections(withUID: currentUserID,completion: {(list)
             in
             if (list.count >= 0)
@@ -104,18 +110,30 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = connectionsTable.dequeueReusableCell(withIdentifier: "connectionscell", for: indexPath) as! ConnectionsTableViewCell
         cell.imageView?.image = nil
         // Configure the cell...
-        
+        cell.backgroundColor = .clear
         
         if(myConnectionsSegmentedControl.selectedSegmentIndex == 0)
         {
             setImageFromURl(stringImageUrl: acceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
             
             cell.datalabel.text = acceptedConnectionsSorted[indexPath.row]["Name"]
+            
+            cell.photo.layer.masksToBounds = true
+            cell.photo.clipsToBounds = true
+            cell.photo.layer.cornerRadius = cell.photo.frame.height/2
+            cell.photo.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+            cell.photo.layer.borderWidth = 2.0
+            
             return cell
         }
         else
         {
             setImageFromURl(stringImageUrl: unacceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
+            cell.photo.layer.masksToBounds = true
+            cell.photo.clipsToBounds = true
+            cell.photo.layer.cornerRadius = cell.photo.frame.height/2
+            cell.photo.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+            cell.photo.layer.borderWidth = 2.0
             
             cell.datalabel.text = unacceptedConnectionsSorted[indexPath.row]["Name"]
             return cell

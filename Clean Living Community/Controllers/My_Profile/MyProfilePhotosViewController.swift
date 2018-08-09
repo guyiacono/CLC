@@ -29,7 +29,9 @@ class MyProfilePhotosViewController: UIViewController
         setImageFromURl(stringImageUrl: displayedUser.url2!, forImage: photo2)
         setImageFromURl(stringImageUrl: displayedUser.url3!, forImage: photo3)
 
-        
+        photo1.setRadiusBorder(content: photo1)
+        photo2.setRadiusBorder(content: photo2)
+        photo3.setRadiusBorder(content: photo3)
 
         // Do any additional setup after loading the view.
     }

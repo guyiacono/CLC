@@ -36,6 +36,14 @@ class MyProfileBasicInfoViewController: UIViewController
         // Do any additional setup after loading the view.
         
         print(displayedUser.questionair)
+        
+        firstName.setBottomBorder(bottom_border: "teal")
+        lastName.setBottomBorder(bottom_border: "teal")
+        dateOfBirth.setBottomBorder(bottom_border: "teal")
+        hometown.setBottomBorder(bottom_border: "teal")
+        recoveryDate.setBottomBorder(bottom_border: "teal")
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

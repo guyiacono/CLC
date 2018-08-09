@@ -72,6 +72,16 @@ class FriendProfileViewController: UIViewController {
         {
             disconnect.setTitle("Connect", for: UIControlState.normal)
         }
+        
+        profileImage.layer.masksToBounds = true
+        profileImage.clipsToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+        profileImage.layer.borderWidth = 2.0
+        
+        disconnect.layer.cornerRadius = 15.0
+        messageButton.layer.cornerRadius = 15.0
+        moreInfoButton.layer.cornerRadius = 15.0
     }
 
     override func didReceiveMemoryWarning() {
