@@ -2255,7 +2255,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="FINISH"/>
+                                <state key="normal" title="NEXT"/>
                                 <connections>
                                     <action selector="finishSurvey:" destination="IeL-NG-dto" eventType="touchUpInside" id="pce-VW-vgx"/>
                                 </connections>
@@ -2361,7 +2361,7 @@
                                     <constraint firstAttribute="height" constant="40" id="Ag8-ZQ-wld"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
-                                <state key="normal" title="CREATE PROFILE">
+                                <state key="normal" title="FINISH PROFILE">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -6300,7 +6300,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kPY-VE-cyN"/>
-        <segue reference="dUS-1c-WW3"/>
+        <segue reference="7Mx-P5-ilS"/>
         <segue reference="Z2L-vm-DuP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
