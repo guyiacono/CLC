@@ -56,6 +56,12 @@ class ProfileFinish1: UIViewController {
         
         view.addGestureRecognizer(tapGesture)
         
+        firstName.setBottomBorder(bottom_border: "teal")
+        lastName.setBottomBorder(bottom_border: "teal")
+        dateOfBirth.setBottomBorder(bottom_border: "teal")
+        hometown.setBottomBorder(bottom_border: "teal")
+        recoveryDate.setBottomBorder(bottom_border: "teal")
+        
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
         // Do any additional setup after loading the view.

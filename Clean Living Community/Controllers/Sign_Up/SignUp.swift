@@ -13,6 +13,10 @@ class SignUp: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        emailField.setBottomBorder(bottom_border: "teal")
+        passwordField.setBottomBorder(bottom_border: "blue")
+        
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
         
