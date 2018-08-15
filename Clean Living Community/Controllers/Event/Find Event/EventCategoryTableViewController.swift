@@ -10,6 +10,9 @@ import UIKit
 
 class EventCategoryTableViewController: UITableViewController {
 
+    
+     let categories = ["Arts", "Exercise", "Food", "Hobbies", "Leisure", "Music", "Outdoors", "Travel" ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +37,7 @@ class EventCategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 16
+        return categories.count
     }
 
     
@@ -43,7 +46,7 @@ class EventCategoryTableViewController: UITableViewController {
         
         // Configure the cell...
         
-        cell.nameLabel.text = "Event Category \(indexPath.row)"
+        cell.nameLabel.text = categories[indexPath.row]
         return cell
     }
     

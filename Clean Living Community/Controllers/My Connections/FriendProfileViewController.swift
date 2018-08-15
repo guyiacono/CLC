@@ -18,6 +18,7 @@ class FriendProfileViewController: UIViewController {
     var thisUser: User?
     var segmentedStatus: Int?
     let signedInID = Auth.auth().currentUser?.uid
+    var messageModel = MessageModel.sharedInstance
 
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -49,7 +50,7 @@ class FriendProfileViewController: UIViewController {
     @IBOutlet weak var messageButton: UIButton!
     @IBAction func messageAction(_ sender: UIButton)
     {
-        
+        performSegue(withIdentifier: "toMessageFromProfile", sender: thisUser)
     }
     
     @IBOutlet weak var moreInfoButton: UIButton!
@@ -58,6 +59,7 @@ class FriendProfileViewController: UIViewController {
         performSegue(withIdentifier: "toFriendProfileDetail", sender: thisUser)
     }
     
+
     
     override func viewDidLoad()
     {
@@ -66,6 +68,7 @@ class FriendProfileViewController: UIViewController {
         
         name.text = (thisUser?.first)! + " " +  (thisUser?.last)!
         bio.text = thisUser?.bio
+        print((thisUser?.DOB)!)
         age.text = "Age: " + calculateAge(withDOB: (thisUser?.DOB)!)
         setImageFromURl(stringImageUrl: (thisUser?.url1)!, forImage: profileImage)
         if(segmentedStatus == 1)
@@ -96,6 +99,22 @@ class FriendProfileViewController: UIViewController {
             let destinationVC = segue.destination as! StrangerProfileInfoViewController
             destinationVC.viewedUser = sender as? User
         }
+        if(segue.identifier == "toMessageFromProfile")
+        {
+            let destinationVC = segue.destination as! ConversationViewController
+            destinationVC.otherUser = thisUser
+            messageModel.listAllMessages(completion: {(success)
+                in
+                if (success)
+                {
+                    
+                    let ifIDexists = self.messageModel.findMessageBetween(sender: self.signedInID!, receiver: (self.thisUser?.key)!)
+                    print(ifIDexists)
+                    destinationVC.thisMessageUID = ifIDexists
+                }
+            })
+           
+        }
         
     }
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
@@ -110,8 +129,10 @@ class FriendProfileViewController: UIViewController {
     func calculateAge(withDOB DOB: String) -> String
     {
         let formatter = DateFormatter()
-        formatter.dateFormat = "DD/MM/YYYY"
+        formatter.dateFormat = "MM/dd/YYYY"
+        print(formatter.date(from: DOB))
         let dateRangeStart = formatter.date(from: DOB)
+        
         let dateRangeEnd = Date()
         let components = Calendar.current.dateComponents([.year], from: dateRangeStart!, to: dateRangeEnd)
         return (String(components.year!))

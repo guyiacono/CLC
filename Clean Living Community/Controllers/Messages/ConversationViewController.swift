@@ -48,22 +48,51 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             
             let printDate = convertToUTC(date: today)!
            
-            
-            
-            messageModel.sendNewText(messageID: thisMessageUID!, dateTime: printDate, senderUID: signedInUserID!, text: textContents!, completion: {(success)
-                in
+            if(thisMessageUID != nil)
+            {
+                messageModel.sendNewText(messageID: thisMessageUID!, dateTime: printDate, senderUID: signedInUserID!, text: textContents!, completion: {(success)
+                    in
                     if (success)
                     {
-                       
+                        
                         
                         //self.viewDidAppear(false)
                     }
                 })
-        }
+            }
+                
+            else
+            {
+                
+                messageModel.createNewMessage(sender: signedInUserID!, receiver:(otherUser?.key)!,completion:  { (newUID) in
+                    if(newUID != nil)
+                    {
+                        self.thisMessageUID = newUID
+                        
+                        self.messageModel.sendNewText(messageID: self.thisMessageUID!, dateTime: printDate, senderUID: self.signedInUserID!, text: self.textContents!, completion: {(success)
+                            in
+                            if (success)
+                            {
+                                self.messageModel.setMessageWith(signedInUID: self.signedInUserID!, otherPersonUID: (self.otherUser?.key)!, messageID: self.thisMessageUID!, completion: {(success2)
+                                    in
+                                    if(success2)
+                                    {
+                                        self.viewDidLoad()
+                                    }
+                                })
+                                
+                            }
+                        })
+                    }
+                }
+            )}
+            
+        
+ 
         textContents = ""
         self.entryField.isEnabled = true
         
-    
+        }
        
     }
     
@@ -81,7 +110,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
         messageModel.listAllMessages(completion: {(success)
         in
-            if (success)
+            if (success && self.thisMessageUID != nil)
             {
                 self.messageModel.getMessageData(messageID: self.thisMessageUID!, completion: {(list)
                     in
@@ -266,8 +295,6 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             view.frame.origin.y = 0
         }
     }
-    
-    
-    
-    
 }
+
+

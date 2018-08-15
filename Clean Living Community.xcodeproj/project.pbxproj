@@ -16,6 +16,7 @@
 		E400FE30210F43D900A86CA2 /* MyConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */; };
 		E400FE32210F7C5D00A86CA2 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */; };
 		E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */; };
+		E40106B2211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */; };
 		E401701E211898D500F625FA /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401701D211898D500F625FA /* SignUp.swift */; };
 		E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */; };
 		E4049EAB210AD122007125FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAA210AD122007125FD /* Message.swift */; };
@@ -32,7 +33,6 @@
 		E431C2E620CEB824007D0107 /* ProfileFinish1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E520CEB824007D0107 /* ProfileFinish1.swift */; };
 		E431C2E820CEB83E007D0107 /* ProfileFinish2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */; };
 		E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431C2E920CEB855007D0107 /* ProfileFinish3.swift */; };
-		E4330035211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4330034211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift */; };
 		E4330037211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4330036211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift */; };
 		E44A8A1820C6FD010048EC60 /* ConnectionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */; };
 		E44A8A1A20C6FDD80048EC60 /* ConnectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */; };
@@ -59,6 +59,9 @@
 		E4FA11F320B4664600E485BC /* Clean_Living_CommunityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA11F220B4664600E485BC /* Clean_Living_CommunityUITests.swift */; };
 		E4FC83F920D0CFB100613A99 /* MyProfileSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FC83F820D0CFB100613A99 /* MyProfileSuperViewController.swift */; };
 		E4FC83FB20D0E37300613A99 /* PersonalInfoProfileChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FC83FA20D0E37300613A99 /* PersonalInfoProfileChange.swift */; };
+		E4FD28F52123C18C0013580D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD28F42123C18C0013580D /* Event.swift */; };
+		E4FD28F72123CA630013580D /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD28F62123CA630013580D /* EventModel.swift */; };
+		E4FD28FE2123E1420013580D /* HostEventCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD28FD2123E1420013580D /* HostEventCategoryTableViewController.swift */; };
 		E4FDE47820C5831B00DFC488 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE47720C5831B00DFC488 /* Base.png */; };
 		E4FDE47920C5831B00DFC488 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE47720C5831B00DFC488 /* Base.png */; };
 		E4FDE47A20C5831B00DFC488 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE47720C5831B00DFC488 /* Base.png */; };
@@ -120,6 +123,7 @@
 		E400FE2F210F43D900A86CA2 /* MyConnectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsViewController.swift; sourceTree = "<group>"; };
 		E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectionsNoMessageTableViewController.swift; path = "/Users/michaelkarolewicz/Documents/CleanLivingComunityCloned/Clean Living Community/Controllers/Messages/ConnectionsNoMessageTableViewController.swift"; sourceTree = "<absolute>"; };
 		E401701D211898D500F625FA /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileDetailViewController.swift; sourceTree = "<group>"; };
 		E4049EAA210AD122007125FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -136,7 +140,6 @@
 		E431C2E520CEB824007D0107 /* ProfileFinish1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish1.swift; sourceTree = "<group>"; };
 		E431C2E720CEB83E007D0107 /* ProfileFinish2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish2.swift; sourceTree = "<group>"; };
 		E431C2E920CEB855007D0107 /* ProfileFinish3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish3.swift; sourceTree = "<group>"; };
-		E4330034211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectionsNoMessageTableViewController.swift; path = "/Users/timhilton/code/Clean Living Community/Clean Living Community/Controllers/Messages/ConnectionsNoMessageTableViewController.swift"; sourceTree = "<absolute>"; };
 		E4330036211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionWithNoMessageTableViewCell.swift; sourceTree = "<group>"; };
 		E44A8A1720C6FD010048EC60 /* ConnectionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsTableViewCell.swift; sourceTree = "<group>"; };
 		E44A8A1920C6FDD80048EC60 /* ConnectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsTableViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +171,9 @@
 		E4FA11F420B4664600E485BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4FC83F820D0CFB100613A99 /* MyProfileSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileSuperViewController.swift; sourceTree = "<group>"; };
 		E4FC83FA20D0E37300613A99 /* PersonalInfoProfileChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoProfileChange.swift; sourceTree = "<group>"; };
+		E4FD28F42123C18C0013580D /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Event.swift; path = "Clean Living Community/Views/Everything/Event.swift"; sourceTree = SOURCE_ROOT; };
+		E4FD28F62123CA630013580D /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventModel.swift; path = "Clean Living Community/Views/Everything/EventModel.swift"; sourceTree = SOURCE_ROOT; };
+		E4FD28FD2123E1420013580D /* HostEventCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostEventCategoryTableViewController.swift; sourceTree = "<group>"; };
 		E4FDE47720C5831B00DFC488 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
 		E4FDE47B20C5832300DFC488 /* Connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect.png; sourceTree = "<group>"; };
 		E4FDE47F20C5832F00DFC488 /* Events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Events.png; sourceTree = "<group>"; };
@@ -244,7 +250,7 @@
 			children = (
 				E4FDE48F20C5B7BD00DFC488 /* MessagesViewController.swift */,
 				E400FE31210F7C5D00A86CA2 /* ConversationViewController.swift */,
-				E4330034211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift */,
+				E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -270,6 +276,8 @@
 		E4049EB0210ADD74007125FD /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				E4FD28F42123C18C0013580D /* Event.swift */,
+				E4FD28F62123CA630013580D /* EventModel.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 		E4A42ED020B5C2F70012FE2C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4FD28F82123DDB80013580D /* Event */,
 				E4049EA7210ACD72007125FD /* Messages */,
 				E44CEFAD2107BAB9008DB175 /* My Connections */,
 				E42CFA5020F68B17001CEE58 /* My_Profile */,
@@ -376,9 +385,6 @@
 				E463F3B220D99AD100153FF5 /* EventMapViewController.swift */,
 				E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */,
 				E4D66D2E20D1A01600CC0FB1 /* MyEventsViewController.swift */,
-				E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */,
-				E463F3B020D9932300153FF5 /* FindEventsNewViewController.swift */,
-				8E9C2451211BD0C30019C3BE /* EventsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -446,6 +452,33 @@
 				E4FA11F420B4664600E485BC /* Info.plist */,
 			);
 			path = "Clean Living CommunityUITests";
+			sourceTree = "<group>";
+		};
+		E4FD28F82123DDB80013580D /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				8E9C2451211BD0C30019C3BE /* EventsViewController.swift */,
+				E4FD28FC2123E0DF0013580D /* Host Event */,
+				E4FD28F92123DDC40013580D /* Find Event */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		E4FD28F92123DDC40013580D /* Find Event */ = {
+			isa = PBXGroup;
+			children = (
+				E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */,
+				E463F3B020D9932300153FF5 /* FindEventsNewViewController.swift */,
+			);
+			path = "Find Event";
+			sourceTree = "<group>";
+		};
+		E4FD28FC2123E0DF0013580D /* Host Event */ = {
+			isa = PBXGroup;
+			children = (
+				E4FD28FD2123E1420013580D /* HostEventCategoryTableViewController.swift */,
+			);
+			path = "Host Event";
 			sourceTree = "<group>";
 		};
 		E4FDE46F20C57F3200DFC488 /* Images */ = {
@@ -736,7 +769,6 @@
 				E42CFA5520F68B60001CEE58 /* StrangerProfileInfoViewController.swift in Sources */,
 				E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */,
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
-				E4330035211B842900ECBE0D /* ConnectionsNoMessageTableViewController.swift in Sources */,
 				E4330037211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift in Sources */,
 				E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */,
 				E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */,
@@ -749,8 +781,10 @@
 				E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */,
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
+				E40106B2211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift in Sources */,
 				E4A3102520B7265300AE2D1A /* SurveyFinal.swift in Sources */,
 				E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
+				E4FD28F52123C18C0013580D /* Event.swift in Sources */,
 				E4049EAB210AD122007125FD /* Message.swift in Sources */,
 				E45FF4DD20FE935B00BD5FB7 /* ProfileFinish5.swift in Sources */,
 				E42CFA5E20F69414001CEE58 /* MyProfileBiographyViewController.swift in Sources */,
@@ -773,8 +807,10 @@
 				E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */,
 				E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */,
 				E4FF1D032101193E00101E6E /* SurveyP5.swift in Sources */,
+				E4FD28F72123CA630013580D /* EventModel.swift in Sources */,
 				E4A42ECE20B5C2BD0012FE2C /* SurveyScrollView.swift in Sources */,
 				E4FA11D320B4664500E485BC /* AppDelegate.swift in Sources */,
+				E4FD28FE2123E1420013580D /* HostEventCategoryTableViewController.swift in Sources */,
 				E44DCA2420B4819200281955 /* Sign_In.swift in Sources */,
 				E4FC83FB20D0E37300613A99 /* PersonalInfoProfileChange.swift in Sources */,
 				E4FDEF7C20D1557300CEF5A0 /* EventCategoryTableViewController.swift in Sources */,

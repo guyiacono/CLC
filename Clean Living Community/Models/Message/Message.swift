@@ -16,8 +16,10 @@ import FirebaseStorage
 struct Message
 {
     let key : String
-    let sender : String
-    let reciever: String
+    let sender : String?
+    let receiver: String?
+    let lastDate: String?
+    let lastText: String?
     
     
     
@@ -30,26 +32,31 @@ struct Message
         
         let snapshotValue = snapshot.value as! [String : AnyObject]
     
-        sender = snapshotValue["Sender"] as! String
-        reciever = snapshotValue["Reciever"] as! String
+        sender = snapshotValue["Sender"] as? String
+        receiver = snapshotValue["Receiver"] as? String
+        lastDate = snapshotValue["lastTime"] as? String
+        lastText = snapshotValue["lastMessage"] as? String
+        
         
         ref = snapshot.ref
     }
     
-     init(key: String, sender: String, reciever: String)
+     init(key: String, sender: String, receiver: String)
      {
         self.key = key
         self.sender = sender
-        self.reciever = reciever
+        self.receiver = receiver
+        self.lastDate = nil
+        self.lastText = nil
         self.ref = nil
     }
     
-    func senderReciever() -> Any
+    func senderReceiver() -> Any
     {
         return
             [
                 "Sender" : sender,
-                "Reciever" : reciever
+                "Receiver" : receiver
             ]
     }
     

@@ -14,6 +14,7 @@ import FirebaseCore
 class MessagesViewController: UITableViewController
 {
     var userModel = UserModel.sharedInstance
+    var messageModel = MessageModel.sharedInstance
     let currentUserID = Auth.auth().currentUser?.uid
     var message : [String: String]?
     var messagesSorted: [(key: String, value: String)]?
@@ -37,7 +38,13 @@ class MessagesViewController: UITableViewController
             {
                 self.message = list
                 self.messagesSorted = (self.message?.sorted(by: {$0.value < $1.value}))!
-                self.tableView.reloadData()
+                self.messageModel.listAllMessages(completion: {(success)
+                    in
+                    if(success)
+                    {
+                        self.tableView.reloadData()
+                    }
+                })
             }
         })
     }
@@ -72,12 +79,24 @@ class MessagesViewController: UITableViewController
         var tempUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
         setImageFromURl(stringImageUrl: (tempUser?.url1)!, forImage: cell.photo)
         cell.name.text = (tempUser?.first)! + " " + (tempUser?.last)!
-        cell.preview.text = "sample text"
+       
+        
+        cell.preview.text = "sampleText"
+        cell.preview.text = messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastText
+        
+        print(messageModel.messages)
+        
+        
+        
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        let date = Date()
-        let stringDate: String = formatter.string(from: date)
+        formatter.dateFormat = "MMddyyyyHHmmss"
+        
+        let dateObject = formatter.date(from: (messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastDate)!)
+        //let dateObject = Date()
+        
+        formatter.dateFormat = "MM/dd/yyyy"
+        let stringDate: String = formatter.string(from: dateObject!)
         cell.date.font = cell.date.font.withSize(10)
         cell.date.text = "\(stringDate)"
         

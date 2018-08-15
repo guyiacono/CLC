@@ -20,6 +20,16 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var findEvent: UIButton!
     @IBOutlet weak var hostEvent: UIButton!
     
+    @IBAction func findAction(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toFindCategory", sender: self)
+    }
+    
+    @IBAction func hostAction(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toHostCategory", sender: self)
+    }
+    
 
     
     override func viewDidLoad() {

@@ -266,7 +266,8 @@ class UserModel
         let path = "Users/" + (UID) + "/Messages"
         
         let ref = Database.database().reference(withPath: path)
-        ref.observeSingleEvent(of: .value, with: {snapshot in
+        ref.observe(.value, with: {snapshot in
+            messages.removeAll()
             //print(snapshot)
             for child in snapshot.children
             {
@@ -276,7 +277,7 @@ class UserModel
                 let messageID = snap.value
                 messages[personID] = messageID as? String
                 
-            }
+            }   
             completion(messages)
         }
         )

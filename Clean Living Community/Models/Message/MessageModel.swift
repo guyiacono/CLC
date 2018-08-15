@@ -22,6 +22,8 @@ class MessageModel
         var foundMessage: Message?
         for message in messages
         {
+            print(message.key)
+            print(uid)
             if(message.key == uid )
             {
                 foundMessage = message
@@ -39,6 +41,10 @@ class MessageModel
      
         ref.observe(.value, with: {snapshot in
             self.messages.removeAll()
+            if(snapshot.hasChild("Reciever") == true)
+            {
+                print("has reciever")
+            }
             for child in snapshot.children
             {
                 let message = Message(snapshot:child as! DataSnapshot)
@@ -57,7 +63,7 @@ class MessageModel
             for child in snapshot.children
             {
                 let snap = child as! DataSnapshot
-                if(snap.key != "Sender" && snap.key != "Reciever")
+                if(snap.key != "Sender" && snap.key != "Receiver")
                 {
                     for text in snap.children
                     {
@@ -76,9 +82,67 @@ class MessageModel
     }
     func sendNewText(messageID: String, dateTime: String, senderUID: String, text: String, completion: @escaping (Bool) -> Void)
     {
-        let path = "Messages/" + (messageID) + "/" + dateTime
-        let ref = Database.database().reference(withPath: path)
+        var path = "Messages/" + (messageID) + "/" + dateTime
+        var ref = Database.database().reference(withPath: path)
         ref.setValue([senderUID : text])
+        
+        path = "Messages/" + (messageID)
+        ref = Database.database().reference(withPath : path)
+        ref.updateChildValues(["lastMessage" : text])
+        ref.updateChildValues(["lastTime" : dateTime])
+        
+        
+        completion(true)
+        
+    }
+    
+    
+    func createNewMessage(sender: String, receiver: String, completion: @escaping ( _ newMessageID : String) -> Void)
+    {
+        
+       let path = "Messages"
+        
+         let ref = Database.database().reference(withPath : path).childByAutoId()
+        // print(ref.key)
+        // path = "Messages/" + (ref.key)
+        // ref = Database.database().reference(withPath : path)
+        
+       // let ref = Database.database().reference(withPath: path)
+       
+        print(ref)
+       // let data = ["Sender": sender, "Receiver": receiver] as Any
+        
+        // ref.child("message_34343").setValue(data)
+        
+        ref.updateChildValues(["Sender" : sender])
+        ref.updateChildValues(["Receiver" : receiver])
+        completion(ref.key)
+    
+    }
+    
+    func findMessageBetween(sender: String, receiver: String) -> String?
+    {
+        //print(self.messages)
+        for message in self.messages
+        {
+            
+            if(message.receiver! == receiver && message.sender! == sender)
+            {
+                
+                return message.key
+            }
+        }
+        return(nil)
+       
+    }
+    func setMessageWith(signedInUID: String, otherPersonUID: String, messageID: String, completion: @escaping (Bool) -> Void)
+    {
+        var path = "Users/" + (signedInUID) + "/Messages/"
+        var ref = Database.database().reference(withPath: path)
+        ref.updateChildValues([otherPersonUID : messageID])
+        path = "Users/" + otherPersonUID + "/Messages/"
+        ref = Database.database().reference(withPath: path)
+        ref.updateChildValues([signedInUID : messageID])
         completion(true)
         
     }

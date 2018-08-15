@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCore
+import FirebaseStorage
 
 class ConnectionsNoMessageTableViewController: UITableViewController
 {
@@ -16,27 +18,30 @@ class ConnectionsNoMessageTableViewController: UITableViewController
     var withMessage = [String : String]()
     var connectionsWithoutMessage = [[String : String]]()
     
+    var newUser: User?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        userModel.getUnderConnectionsSnapshot(withUID: signedInUser?.uid) { (list) in
+        userModel.getUnderConnections(withUID: signedInUser?.uid) { (list) in
             
             self.connections = list
-            self.self.userModel.listAllMessages(withUID: self.signedInUser?.uid, completion: { (messageList) in
-                
+            print("get under connections \(list)")
+            self.userModel.listAllMessages(withUID: self.signedInUser?.uid, completion: { (messageList) in
                 self.withMessage = messageList
+                print("messageList \(messageList)")
                 for connection in self.connections
                 {
                     for message in self.withMessage
                     {
                         let uid = connection["UID"]
-                        if(self.withMessage[uid!] == nil)
+                        if(self.withMessage[uid!] == nil && connection["Request"] == "Accepted")
                         {
+                            
                             self.connectionsWithoutMessage.append(connection)
                         }
                     }
                 }
-                print(self.connectionsWithoutMessage)
                 self.tableView.reloadData()
                 
             })
@@ -53,6 +58,12 @@ class ConnectionsNoMessageTableViewController: UITableViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -81,6 +92,22 @@ class ConnectionsNoMessageTableViewController: UITableViewController
         // Configure the cell...
 
         return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let newUserPair = connectionsWithoutMessage[indexPath.row]
+        let newUserUID = newUserPair["UID"]
+        newUser = userModel.findUser(uid: newUserUID!)
+        performSegue(withIdentifier: "toNewConversation", sender: self)
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "toNewConversation"
+        {
+            let destinationVC = segue.destination as! ConversationViewController
+            destinationVC.otherUser = newUser
+        }
     }
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
     {
