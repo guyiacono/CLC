@@ -31,6 +31,11 @@ class EventsViewController: UIViewController {
     }
     
 
+    @IBAction func unwindToStart(_ sender : UIStoryboardSegue)
+    {
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

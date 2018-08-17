@@ -1,55 +1,43 @@
 //
-//  ConnectionsNoMessageTableViewController.swift
-//  
+//  PeopleGoingTableViewController.swift
+//  Clean Living Community
 //
-//  Created by Michael Karolewicz on 8/8/18.
+//  Created by Michael Karolewicz on 8/16/18.
+//  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
 import FirebaseAuth
-import FirebaseCore
-import FirebaseStorage
 
-class ConnectionsNoMessageTableViewController: UITableViewController
-{
-    var signedInUser = Auth.auth().currentUser
+class PeopleGoingTableViewController: UITableViewController {
+
+    var thisEvent = [String : String]()
+    var attendees = [(key : String , value : String)]()
     var userModel = UserModel.sharedInstance
-    var connections = [[String : String]]()
-    var withMessage = [String : String]()
-    var connectionsWithoutMessage = [[String : String]]()
+    var eventModel = EventModel.sharedInstance
     
-    var newUser: User?
+    var attendeesUsersSorted = [[String : String]]()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        userModel.getUnderConnections(withUID: signedInUser?.uid) { (list) in
-            
-            self.connections = list
-            print("get under connections \(list)")
-            self.userModel.listAllMessages(withUID: self.signedInUser?.uid, completion: { (messageList) in
-                self.withMessage = messageList
-                self.connectionsWithoutMessage.removeAll()
-                print("messageList \(messageList)")
-                
-                for connection in self.connections
-                {
-                    for message in self.withMessage
+        eventModel.ObserveAttending(eventUID: thisEvent["key"]!, dateTimeString: thisEvent["DateTimeString"]!) { (listOfAttendees) in
+            let attendeesUnsorted = listOfAttendees
+            let attendeesSorted = (Array(attendeesUnsorted).sorted {$0.1 < $1.1})
+            self.attendees = attendeesSorted
+            for person in self.attendees
+            {
+                self.userModel.findUserProfileInfo(uid: person.key, completion: { (user) in
+                    self.attendeesUsersSorted.append(user)
+                    if(self.attendeesUsersSorted.count == self.attendees.count)
                     {
-                        let uid = connection["UID"]
-                        if(self.withMessage[uid!] == nil && connection["Request"] == "Accepted")
-                        {
-                            
-                            self.connectionsWithoutMessage.append(connection)
-                        }
+                        self.tableView.reloadData()
                     }
-                }
-                self.tableView.reloadData()
-                
-            })
+                    
+                })
+            }
         }
-        
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -61,56 +49,60 @@ class ConnectionsNoMessageTableViewController: UITableViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(true)
-        viewDidLoad()
-    }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int
-    {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return connectionsWithoutMessage.count
+        return attendees.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ConnectionWithNoMessageTableViewCell
-
-        cell.profilePhoto.image = nil
-        let connection = connectionsWithoutMessage[indexPath.row]
-        cell.name.text = connection["Name"]
-        setImageFromURl(stringImageUrl: connection["MainPhoto"]!, forImage: cell.profilePhoto)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "goingCell", for: indexPath) as! PeopleGoingTableViewCell
         
+        print(attendeesUsersSorted)
         
-        // Configure the cell...
-
+        let user = attendeesUsersSorted[indexPath.row]
+        
+        cell.name.text = user["First Name"]! + " " + user["Last Name"]!
+        setImageFromURl(stringImageUrl: user["Photo1"]!, forImage: cell.photo)
+        if(user["key"] == thisEvent["Organizer"])
+        {
+            cell.host.text = "Event Host"
+        }
+        else
+        {
+            cell.host.text = ""
+        }
+        
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let newUserPair = connectionsWithoutMessage[indexPath.row]
-        let newUserUID = newUserPair["UID"]
-        newUser = userModel.findUser(uid: newUserUID!)
-        performSegue(withIdentifier: "toNewConversation", sender: self)
-        
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if segue.identifier == "toNewConversation"
+        let user = attendeesUsersSorted[indexPath.row]
+        if(user["key"] != Auth.auth().currentUser?.uid)
         {
-            let destinationVC = segue.destination as! ConversationViewController
-            destinationVC.otherUser = newUser
+            let userObject = userModel.findUser(uid: user["key"]!)
+            performSegue(withIdentifier: "toProfile", sender: userObject)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "toProfile")
+        {
+            let destinationVC = segue.destination as? StrangerProfileViewController
+            destinationVC?.thisUser = sender as? User
+        }
+    }
+    
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
     {
         

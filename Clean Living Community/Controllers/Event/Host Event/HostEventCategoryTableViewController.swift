@@ -52,13 +52,14 @@ class HostEventCategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
+        performSegue(withIdentifier: "toEventP1", sender: categories[indexPath.row])
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toEventP1")
         {
-            
+            let destinationVC = segue.destination as! HostEventP1ViewController
+            destinationVC.category = sender as? String
         }
     }
 }

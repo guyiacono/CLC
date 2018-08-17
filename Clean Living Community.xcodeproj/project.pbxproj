@@ -19,6 +19,13 @@
 		E40106B2211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */; };
 		E401701E211898D500F625FA /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401701D211898D500F625FA /* SignUp.swift */; };
 		E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */; };
+		E402A0C021267EDE0022F172 /* PeopleGoingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0BF21267EDE0022F172 /* PeopleGoingTableViewController.swift */; };
+		E402A0C2212685490022F172 /* PeopleGoingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0C1212685490022F172 /* PeopleGoingTableViewCell.swift */; };
+		E402A0C92126A5170022F172 /* MyEventAttendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0C82126A5170022F172 /* MyEventAttendTableViewController.swift */; };
+		E402A0CB2126B4820022F172 /* EventHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0CA2126B4820022F172 /* EventHistoryTableViewCell.swift */; };
+		E402A0CD2126B4CC0022F172 /* EventHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0CC2126B4CC0022F172 /* EventHistoryTableViewController.swift */; };
+		E4030D022125F07E001E3054 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4030D012125F07E001E3054 /* EventDetailViewController.swift */; };
+		E4030D042125FBD0001E3054 /* FindEventPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4030D032125FBD0001E3054 /* FindEventPhotosViewController.swift */; };
 		E4049EAB210AD122007125FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAA210AD122007125FD /* Message.swift */; };
 		E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4049EAC210ADD40007125FD /* MessageModel.swift */; };
 		E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */; };
@@ -62,6 +69,10 @@
 		E4FD28F52123C18C0013580D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD28F42123C18C0013580D /* Event.swift */; };
 		E4FD28F72123CA630013580D /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD28F62123CA630013580D /* EventModel.swift */; };
 		E4FD28FE2123E1420013580D /* HostEventCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD28FD2123E1420013580D /* HostEventCategoryTableViewController.swift */; };
+		E4FD36BB212463D800F92D0E /* HostEventP1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD36BA212463D800F92D0E /* HostEventP1ViewController.swift */; };
+		E4FD36BD212468C500F92D0E /* HostEventP2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD36BC212468C500F92D0E /* HostEventP2ViewController.swift */; };
+		E4FD36BF21249F7000F92D0E /* HostEventP3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD36BE21249F7000F92D0E /* HostEventP3ViewController.swift */; };
+		E4FD36C12125244500F92D0E /* HostEventP4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FD36C02125244500F92D0E /* HostEventP4ViewController.swift */; };
 		E4FDE47820C5831B00DFC488 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE47720C5831B00DFC488 /* Base.png */; };
 		E4FDE47920C5831B00DFC488 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE47720C5831B00DFC488 /* Base.png */; };
 		E4FDE47A20C5831B00DFC488 /* Base.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FDE47720C5831B00DFC488 /* Base.png */; };
@@ -126,6 +137,13 @@
 		E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectionsNoMessageTableViewController.swift; path = "/Users/michaelkarolewicz/Documents/CleanLivingComunityCloned/Clean Living Community/Controllers/Messages/ConnectionsNoMessageTableViewController.swift"; sourceTree = "<absolute>"; };
 		E401701D211898D500F625FA /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileDetailViewController.swift; sourceTree = "<group>"; };
+		E402A0BF21267EDE0022F172 /* PeopleGoingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleGoingTableViewController.swift; sourceTree = "<group>"; };
+		E402A0C1212685490022F172 /* PeopleGoingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleGoingTableViewCell.swift; sourceTree = "<group>"; };
+		E402A0C82126A5170022F172 /* MyEventAttendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventAttendTableViewController.swift; sourceTree = "<group>"; };
+		E402A0CA2126B4820022F172 /* EventHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		E402A0CC2126B4CC0022F172 /* EventHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHistoryTableViewController.swift; sourceTree = "<group>"; };
+		E4030D012125F07E001E3054 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		E4030D032125FBD0001E3054 /* FindEventPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventPhotosViewController.swift; sourceTree = "<group>"; };
 		E4049EAA210AD122007125FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E4049EAC210ADD40007125FD /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		E40A3ABC20BEE6EB001A4789 /* ProfileFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFinish.swift; sourceTree = "<group>"; };
@@ -174,6 +192,10 @@
 		E4FD28F42123C18C0013580D /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Event.swift; path = "Clean Living Community/Views/Everything/Event.swift"; sourceTree = SOURCE_ROOT; };
 		E4FD28F62123CA630013580D /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventModel.swift; path = "Clean Living Community/Views/Everything/EventModel.swift"; sourceTree = SOURCE_ROOT; };
 		E4FD28FD2123E1420013580D /* HostEventCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostEventCategoryTableViewController.swift; sourceTree = "<group>"; };
+		E4FD36BA212463D800F92D0E /* HostEventP1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostEventP1ViewController.swift; sourceTree = "<group>"; };
+		E4FD36BC212468C500F92D0E /* HostEventP2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostEventP2ViewController.swift; sourceTree = "<group>"; };
+		E4FD36BE21249F7000F92D0E /* HostEventP3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostEventP3ViewController.swift; sourceTree = "<group>"; };
+		E4FD36C02125244500F92D0E /* HostEventP4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostEventP4ViewController.swift; sourceTree = "<group>"; };
 		E4FDE47720C5831B00DFC488 /* Base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Base.png; sourceTree = "<group>"; };
 		E4FDE47B20C5832300DFC488 /* Connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect.png; sourceTree = "<group>"; };
 		E4FDE47F20C5832F00DFC488 /* Events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Events.png; sourceTree = "<group>"; };
@@ -243,6 +265,31 @@
 				78358D7FE4282B7F8E861629 /* Pods_Clean_Living_CommunityUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E402A0C3212698D70022F172 /* My Events */ = {
+			isa = PBXGroup;
+			children = (
+				E4D66D2E20D1A01600CC0FB1 /* MyEventsViewController.swift */,
+				E402A0C7212699430022F172 /* Hosting */,
+				E402A0C6212699370022F172 /* Attending */,
+			);
+			path = "My Events";
+			sourceTree = "<group>";
+		};
+		E402A0C6212699370022F172 /* Attending */ = {
+			isa = PBXGroup;
+			children = (
+				E402A0C82126A5170022F172 /* MyEventAttendTableViewController.swift */,
+			);
+			path = Attending;
+			sourceTree = "<group>";
+		};
+		E402A0C7212699430022F172 /* Hosting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Hosting;
 			sourceTree = "<group>";
 		};
 		E4049EA7210ACD72007125FD /* Messages */ = {
@@ -337,6 +384,8 @@
 				E4FDE48B20C58B0900DFC488 /* Custom Survey Slider.swift */,
 				E400FE33210F826B00A86CA2 /* ConversationTableViewCell.swift */,
 				E4330036211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift */,
+				E402A0C1212685490022F172 /* PeopleGoingTableViewCell.swift */,
+				E402A0CA2126B4820022F172 /* EventHistoryTableViewCell.swift */,
 			);
 			path = Everything;
 			sourceTree = "<group>";
@@ -376,6 +425,7 @@
 		E4A42ED020B5C2F70012FE2C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E402A0C3212698D70022F172 /* My Events */,
 				E4FD28F82123DDB80013580D /* Event */,
 				E4049EA7210ACD72007125FD /* Messages */,
 				E44CEFAD2107BAB9008DB175 /* My Connections */,
@@ -384,7 +434,6 @@
 				E42CFA4E20F68AF2001CEE58 /* Sign_Up */,
 				E463F3B220D99AD100153FF5 /* EventMapViewController.swift */,
 				E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */,
-				E4D66D2E20D1A01600CC0FB1 /* MyEventsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -460,6 +509,7 @@
 				8E9C2451211BD0C30019C3BE /* EventsViewController.swift */,
 				E4FD28FC2123E0DF0013580D /* Host Event */,
 				E4FD28F92123DDC40013580D /* Find Event */,
+				E402A0CC2126B4CC0022F172 /* EventHistoryTableViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -469,6 +519,9 @@
 			children = (
 				E4FDEF7B20D1557300CEF5A0 /* EventCategoryTableViewController.swift */,
 				E463F3B020D9932300153FF5 /* FindEventsNewViewController.swift */,
+				E4030D012125F07E001E3054 /* EventDetailViewController.swift */,
+				E4030D032125FBD0001E3054 /* FindEventPhotosViewController.swift */,
+				E402A0BF21267EDE0022F172 /* PeopleGoingTableViewController.swift */,
 			);
 			path = "Find Event";
 			sourceTree = "<group>";
@@ -477,6 +530,10 @@
 			isa = PBXGroup;
 			children = (
 				E4FD28FD2123E1420013580D /* HostEventCategoryTableViewController.swift */,
+				E4FD36BA212463D800F92D0E /* HostEventP1ViewController.swift */,
+				E4FD36BC212468C500F92D0E /* HostEventP2ViewController.swift */,
+				E4FD36BE21249F7000F92D0E /* HostEventP3ViewController.swift */,
+				E4FD36C02125244500F92D0E /* HostEventP4ViewController.swift */,
 			);
 			path = "Host Event";
 			sourceTree = "<group>";
@@ -767,8 +824,10 @@
 				E4D66D2F20D1A01700CC0FB1 /* MyEventsViewController.swift in Sources */,
 				E4FDEF8420D1663A00CEF5A0 /* MyConnectionsTableViewController.swift in Sources */,
 				E42CFA5520F68B60001CEE58 /* StrangerProfileInfoViewController.swift in Sources */,
+				E4030D022125F07E001E3054 /* EventDetailViewController.swift in Sources */,
 				E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */,
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
+				E402A0C021267EDE0022F172 /* PeopleGoingTableViewController.swift in Sources */,
 				E4330037211B8A7E00ECBE0D /* ConnectionWithNoMessageTableViewCell.swift in Sources */,
 				E42CFA5D20F69414001CEE58 /* MyProfilePreferencesViewController.swift in Sources */,
 				E400FE34210F826B00A86CA2 /* ConversationTableViewCell.swift in Sources */,
@@ -776,13 +835,17 @@
 				E45FF4DB20FE888700BD5FB7 /* ProfileFinish4.swift in Sources */,
 				E400FE30210F43D900A86CA2 /* MyConnectionsViewController.swift in Sources */,
 				E400B5B520E9D2B3000D2146 /* User.swift in Sources */,
+				E4FD36BD212468C500F92D0E /* HostEventP2ViewController.swift in Sources */,
 				E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */,
 				E400FE32210F7C5D00A86CA2 /* ConversationViewController.swift in Sources */,
 				E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */,
+				E4FD36BB212463D800F92D0E /* HostEventP1ViewController.swift in Sources */,
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
+				E402A0C2212685490022F172 /* PeopleGoingTableViewCell.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
 				E40106B2211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift in Sources */,
 				E4A3102520B7265300AE2D1A /* SurveyFinal.swift in Sources */,
+				E402A0CB2126B4820022F172 /* EventHistoryTableViewCell.swift in Sources */,
 				E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
 				E4FD28F52123C18C0013580D /* Event.swift in Sources */,
 				E4049EAB210AD122007125FD /* Message.swift in Sources */,
@@ -792,7 +855,10 @@
 				E44DCA2820B49A9400281955 /* Surveyp1.swift in Sources */,
 				E4FC83F920D0CFB100613A99 /* MyProfileSuperViewController.swift in Sources */,
 				E476490420BDDDA100253EE2 /* SurveySlider.swift in Sources */,
+				E402A0CD2126B4CC0022F172 /* EventHistoryTableViewController.swift in Sources */,
 				E4FDEF8220D1637A00CEF5A0 /* FindEventsTableViewCell.swift in Sources */,
+				E4030D042125FBD0001E3054 /* FindEventPhotosViewController.swift in Sources */,
+				E4FD36C12125244500F92D0E /* HostEventP4ViewController.swift in Sources */,
 				E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */,
 				E44A8A1820C6FD010048EC60 /* ConnectionsTableViewCell.swift in Sources */,
 				8E9C2452211BD0C30019C3BE /* EventsViewController.swift in Sources */,
@@ -807,12 +873,14 @@
 				E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */,
 				E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */,
 				E4FF1D032101193E00101E6E /* SurveyP5.swift in Sources */,
+				E402A0C92126A5170022F172 /* MyEventAttendTableViewController.swift in Sources */,
 				E4FD28F72123CA630013580D /* EventModel.swift in Sources */,
 				E4A42ECE20B5C2BD0012FE2C /* SurveyScrollView.swift in Sources */,
 				E4FA11D320B4664500E485BC /* AppDelegate.swift in Sources */,
 				E4FD28FE2123E1420013580D /* HostEventCategoryTableViewController.swift in Sources */,
 				E44DCA2420B4819200281955 /* Sign_In.swift in Sources */,
 				E4FC83FB20D0E37300613A99 /* PersonalInfoProfileChange.swift in Sources */,
+				E4FD36BF21249F7000F92D0E /* HostEventP3ViewController.swift in Sources */,
 				E4FDEF7C20D1557300CEF5A0 /* EventCategoryTableViewController.swift in Sources */,
 				E4FF1CFD2101159200101E6E /* SurveyP2.swift in Sources */,
 				E4FF1CFF2101181800101E6E /* SurveyP3.swift in Sources */,

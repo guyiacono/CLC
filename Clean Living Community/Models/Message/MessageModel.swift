@@ -38,7 +38,6 @@ class MessageModel
         
         let path = "Messages/"
         let ref = Database.database().reference(withPath: path)
-     
         ref.observe(.value, with: {snapshot in
             self.messages.removeAll()
             if(snapshot.hasChild("Reciever") == true)
@@ -48,8 +47,10 @@ class MessageModel
             for child in snapshot.children
             {
                 let message = Message(snapshot:child as! DataSnapshot)
+                print(message)
                 self.messages.append(message)
             }
+            print(self.messages)
             completion(true)
         }
         )

@@ -19,12 +19,15 @@ class UserModel
     var users = [User]()
     
     
-    func getUserInfo (uid: String)
+    func getUserInfo (uid: String, completion: @escaping(_ user : User) -> Void)
     {
         let userPath = "Users/Profile" + uid
         let userRef = Database.database().reference(withPath: userPath)
-        userRef.observeSingleEvent(of: .value, with: {snapshot in self.userInfo = User(snapshot: snapshot)})
-        print(self.userInfo)
+        userRef.observeSingleEvent(of: .value, with: {snapshot in
+            self.userInfo = User(snapshot: snapshot)
+            completion(self.userInfo!)
+        })
+       
     }
     
     func findUser(uid: String) -> User?
@@ -42,6 +45,22 @@ class UserModel
         return(nil)
     }
     
+    func findUserProfileInfo(uid: String, completion: @escaping (_ user : [String : String]) -> Void)
+    {
+        let path = "Users/" + uid + "/Profile"
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            
+            var tempDict = [String : String]()
+            for child in snapshot.children
+            {
+                let data = child as? DataSnapshot
+                tempDict[(data?.key)!] = data?.value as? String
+            }
+            completion(tempDict)
+            
+        })
+    }
     
     func registerUser (withEmail email: String, withPassword password: String, withFirst fname: String, withLast lname: String, withDOB dob: String, withTown home: String, withEdu edu: String, withOrientation orient: String, withRecovery recovery: String, withRomance relation: String, withReligion rel: String, withSpiritual spirit: String, isSmoke smoke: String, attendSupport sup: String, withOpt1 p1: String, withOpt2 p2: String, withBio bio: String,  withImage1 image1: UIImage, withImage2 image2: UIImage, withImage3 image3: UIImage, withQuestionair questionair : [Int], completion: @escaping(Bool)->Void)
     {
@@ -283,5 +302,63 @@ class UserModel
         )
     }
     
+    func updateEvents(userUID: String, eventID: String, eventDateTimeString: String,completion:  @escaping(Bool) -> Void)
+    {
+        let path = "Users/" + userUID + "/Events"
+        let ref = Database.database().reference(withPath: path)
+        ref.updateChildValues([eventID : eventDateTimeString])
+        completion(true)
+    }
+    func getEventList(userUID: String, completion : @escaping (_ list : [String : String]) -> Void)
+    {
+        var events = [String: String]()
+        let path = "Users/" + userUID + "/Events"
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            events.removeAll()
+            for (child) in snapshot.children
+            {
+                let snap = child as! DataSnapshot
+                let eventID = snap.key
+                let eventDateTime = snap.value
+                
+                events[eventID] = eventDateTime as? String
+            }
+            completion(events)
+        })
+    }
     
+    func getEventListObserve(userUID: String, completion: @escaping(_ list : [String : String]) -> Void)
+    {
+        var events = [String: String]()
+        let path = "Users/" + userUID + "/Events"
+        let ref = Database.database().reference(withPath: path)
+        ref.observe(.value, with: {snapshot in
+            events.removeAll()
+            for child in snapshot.children
+            {
+                let snap = child as! DataSnapshot
+                let eventID = snap.key
+                let eventDateTime = snap.value
+                
+                events[eventID] = eventDateTime as? String
+            }
+            completion(events)
+        })
+    }
+    func checkIfRSVP(userUID: String, eventUID: String, completion: @escaping (_ dateTime: String) -> Void)
+    {
+        print("checking RSVP Status")
+        var dateTime: String?
+        getEventList(userUID: userUID) { (list) in
+            
+            dateTime = list[eventUID] as? String
+            print(dateTime)
+            if(dateTime == nil)
+            {
+                dateTime = ""
+            }
+            completion(dateTime!)
+        }
+    }
 }

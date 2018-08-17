@@ -133,7 +133,6 @@ class ConnectionsTableViewController: UITableViewController{
         {
             let destinationVC = segue.destination as! StrangerProfileViewController
             destinationVC.thisUser = sender as? User
-            
         }
     }
     

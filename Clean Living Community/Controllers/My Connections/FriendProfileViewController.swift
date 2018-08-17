@@ -59,7 +59,11 @@ class FriendProfileViewController: UIViewController {
         performSegue(withIdentifier: "toFriendProfileDetail", sender: thisUser)
     }
     
-
+    @IBAction func eventsButton(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toHistory", sender: thisUser?.key)
+    }
+    
     
     override func viewDidLoad()
     {
@@ -101,19 +105,27 @@ class FriendProfileViewController: UIViewController {
         }
         if(segue.identifier == "toMessageFromProfile")
         {
-            let destinationVC = segue.destination as! ConversationViewController
+            var destinationVC = segue.destination as! ConversationViewController
             destinationVC.otherUser = thisUser
-            messageModel.listAllMessages(completion: {(success)
+            
+            userModel.listAllMessages(withUID: signedInID, completion: {(list)
                 in
-                if (success)
+                if(list[(self.thisUser?.key)!] != nil)
                 {
-                    
-                    let ifIDexists = self.messageModel.findMessageBetween(sender: self.signedInID!, receiver: (self.thisUser?.key)!)
-                    print(ifIDexists)
-                    destinationVC.thisMessageUID = ifIDexists
+                  
+                    destinationVC.thisMessageUID = list[(self.thisUser?.key)!]
+                }
+                else
+                {
+                    destinationVC.thisMessageUID = nil
+
                 }
             })
-           
+        }
+        if(segue.identifier == "toHistory")
+        {
+            var destinationVC = segue.destination as! EventHistoryTableViewController
+            destinationVC.thisUID = sender as? String
         }
         
     }

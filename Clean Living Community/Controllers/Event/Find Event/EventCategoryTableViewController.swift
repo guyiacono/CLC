@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 class EventCategoryTableViewController: UITableViewController {
 
@@ -49,7 +53,18 @@ class EventCategoryTableViewController: UITableViewController {
         cell.nameLabel.text = categories[indexPath.row]
         return cell
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        performSegue(withIdentifier: "toEventList", sender: categories[indexPath.row])
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "toEventList")
+        {
+            let destinationVC = segue.destination as! FindEventsNewViewController
+            destinationVC.category = sender as? String
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

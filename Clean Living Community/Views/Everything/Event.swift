@@ -33,6 +33,12 @@ struct Event
     let url2 : String?
     let url3 : String?
     
+    let locationTitle: String?
+    
+    let category: String?
+    
+    let dateTimeString : String?
+    
     let ref: DatabaseReference?
 
     
@@ -59,11 +65,15 @@ struct Event
         url1 = snapshotValue["Photo1"] as? String
         url2 = snapshotValue["Photo2"] as? String
         url3 = snapshotValue["Photo3"] as? String
- 
+        
+        locationTitle = snapshotValue["Location_Title"] as? String
+        category = snapshotValue["Category"] as? String
+        dateTimeString = snapshotValue["DateTimeString"] as? String
+        
         ref = snapshot.ref
     }
     
-    init(key: String, date: String, name: String, subtitle: String, time: String, address: String, city: String, lat: String, long: String, state: String, zip : String, organizer : String, url1: String, url2: String, url3: String)
+    init(key: String, date: String, name: String, subtitle: String, time: String, address: String, city: String, lat: String, long: String, state: String, zip : String, organizer : String, url1: String, url2: String, url3: String, location: String, category: String, dateTimeString: String)
     {
         self.key = key
         self.date = date
@@ -83,6 +93,10 @@ struct Event
         self.url1 = url1
         self.url2 = url2
         self.url3 = url3
+        
+        self.locationTitle = location
+        self.category = category
+        self.dateTimeString = dateTimeString
         
         self.ref = nil
         
@@ -110,7 +124,11 @@ struct Event
             
             "Photo1" : url1,
             "Photo2" : url2,
-            "Photo3" : url3
+            "Photo3" : url3,
+            
+            "Location_Title" : locationTitle,
+            "Category" : category,
+            "DateTimeString" : dateTimeString
             
         ]
     }

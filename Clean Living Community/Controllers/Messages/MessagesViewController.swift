@@ -84,18 +84,18 @@ class MessagesViewController: UITableViewController
         cell.preview.text = "sampleText"
         cell.preview.text = messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastText
         
-        print(messageModel.messages)
-        
-        
-        
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MMddyyyyHHmmss"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         
-        let dateObject = formatter.date(from: (messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastDate)!)
-        //let dateObject = Date()
+        let dateString = ((messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastDate)!)
         
+        let dateObject = formatter.date(from: dateString)
+       
         formatter.dateFormat = "MM/dd/yyyy"
+        formatter.timeZone = TimeZone.current
+
         let stringDate: String = formatter.string(from: dateObject!)
         cell.date.font = cell.date.font.withSize(10)
         cell.date.text = "\(stringDate)"
