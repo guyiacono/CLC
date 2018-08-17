@@ -32,6 +32,12 @@ class MessagesViewController: UITableViewController
     
     override func viewDidLoad()
     {
+        let backgroundImage = UIImage(named: "messageBg")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFill
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         userModel.listAllMessages(withUID: currentUserID, completion: {(list)
             in
             if (list.count >= 0)
@@ -76,9 +82,17 @@ class MessagesViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listofmessages", for: indexPath) as! ListofMessagesTableViewCell
         
+         cell.backgroundColor = .clear
+        
         var tempUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
         setImageFromURl(stringImageUrl: (tempUser?.url1)!, forImage: cell.photo)
-        cell.name.text = (tempUser?.first)! + " " + (tempUser?.last)!
+        cell.photo.layer.masksToBounds = true
+        cell.photo.clipsToBounds = true
+        cell.photo.layer.cornerRadius = cell.photo.frame.height/2
+        cell.photo.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+        cell.photo.layer.borderWidth = 2.0
+        
+        cell.name.text = (tempUser?.first.uppercased())! + " " + (tempUser?.last.uppercased())!
        
         
         cell.preview.text = "sampleText"
@@ -97,12 +111,14 @@ class MessagesViewController: UITableViewController
         formatter.timeZone = TimeZone.current
 
         let stringDate: String = formatter.string(from: dateObject!)
-        cell.date.font = cell.date.font.withSize(10)
+        cell.date.font = cell.date.font.withSize(12)
         cell.date.text = "\(stringDate)"
         
         sortedMessageUIDS.append(messagesSorted![indexPath.row].value)
         
         // Configure the cell...
+        
+
         return cell
     }
  

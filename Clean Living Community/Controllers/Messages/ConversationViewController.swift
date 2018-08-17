@@ -153,8 +153,8 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     {
         let cell = table.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! ConversationTableViewCell
         cell.otherPhoto.image = nil
-        
-        
+        cell.backgroundColor = .clear
+
         let IDcontentSet = messageText![indexPath.row]
         
         print(messageText![indexPath.row])
@@ -164,8 +164,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             cell.messageText.sizeToFit()
             print(IDcontentSet[signedInUserID!]!)
             cell.messageText.numberOfLines = 0
-            
-            
+            cell.messageText.backgroundColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
         }
         else
         {
@@ -173,8 +172,14 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             cell.messageText.sizeToFit()
             print(IDcontentSet[(otherUser?.key)!]!)
             cell.messageText.numberOfLines = 0
+            cell.messageText.backgroundColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0)
+            
             cell.otherPhoto.image = otherUserPhoto.image
-
+            cell.otherPhoto.layer.masksToBounds = true
+            cell.otherPhoto.clipsToBounds = true
+            cell.otherPhoto.layer.cornerRadius = cell.otherPhoto.frame.height/2
+            cell.otherPhoto.layer.borderColor = UIColor(red:0.13, green:0.89, blue:0.73, alpha:1.0).cgColor
+            cell.otherPhoto.layer.borderWidth = 2.0
         }
         
         return cell
