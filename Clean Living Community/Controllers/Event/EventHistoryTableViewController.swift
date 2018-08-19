@@ -104,12 +104,25 @@ class EventHistoryTableViewController: UITableViewController
             {
                 cell.time.text = value
             }
+            else if (key == "Photo1")
+            {
+                setImageFromURl(stringImageUrl: key, forImage: cell.eventImage)
+            }
         }
         
         
         return cell
     }
     
+    func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
+    {
+        
+        if let url = NSURL(string: url) {
+            if let data = NSData(contentsOf: url as URL) {
+                image.image = UIImage(data: data as Data)
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

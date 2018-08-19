@@ -49,7 +49,7 @@ class MyEventAttendTableViewController: UITableViewController
                 dateformatter.dateFormat = "MMddyyyyHHmm"
                 self.eventModel.getEventDict(uid: set.key, dateTime: dateformatter.string(from: set.value), completion: { (eventDict) in
                     self.eventList.append(eventDict)
-                    //self.tableView.reloadData()
+                    self.tableView.reloadData()
                 })
             }
         }
@@ -70,18 +70,23 @@ class MyEventAttendTableViewController: UITableViewController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return stringDateSorted.count
+        return eventList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! FindEventsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! EventHistoryTableViewCell
 
-        var event = eventList[indexPath.row]
+        let event = eventList[indexPath.row]
+        print("hi")
+       
+        cell.name.text = event["Event Name"] as! String
+        cell.date.text = event["Date"] as! String
+        cell.subtitle.text = event["Subtitle"] as! String
+        cell.time.text = event["Time"] as! String
+        /*
         for (key , value) in event
         {
-            print(key)
-            print(value)
             if (key == "Event Name")
             {
                 cell.name.text = value
@@ -92,21 +97,46 @@ class MyEventAttendTableViewController: UITableViewController
             }
             else if (key == "Subtitle")
             {
-                cell.organization.text = value
+                cell.subtitle.text = value
             }
             else if (key == "Time")
             {
                 cell.time.text = value
             }
+                /*
+            else if (key == "Photo1")
+            {
+                setImageFromURl(stringImageUrl: key, forImage: cell.eventImage )
+            }
+ */
         }
-        
+ 
+ */
+        print(cell.name.text)
+        print(cell.date.text)
 
         
         // Configure the cell...
-
+        print("hi")
         return cell
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+    }
+    
+    
+    func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
+    {
+        
+        if let url = NSURL(string: url) {
+            if let data = NSData(contentsOf: url as URL) {
+                image.image = UIImage(data: data as Data)
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

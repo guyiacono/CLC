@@ -29,6 +29,7 @@ class MyEventsViewController: UIViewController
     @IBOutlet weak var attendingEvents: UIView!
     @IBOutlet weak var hostingEvents: UIView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         attendingEvents.isHidden = true
