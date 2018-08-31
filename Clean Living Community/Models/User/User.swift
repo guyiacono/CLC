@@ -46,7 +46,8 @@ struct User
     var connectionName: String?
     var request: String?
     
-    
+    var lastLat: Double?
+    var lastLong: Double?
     
     
     let ref: DatabaseReference?
@@ -79,9 +80,11 @@ struct User
         url2 = snapshotValue["Photo2"] as! String
         url3 = snapshotValue["Photo3"] as! String
         
-      
+        lastLat = snapshotValue["lastLat"] as! Double
+        lastLong = snapshotValue["lastLong"] as! Double
         
-        snapshotValue = snapshot.childSnapshot(forPath: "/Questionair").value as! [String: AnyObject]
+      
+        //var snapshotValue2 = snapshot.childSnapshot(forPath: "/Questionair").value as! [Int: AnyObject]
         
         /*
         questionair = Array(repeating: 0, count: 0)
@@ -95,7 +98,7 @@ struct User
         ref = snapshot.ref
  
     }
-    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, url1: String, url2: String, url3: String, questionair: [Int])
+    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, url1: String, url2: String, url3: String, questionair: [Int], lat: Double, long: Double)
     {
         self.first = fname
         self.last = lname
@@ -117,6 +120,9 @@ struct User
         self.url1 = url1
         self.url2 = url2
         self.url3 = url3
+        
+        self.lastLat = lat
+        self.lastLong = long
         self.ref = nil
     }
     func toAnyObject() -> Any
@@ -141,7 +147,9 @@ struct User
                 "Bio" : bio,
                 "Photo1": url1,
                 "Photo2": url2,
-                "Photo3": url3
+                "Photo3": url3,
+                "lastLat" : lastLat,
+                "lastLong" : lastLong
                 
                 
         ]
@@ -151,7 +159,7 @@ struct User
         var answers : [String:Int] = [:]
         for(index, element) in (questionair.enumerated())
         {
-            let key = "Q\(index+1)"
+            let key = "\(index+1)"
             let val = questionair[index]
             answers[key] = val
         }

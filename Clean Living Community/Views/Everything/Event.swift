@@ -22,8 +22,8 @@ struct Event
     
     let address: String?
     let city: String?
-    let lat: String?
-    let long: String?
+    let lat: Double?
+    let long: Double?
     let state: String?
     let zip: String?
     
@@ -39,7 +39,10 @@ struct Event
     
     let dateTimeString : String?
     
+    
     let ref: DatabaseReference?
+    
+   
 
     
     init(snapshot: DataSnapshot)
@@ -55,8 +58,8 @@ struct Event
         
         address = snapshotValue["Address"] as? String
         city = snapshotValue["City_Town"] as? String
-        lat = snapshotValue["Lat"] as? String
-        long = snapshotValue["Long"] as? String
+        lat = snapshotValue["Lat"] as? Double
+        long = snapshotValue["Long"] as? Double
         state = snapshotValue["State"] as? String
         zip = snapshotValue["Zip"] as? String
         
@@ -73,7 +76,7 @@ struct Event
         ref = snapshot.ref
     }
     
-    init(key: String, date: String, name: String, subtitle: String, time: String, address: String, city: String, lat: String, long: String, state: String, zip : String, organizer : String, url1: String, url2: String, url3: String, location: String, category: String, dateTimeString: String)
+    init(key: String, date: String, name: String, subtitle: String, time: String, address: String, city: String, lat: Double, long: Double, state: String, zip : String, organizer : String, url1: String, url2: String, url3: String, location: String, category: String, dateTimeString: String)
     {
         self.key = key
         self.date = date
@@ -98,6 +101,7 @@ struct Event
         self.category = category
         self.dateTimeString = dateTimeString
         
+       
         self.ref = nil
         
         

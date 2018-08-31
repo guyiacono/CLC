@@ -1,34 +1,19 @@
 //
-//  MyProfileBiographyViewController.swift
+//  SettingsViewController.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 7/10/18.
+//  Created by Michael Karolewicz on 8/30/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
-import FirebaseDatabase
 
-class MyProfileBiographyViewController: UIViewController
-{
-    let currentUserID = Auth.auth().currentUser?.uid
-    var userModel = UserModel.sharedInstance
-    var displayedUser: User!
-    
-    @IBOutlet weak var bio: UITextView!
-    
-    override func viewDidLoad()
-    {
+class SettingsViewController: UIViewController {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
-        userModel.returnUserObject(UID: currentUserID!) { (user) in
-            self.displayedUser = user
-            self.bio.text = self.displayedUser.bio
-        }
-        
-        bio.layer.cornerRadius = 12.0
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -37,7 +22,23 @@ class MyProfileBiographyViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBAction func logoutAction(_ sender: UIButton)
+    {
+        logout()
+    }
+    
+    func logout(){
+        do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch let err {
+            print(err)
+        }
+        
+        
+    }
+    
     /*
     // MARK: - Navigation
 

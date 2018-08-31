@@ -32,21 +32,28 @@ class MessagesViewController: UITableViewController
     
     override func viewDidLoad()
     {
-        userModel.listAllMessages(withUID: currentUserID, completion: {(list)
-            in
-            if (list.count >= 0)
+        userModel.listAllUsersObserve { (success) in
+            if(success)
             {
-                self.message = list
-                self.messagesSorted = (self.message?.sorted(by: {$0.value < $1.value}))!
-                self.messageModel.listAllMessages(completion: {(success)
+                self.userModel.listAllMessages(withUID: self.currentUserID, completion: {(list)
                     in
-                    if(success)
+                    if (list.count >= 0)
                     {
-                        self.tableView.reloadData()
+                        self.message = list
+                        self.messagesSorted = (self.message?.sorted(by: {$0.value < $1.value}))!
+                        self.messageModel.listAllMessages(completion: {(success)
+                            in
+                            if(success)
+                            {
+                                self.tableView.reloadData()
+                            }
+                        })
                     }
                 })
             }
-        })
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +83,10 @@ class MessagesViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listofmessages", for: indexPath) as! ListofMessagesTableViewCell
         
+        print(messagesSorted![indexPath.row].key)
         var tempUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
+        print("tempUser:")
+        print(tempUser)
         setImageFromURl(stringImageUrl: (tempUser?.url1)!, forImage: cell.photo)
         cell.name.text = (tempUser?.first)! + " " + (tempUser?.last)!
        
@@ -120,13 +130,13 @@ class MessagesViewController: UITableViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        
         for uid in sortedMessageUIDS
         {
             if(uid == sortedMessageUIDS[indexPath.row])
             {
                 sentMessageUID = uid
                 otherUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
+                print("other user " + (otherUser?.key)!)
                 
             }
         }

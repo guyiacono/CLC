@@ -26,16 +26,16 @@ class MyProfileBasicInfoViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        displayedUser = userModel.findUser(uid: currentUserID!)
-        print(currentUserID!)
-        firstName.text = displayedUser.first
-        lastName.text = displayedUser.last
-        dateOfBirth.text = displayedUser.DOB
-        hometown.text = displayedUser.hometown
-        recoveryDate.text = displayedUser.recoveryDate
-        // Do any additional setup after loading the view.
+        userModel.returnUserObject(UID: currentUserID!, completion: { (user) in
+            self.displayedUser = user
+            self.firstName.text = self.displayedUser.first
+            self.lastName.text = self.displayedUser.last
+            self.dateOfBirth.text = self.displayedUser.DOB
+            self.hometown.text = self.displayedUser.hometown
+            self.recoveryDate.text = self.displayedUser.recoveryDate
+        })
         
-        print(displayedUser.questionair)
+        // Do any additional setup after loading the view.
         
         firstName.setBottomBorder(bottom_border: "teal")
         lastName.setBottomBorder(bottom_border: "teal")

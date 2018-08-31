@@ -48,23 +48,32 @@ class StrangerProfileViewController: UIViewController
         }
         else
         {
-            let me = usermodel.findUser(uid: signedInID!)
-            usermodel.sendFriendRequest(withFriendUID: thisUser?.key, withMyUID: signedInID, withMyPhotoURL: me?.url1, withMyName: ((me?.first)! + " " + (me?.last)!), withRequestStatus: "Unaccepted") { (success) in
-                if(success)
-                {
-                    self.usermodel.getUnderConnections(withUID: self.thisUser?.key) { (list) in
+            var me = usermodel.findUser(uid: signedInID!)
+            usermodel.returnUserObject(UID: signedInID!, completion: { (me) in
+                
+                self.usermodel.sendFriendRequest(withFriendUID: self.thisUser?.key, withMyUID: self.signedInID, withMyPhotoURL: me.url1, withMyName: ((me.first) + " " + (me.last)), withRequestStatus: "Unaccepted") { (success) in
+                    if(success)
+                    {
+                        self.usermodel.getUnderConnections(withUID: self.thisUser?.key) { (list) in
+                            
+                            self.thisPersonsConnections = list
+                            self.createAlert(title: "Connection Request Status", message: "Request Sent!")
+                        }
                         
-                        self.thisPersonsConnections = list
-                        self.createAlert(title: "Connection Request Status", message: "Request Sent!")
                     }
-                    
+                    else
+                    {
+                        self.createAlert(title: "Connection Request Status", message: "Failed to Send Request!")
+                        
+                    }
                 }
-                else
-                {
-                    self.createAlert(title: "Connection Request Status", message: "Failed to Send Request!")
-
-                }
-            }
+                
+            })
+            
+            
+            
+            
+            
             
         }
     }

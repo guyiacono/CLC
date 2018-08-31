@@ -1,8 +1,8 @@
 //
-//  SurveyP5.swift
+//  SurveyP17.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 7/19/18.
+//  Created by Michael Karolewicz on 8/28/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
@@ -10,10 +10,8 @@ import UIKit
 import TGPControls
 @IBDesignable
 
+class SurveyP17: UIViewController {
 
-
-class SurveyP5: UIViewController {
-    
     var qAnswer: [Int]?
     
     var email: String?
@@ -47,20 +45,20 @@ class SurveyP5: UIViewController {
     
     @IBAction func endSurvey(_ sender: UIButton)
     {
-        qAnswer![20] = Int(q1custom.value)
-        qAnswer![21] = Int(q2custom.value)
-        qAnswer![22] = Int(q3custom.value)
-        qAnswer![23] = Int(q4custom.value)
-        qAnswer![24] = Int(q5custom.value)
-        performSegue(withIdentifier: "toSurveyP6", sender: self)
+        qAnswer![80] = Int(q1custom.value)
+        qAnswer![81] = Int(q2custom.value)
+        qAnswer![82] = Int(q3custom.value)
+        qAnswer![83] = Int(q4custom.value)
+        qAnswer![84] = Int(q5custom.value)
+        performSegue(withIdentifier: "toSurveyP18", sender: self)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if(segue.identifier == "toSurveyP6")
+        if(segue.identifier == "toSurveyP18")
         {
-            let destinationVC = segue.destination as! SurveyP6
+            let destinationVC = segue.destination as! SurveyP18
             destinationVC.qAnswer = qAnswer
             destinationVC.email = email
             destinationVC.password = password
@@ -117,5 +115,6 @@ class SurveyP5: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+
+
 }

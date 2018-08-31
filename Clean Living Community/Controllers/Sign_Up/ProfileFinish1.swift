@@ -107,6 +107,12 @@ class ProfileFinish1: UIViewController {
         {
             performSegue(withIdentifier: "toProfileFinish2", sender: self)
         }
+        else
+        {
+            createAlert(title: "Profile Information Incomplete", message: "Please complete all the fields")
+
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -125,6 +131,15 @@ class ProfileFinish1: UIViewController {
         }
     }
     
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // BEGIN KEYBOARD METHODS
     

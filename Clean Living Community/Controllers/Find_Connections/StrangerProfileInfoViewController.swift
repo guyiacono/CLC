@@ -73,7 +73,7 @@ class StrangerProfileInfoViewController: UIViewController
     func calculateAge(withDOB DOB: String) -> String
     {
         let formatter = DateFormatter()
-        formatter.dateFormat = "DD/MM/YYYY"
+        formatter.dateFormat = "mm/dd/YYYY"
         let dateRangeStart = formatter.date(from: DOB)
         let dateRangeEnd = Date()
         let components = Calendar.current.dateComponents([.year], from: dateRangeStart!, to: dateRangeEnd)

@@ -108,13 +108,18 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
         var userlist = userModel.users
         displayedUser = userModel.findUser(uid: currentUserID!)
         
-        eduField.text = displayedUser.education
-        relationField.text = displayedUser.relationship
-        religiousField.text = displayedUser.religious
-        spiritualField.text = displayedUser.spiritual
-        smokeField.text = displayedUser.smoker
-        orientationField.text = displayedUser.orientation
-        supportField.text = displayedUser.support
+        userModel.returnUserObject(UID: currentUserID!) { (user) in
+            self.displayedUser = user
+            self.eduField.text = self.displayedUser.education
+            self.relationField.text = self.displayedUser.relationship
+            self.religiousField.text = self.displayedUser.religious
+            self.spiritualField.text = self.displayedUser.spiritual
+            self.smokeField.text = self.displayedUser.smoker
+            self.orientationField.text = self.displayedUser.orientation
+            self.supportField.text = self.displayedUser.support
+        }
+        
+       
         
         eduField.setBottomBorder(bottom_border: "teal")
         relationField.setBottomBorder(bottom_border: "teal")

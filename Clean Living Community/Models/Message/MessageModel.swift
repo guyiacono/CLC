@@ -22,8 +22,6 @@ class MessageModel
         var foundMessage: Message?
         for message in messages
         {
-            print(message.key)
-            print(uid)
             if(message.key == uid )
             {
                 foundMessage = message
@@ -42,15 +40,12 @@ class MessageModel
             self.messages.removeAll()
             if(snapshot.hasChild("Reciever") == true)
             {
-                print("has reciever")
             }
             for child in snapshot.children
             {
                 let message = Message(snapshot:child as! DataSnapshot)
-                print(message)
                 self.messages.append(message)
             }
-            print(self.messages)
             completion(true)
         }
         )
@@ -110,8 +105,7 @@ class MessageModel
         
        // let ref = Database.database().reference(withPath: path)
        
-        print(ref)
-       // let data = ["Sender": sender, "Receiver": receiver] as Any
+        // let data = ["Sender": sender, "Receiver": receiver] as Any
         
         // ref.child("message_34343").setValue(data)
         

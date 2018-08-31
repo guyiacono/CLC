@@ -40,59 +40,72 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func sendAction(_ sender: UIButton)
     {
-        entryField.isEnabled = false
-        if (textContents != "" && textContents != nil)
-        {
-            self.entryField.text = ""
-            let today = Date()
-            
-            let printDate = convertToUTC(date: today)!
-           
-            if(thisMessageUID != nil)
+        userModel.checkIfConnection(meUID: signedInUserID!, friendUID: (otherUser?.key)!) { (isConnection) in
+            if(isConnection == true)
             {
-                messageModel.sendNewText(messageID: thisMessageUID!, dateTime: printDate, senderUID: signedInUserID!, text: textContents!, completion: {(success)
-                    in
-                    if (success)
+                self.entryField.isEnabled = false
+                if (self.textContents != "" && self.textContents != nil)
+                {
+                    self.entryField.text = ""
+                    let today = Date()
+                    
+                    let printDate = self.convertToUTC(date: today)!
+                    
+                    if(self.thisMessageUID != nil)
                     {
-                        
-                        
-                        //self.viewDidAppear(false)
-                    }
-                })
-            }
-                
-            else
-            {
-                
-                messageModel.createNewMessage(sender: signedInUserID!, receiver:(otherUser?.key)!,completion:  { (newUID) in
-                    if(newUID != nil)
-                    {
-                        self.thisMessageUID = newUID
-                        
                         self.messageModel.sendNewText(messageID: self.thisMessageUID!, dateTime: printDate, senderUID: self.signedInUserID!, text: self.textContents!, completion: {(success)
                             in
                             if (success)
                             {
-                                self.messageModel.setMessageWith(signedInUID: self.signedInUserID!, otherPersonUID: (self.otherUser?.key)!, messageID: self.thisMessageUID!, completion: {(success2)
-                                    in
-                                    if(success2)
-                                    {
-                                        self.viewDidLoad()
-                                    }
-                                })
                                 
+                                
+                                //self.viewDidAppear(false)
                             }
                         })
                     }
+                        
+                    else
+                    {
+                        
+                        self.messageModel.createNewMessage(sender: self.signedInUserID!, receiver:(self.otherUser?.key)!,completion:  { (newUID) in
+                            if(newUID != nil)
+                            {
+                                self.thisMessageUID = newUID
+                                
+                                self.messageModel.sendNewText(messageID: self.thisMessageUID!, dateTime: printDate, senderUID: self.signedInUserID!, text: self.textContents!, completion: {(success)
+                                    in
+                                    if (success)
+                                    {
+                                        self.messageModel.setMessageWith(signedInUID: self.signedInUserID!, otherPersonUID: (self.otherUser?.key)!, messageID: self.thisMessageUID!, completion: {(success2)
+                                            in
+                                            if(success2)
+                                            {
+                                                self.viewDidLoad()
+                                            }
+                                        })
+                                        
+                                    }
+                                })
+                            }
+                        }
+                        )}
+                    
+                    
+                    
+                    self.textContents = ""
+                    self.entryField.isEnabled = true
+                    
                 }
-            )}
-            
-        
- 
-        textContents = ""
-        self.entryField.isEnabled = true
-        
+            }
+            else
+            {
+                self.createAlert(title: "Unable to Send", message: "You can only send messages to your connections!")
+            }
         }
+        
+        
+        
+       
        
     }
     
@@ -157,12 +170,11 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
         let IDcontentSet = messageText![indexPath.row]
         
-        print(messageText![indexPath.row])
+       
         if(IDcontentSet[(signedInUserID)!] != nil )
         {
             cell.messageText.text = IDcontentSet[signedInUserID!]
             cell.messageText.sizeToFit()
-            print(IDcontentSet[signedInUserID!]!)
             cell.messageText.numberOfLines = 0
             
             
@@ -171,7 +183,6 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         {
             cell.messageText.text = IDcontentSet[(otherUser?.key)!]
             cell.messageText.sizeToFit()
-            print(IDcontentSet[(otherUser?.key)!]!)
             cell.messageText.numberOfLines = 0
             cell.otherPhoto.image = otherUserPhoto.image
 
@@ -232,7 +243,15 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         return localDate
     }
     
-    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     

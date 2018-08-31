@@ -9,14 +9,36 @@
 import UIKit
 
 class FindConnectionsInitialViewController: UIViewController
-{ 
+{
+    
+    @IBOutlet weak var filterControl: UISegmentedControl!
+    
+    
+    
+    
     @IBOutlet weak var findConnectionsStart: UIButton!
+    
+    @IBAction func findConnectionsPushed(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "toConnectionsTable", sender: filterControl.selectedSegmentIndex)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if(segue.identifier == "toConnectionsTable")
+        {
+            let destinationVC = segue.destination as! ConnectionsTableViewController
+            destinationVC.filterIndex = sender! as! Int
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         findConnectionsStart.setButtonStyle(content: findConnectionsStart)
         
+        filterControl.selectedSegmentIndex = 0
         // Do any additional setup after loading the view.
     }
 

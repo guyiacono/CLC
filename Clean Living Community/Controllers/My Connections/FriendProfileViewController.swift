@@ -45,6 +45,19 @@ class FriendProfileViewController: UIViewController {
                 }
             }
         }
+        else
+        {
+            userModel.disconnectFromUser(myUID: signedInID!, theirUID: (thisUser?.key)!) { (success) in
+                if(success)
+                {
+                    self.createAlert(title: "Connection Request Status", message: "Successfully Disconnected!")
+                }
+                else
+                {
+                    self.createAlert(title: "Connection Request Status", message: "Failed to Disconnect!")
+                }
+            }
+        }
     }
     
     @IBOutlet weak var messageButton: UIButton!
@@ -78,6 +91,10 @@ class FriendProfileViewController: UIViewController {
         if(segmentedStatus == 1)
         {
             disconnect.setTitle("Connect", for: UIControlState.normal)
+        }
+        else
+        {
+            disconnect.setTitle("Disconnect", for: UIControlState.normal)
         }
         
         profileImage.layer.masksToBounds = true

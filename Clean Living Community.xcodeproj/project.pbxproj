@@ -19,9 +19,9 @@
 		E40106B2211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */; };
 		E401701E211898D500F625FA /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E401701D211898D500F625FA /* SignUp.swift */; };
 		E401852A210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */; };
+		E402405C21343520005C011C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E402405B21343520005C011C /* CoreLocation.framework */; };
 		E402A0C021267EDE0022F172 /* PeopleGoingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0BF21267EDE0022F172 /* PeopleGoingTableViewController.swift */; };
 		E402A0C2212685490022F172 /* PeopleGoingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0C1212685490022F172 /* PeopleGoingTableViewCell.swift */; };
-		E402A0C92126A5170022F172 /* MyEventAttendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0C82126A5170022F172 /* MyEventAttendTableViewController.swift */; };
 		E402A0CB2126B4820022F172 /* EventHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0CA2126B4820022F172 /* EventHistoryTableViewCell.swift */; };
 		E402A0CD2126B4CC0022F172 /* EventHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E402A0CC2126B4CC0022F172 /* EventHistoryTableViewController.swift */; };
 		E4030D022125F07E001E3054 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4030D012125F07E001E3054 /* EventDetailViewController.swift */; };
@@ -96,6 +96,23 @@
 		E4FDEF8020D15BC000CEF5A0 /* FindEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */; };
 		E4FDEF8220D1637A00CEF5A0 /* FindEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF8120D1637A00CEF5A0 /* FindEventsTableViewCell.swift */; };
 		E4FDEF8420D1663A00CEF5A0 /* MyConnectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */; };
+		E4FE8D03213880F1000D166C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FE8D02213880F1000D166C /* SettingsViewController.swift */; };
+		E4FE8D052138F992000D166C /* MyEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FE8D042138F992000D166C /* MyEventDetailViewController.swift */; };
+		E4FEA4162135A768004A0445 /* SurveyP6.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4152135A768004A0445 /* SurveyP6.swift */; };
+		E4FEA4182135A77B004A0445 /* SurveyP7.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4172135A77B004A0445 /* SurveyP7.swift */; };
+		E4FEA41A2135A78D004A0445 /* SurveyP8.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4192135A78D004A0445 /* SurveyP8.swift */; };
+		E4FEA41C2135A79D004A0445 /* SurveyP9.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA41B2135A79D004A0445 /* SurveyP9.swift */; };
+		E4FEA41E2135A7AB004A0445 /* SurveyP10.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA41D2135A7AB004A0445 /* SurveyP10.swift */; };
+		E4FEA4202135A7BB004A0445 /* SurveyP11.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA41F2135A7BB004A0445 /* SurveyP11.swift */; };
+		E4FEA4222135A7C9004A0445 /* SurveyP12.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4212135A7C9004A0445 /* SurveyP12.swift */; };
+		E4FEA4242135A7D7004A0445 /* SurveyP13.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4232135A7D7004A0445 /* SurveyP13.swift */; };
+		E4FEA4262135A7E5004A0445 /* SurveyP14.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4252135A7E5004A0445 /* SurveyP14.swift */; };
+		E4FEA4282135A7FC004A0445 /* SurveyP15.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4272135A7FC004A0445 /* SurveyP15.swift */; };
+		E4FEA42A2135A80B004A0445 /* SurveyP16.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4292135A80B004A0445 /* SurveyP16.swift */; };
+		E4FEA42C2135A82C004A0445 /* SurveyP17.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA42B2135A82C004A0445 /* SurveyP17.swift */; };
+		E4FEA42E2135A83A004A0445 /* SurveyP18.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA42D2135A83A004A0445 /* SurveyP18.swift */; };
+		E4FEA4302135A849004A0445 /* SurveyP19.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA42F2135A849004A0445 /* SurveyP19.swift */; };
+		E4FEA4322135AD04004A0445 /* SurveyP20.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FEA4312135AD04004A0445 /* SurveyP20.swift */; };
 		E4FF1CFD2101159200101E6E /* SurveyP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1CFC2101159200101E6E /* SurveyP2.swift */; };
 		E4FF1CFF2101181800101E6E /* SurveyP3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1CFE2101181800101E6E /* SurveyP3.swift */; };
 		E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF1D002101193000101E6E /* SurveyP4.swift */; };
@@ -137,9 +154,9 @@
 		E40106B1211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectionsNoMessageTableViewController.swift; path = "/Users/michaelkarolewicz/Documents/CleanLivingComunityCloned/Clean Living Community/Controllers/Messages/ConnectionsNoMessageTableViewController.swift"; sourceTree = "<absolute>"; };
 		E401701D211898D500F625FA /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		E4018529210A5EAC0041D6E5 /* FriendProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileDetailViewController.swift; sourceTree = "<group>"; };
+		E402405B21343520005C011C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E402A0BF21267EDE0022F172 /* PeopleGoingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleGoingTableViewController.swift; sourceTree = "<group>"; };
 		E402A0C1212685490022F172 /* PeopleGoingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleGoingTableViewCell.swift; sourceTree = "<group>"; };
-		E402A0C82126A5170022F172 /* MyEventAttendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventAttendTableViewController.swift; sourceTree = "<group>"; };
 		E402A0CA2126B4820022F172 /* EventHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		E402A0CC2126B4CC0022F172 /* EventHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHistoryTableViewController.swift; sourceTree = "<group>"; };
 		E4030D012125F07E001E3054 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +226,23 @@
 		E4FDEF7F20D15BC000CEF5A0 /* FindEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsTableViewController.swift; sourceTree = "<group>"; };
 		E4FDEF8120D1637A00CEF5A0 /* FindEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindEventsTableViewCell.swift; sourceTree = "<group>"; };
 		E4FDEF8320D1663A00CEF5A0 /* MyConnectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsTableViewController.swift; sourceTree = "<group>"; };
+		E4FE8D02213880F1000D166C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E4FE8D042138F992000D166C /* MyEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventDetailViewController.swift; sourceTree = "<group>"; };
+		E4FEA4152135A768004A0445 /* SurveyP6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP6.swift; sourceTree = "<group>"; };
+		E4FEA4172135A77B004A0445 /* SurveyP7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP7.swift; sourceTree = "<group>"; };
+		E4FEA4192135A78D004A0445 /* SurveyP8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP8.swift; sourceTree = "<group>"; };
+		E4FEA41B2135A79D004A0445 /* SurveyP9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP9.swift; sourceTree = "<group>"; };
+		E4FEA41D2135A7AB004A0445 /* SurveyP10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP10.swift; sourceTree = "<group>"; };
+		E4FEA41F2135A7BB004A0445 /* SurveyP11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP11.swift; sourceTree = "<group>"; };
+		E4FEA4212135A7C9004A0445 /* SurveyP12.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP12.swift; sourceTree = "<group>"; };
+		E4FEA4232135A7D7004A0445 /* SurveyP13.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP13.swift; sourceTree = "<group>"; };
+		E4FEA4252135A7E5004A0445 /* SurveyP14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP14.swift; sourceTree = "<group>"; };
+		E4FEA4272135A7FC004A0445 /* SurveyP15.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP15.swift; sourceTree = "<group>"; };
+		E4FEA4292135A80B004A0445 /* SurveyP16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP16.swift; sourceTree = "<group>"; };
+		E4FEA42B2135A82C004A0445 /* SurveyP17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP17.swift; sourceTree = "<group>"; };
+		E4FEA42D2135A83A004A0445 /* SurveyP18.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP18.swift; sourceTree = "<group>"; };
+		E4FEA42F2135A849004A0445 /* SurveyP19.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP19.swift; sourceTree = "<group>"; };
+		E4FEA4312135AD04004A0445 /* SurveyP20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP20.swift; sourceTree = "<group>"; };
 		E4FF1CFC2101159200101E6E /* SurveyP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SurveyP2.swift; path = "Clean Living Community/Controllers/Sign_Up/Survery_Pages/SurveyP2.swift"; sourceTree = SOURCE_ROOT; };
 		E4FF1CFE2101181800101E6E /* SurveyP3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP3.swift; sourceTree = "<group>"; };
 		E4FF1D002101193000101E6E /* SurveyP4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyP4.swift; sourceTree = "<group>"; };
@@ -221,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E402405C21343520005C011C /* CoreLocation.framework in Frameworks */,
 				3A610E8AE16FB8321730F028 /* Pods_Clean_Living_Community.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +295,7 @@
 		8660CEAF31EA0DEC6677DF31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E402405B21343520005C011C /* CoreLocation.framework */,
 				98F83BADC05ED9342A38EE57 /* Pods_Clean_Living_Community.framework */,
 				5954FD51DF37E034D25A5CA5 /* Pods_Clean_Living_CommunityTests.framework */,
 				78358D7FE4282B7F8E861629 /* Pods_Clean_Living_CommunityUITests.framework */,
@@ -271,25 +307,9 @@
 			isa = PBXGroup;
 			children = (
 				E4D66D2E20D1A01600CC0FB1 /* MyEventsViewController.swift */,
-				E402A0C7212699430022F172 /* Hosting */,
-				E402A0C6212699370022F172 /* Attending */,
+				E4FE8D042138F992000D166C /* MyEventDetailViewController.swift */,
 			);
 			path = "My Events";
-			sourceTree = "<group>";
-		};
-		E402A0C6212699370022F172 /* Attending */ = {
-			isa = PBXGroup;
-			children = (
-				E402A0C82126A5170022F172 /* MyEventAttendTableViewController.swift */,
-			);
-			path = Attending;
-			sourceTree = "<group>";
-		};
-		E402A0C7212699430022F172 /* Hosting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Hosting;
 			sourceTree = "<group>";
 		};
 		E4049EA7210ACD72007125FD /* Messages */ = {
@@ -408,6 +428,21 @@
 				E4FF1CFC2101159200101E6E /* SurveyP2.swift */,
 				E4FF1CFE2101181800101E6E /* SurveyP3.swift */,
 				E4FF1D002101193000101E6E /* SurveyP4.swift */,
+				E4FEA4152135A768004A0445 /* SurveyP6.swift */,
+				E4FEA4172135A77B004A0445 /* SurveyP7.swift */,
+				E4FEA4192135A78D004A0445 /* SurveyP8.swift */,
+				E4FEA41B2135A79D004A0445 /* SurveyP9.swift */,
+				E4FEA41D2135A7AB004A0445 /* SurveyP10.swift */,
+				E4FEA41F2135A7BB004A0445 /* SurveyP11.swift */,
+				E4FEA4212135A7C9004A0445 /* SurveyP12.swift */,
+				E4FEA4232135A7D7004A0445 /* SurveyP13.swift */,
+				E4FEA4252135A7E5004A0445 /* SurveyP14.swift */,
+				E4FEA4272135A7FC004A0445 /* SurveyP15.swift */,
+				E4FEA4292135A80B004A0445 /* SurveyP16.swift */,
+				E4FEA42B2135A82C004A0445 /* SurveyP17.swift */,
+				E4FEA42D2135A83A004A0445 /* SurveyP18.swift */,
+				E4FEA42F2135A849004A0445 /* SurveyP19.swift */,
+				E4FEA4312135AD04004A0445 /* SurveyP20.swift */,
 				E4FF1D022101193E00101E6E /* SurveyP5.swift */,
 			);
 			path = Survery_Pages;
@@ -425,6 +460,7 @@
 		E4A42ED020B5C2F70012FE2C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4FE8D01213880D2000D166C /* Settings */,
 				E402A0C3212698D70022F172 /* My Events */,
 				E4FD28F82123DDB80013580D /* Event */,
 				E4049EA7210ACD72007125FD /* Messages */,
@@ -550,6 +586,14 @@
 				E44A8A1B20C7035C0048EC60 /* No Photo.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		E4FE8D01213880D2000D166C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E4FE8D02213880F1000D166C /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -824,6 +868,8 @@
 				E4D66D2F20D1A01700CC0FB1 /* MyEventsViewController.swift in Sources */,
 				E4FDEF8420D1663A00CEF5A0 /* MyConnectionsTableViewController.swift in Sources */,
 				E42CFA5520F68B60001CEE58 /* StrangerProfileInfoViewController.swift in Sources */,
+				E4FEA4182135A77B004A0445 /* SurveyP7.swift in Sources */,
+				E4FE8D03213880F1000D166C /* SettingsViewController.swift in Sources */,
 				E4030D022125F07E001E3054 /* EventDetailViewController.swift in Sources */,
 				E42CFA5820F6940A001CEE58 /* MyProfileBasicInfoViewController.swift in Sources */,
 				E4FDE49220C5BAF300DFC488 /* ListofMessagesTableViewCell.swift in Sources */,
@@ -835,6 +881,7 @@
 				E45FF4DB20FE888700BD5FB7 /* ProfileFinish4.swift in Sources */,
 				E400FE30210F43D900A86CA2 /* MyConnectionsViewController.swift in Sources */,
 				E400B5B520E9D2B3000D2146 /* User.swift in Sources */,
+				E4FEA4262135A7E5004A0445 /* SurveyP14.swift in Sources */,
 				E4FD36BD212468C500F92D0E /* HostEventP2ViewController.swift in Sources */,
 				E4FF1D012101193000101E6E /* SurveyP4.swift in Sources */,
 				E400FE32210F7C5D00A86CA2 /* ConversationViewController.swift in Sources */,
@@ -843,11 +890,17 @@
 				E40A3ABD20BEE6EB001A4789 /* ProfileFinish.swift in Sources */,
 				E402A0C2212685490022F172 /* PeopleGoingTableViewCell.swift in Sources */,
 				E431C2EA20CEB855007D0107 /* ProfileFinish3.swift in Sources */,
+				E4FEA42A2135A80B004A0445 /* SurveyP16.swift in Sources */,
+				E4FEA4202135A7BB004A0445 /* SurveyP11.swift in Sources */,
+				E4FEA41C2135A79D004A0445 /* SurveyP9.swift in Sources */,
 				E40106B2211C77C00043EB1C /* ConnectionsNoMessageTableViewController.swift in Sources */,
 				E4A3102520B7265300AE2D1A /* SurveyFinal.swift in Sources */,
+				E4FEA4242135A7D7004A0445 /* SurveyP13.swift in Sources */,
 				E402A0CB2126B4820022F172 /* EventHistoryTableViewCell.swift in Sources */,
+				E4FEA41A2135A78D004A0445 /* SurveyP8.swift in Sources */,
 				E4FDE48C20C58B0900DFC488 /* Custom Survey Slider.swift in Sources */,
 				E4FD28F52123C18C0013580D /* Event.swift in Sources */,
+				E4FE8D052138F992000D166C /* MyEventDetailViewController.swift in Sources */,
 				E4049EAB210AD122007125FD /* Message.swift in Sources */,
 				E45FF4DD20FE935B00BD5FB7 /* ProfileFinish5.swift in Sources */,
 				E42CFA5E20F69414001CEE58 /* MyProfileBiographyViewController.swift in Sources */,
@@ -856,14 +909,18 @@
 				E4FC83F920D0CFB100613A99 /* MyProfileSuperViewController.swift in Sources */,
 				E476490420BDDDA100253EE2 /* SurveySlider.swift in Sources */,
 				E402A0CD2126B4CC0022F172 /* EventHistoryTableViewController.swift in Sources */,
+				E4FEA42E2135A83A004A0445 /* SurveyP18.swift in Sources */,
 				E4FDEF8220D1637A00CEF5A0 /* FindEventsTableViewCell.swift in Sources */,
 				E4030D042125FBD0001E3054 /* FindEventPhotosViewController.swift in Sources */,
+				E4FEA4322135AD04004A0445 /* SurveyP20.swift in Sources */,
 				E4FD36C12125244500F92D0E /* HostEventP4ViewController.swift in Sources */,
 				E4049EAD210ADD40007125FD /* MessageModel.swift in Sources */,
 				E44A8A1820C6FD010048EC60 /* ConnectionsTableViewCell.swift in Sources */,
 				8E9C2452211BD0C30019C3BE /* EventsViewController.swift in Sources */,
+				E4FEA41E2135A7AB004A0445 /* SurveyP10.swift in Sources */,
 				E44DCA2620B4863C00281955 /* SurveyIntroViewController.swift in Sources */,
 				E463F3B320D99AD100153FF5 /* EventMapViewController.swift in Sources */,
+				E4FEA4162135A768004A0445 /* SurveyP6.swift in Sources */,
 				E4FDEF7E20D155DA00CEF5A0 /* EventCategoryTableViewCell.swift in Sources */,
 				E44A8A1A20C6FDD80048EC60 /* ConnectionsTableViewController.swift in Sources */,
 				E42CFA5C20F69414001CEE58 /* MyProfilePhotosViewController.swift in Sources */,
@@ -872,10 +929,12 @@
 				E463F3B120D9932300153FF5 /* FindEventsNewViewController.swift in Sources */,
 				E471EE6220EA6A2D00447915 /* UserModel.swift in Sources */,
 				E42CFA5620F68B60001CEE58 /* FindConnectionsInitialViewController.swift in Sources */,
+				E4FEA4282135A7FC004A0445 /* SurveyP15.swift in Sources */,
 				E4FF1D032101193E00101E6E /* SurveyP5.swift in Sources */,
-				E402A0C92126A5170022F172 /* MyEventAttendTableViewController.swift in Sources */,
+				E4FEA4302135A849004A0445 /* SurveyP19.swift in Sources */,
 				E4FD28F72123CA630013580D /* EventModel.swift in Sources */,
 				E4A42ECE20B5C2BD0012FE2C /* SurveyScrollView.swift in Sources */,
+				E4FEA42C2135A82C004A0445 /* SurveyP17.swift in Sources */,
 				E4FA11D320B4664500E485BC /* AppDelegate.swift in Sources */,
 				E4FD28FE2123E1420013580D /* HostEventCategoryTableViewController.swift in Sources */,
 				E44DCA2420B4819200281955 /* Sign_In.swift in Sources */,
@@ -883,6 +942,7 @@
 				E4FD36BF21249F7000F92D0E /* HostEventP3ViewController.swift in Sources */,
 				E4FDEF7C20D1557300CEF5A0 /* EventCategoryTableViewController.swift in Sources */,
 				E4FF1CFD2101159200101E6E /* SurveyP2.swift in Sources */,
+				E4FEA4222135A7C9004A0445 /* SurveyP12.swift in Sources */,
 				E4FF1CFF2101181800101E6E /* SurveyP3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

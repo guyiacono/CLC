@@ -13,6 +13,7 @@ import FirebaseCore
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
+import CoreLocation
 
 class EventModel
 {
@@ -118,7 +119,7 @@ class EventModel
     }
     
     
-    func createEvent(key: String, name: String, date: String, subtitle: String, time: String, address: String, city : String, lat: String, long: String, state: String, zip: String, organizer: String, image1: UIImage, image2: UIImage, image3: UIImage, location : String, category: String, daytimeString: String, organizerName: String, completion: @escaping (Bool) -> Void)
+    func createEvent(key: String, name: String, date: String, subtitle: String, time: String, address: String, city : String, lat: Double, long: Double, state: String, zip: String, organizer: String, image1: UIImage, image2: UIImage, image3: UIImage, location : String, category: String, daytimeString: String, organizerName: String, completion: @escaping (Bool) -> Void)
     {
         
         
@@ -231,7 +232,7 @@ class EventModel
     }
     
 
-    func createNewEvent(name: String, date: String, subtitle: String, time: String, address: String, city : String, lat: String, long: String, state: String, zip: String, organizer: String, image1: UIImage, image2: UIImage, image3: UIImage, location : String, category: String, organizerName: String, completion: @escaping (Bool) -> Void)
+    func createNewEvent(name: String, date: String, subtitle: String, time: String, address: String, city : String, lat: Double, long: Double, state: String, zip: String, organizer: String, image1: UIImage, image2: UIImage, image3: UIImage, location : String, category: String, organizerName: String, completion: @escaping (Bool) -> Void)
     {
         var formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
@@ -290,8 +291,83 @@ class EventModel
         
     }
         
-      
-            
+    func getDistanceToEvent(eventUID: String, eventDateTimeString : String, userUID: String, completion: @escaping (_ distance : Double) -> Void)
+    {
+        var meLat = 0.0
+        var eventLat = 0.0
+        var meLong = 0.0
+        var eventLong = 0.0
         
-    
+        
+        var path = "Users/" + userUID + "/Profile/" + "lastLat"
+        var ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            if snapshot.value != nil
+            {
+                meLat = (snapshot.value as? Double)!
+                
+                path = "Users/" + userUID + "/Profile/" + "lastLong"
+                ref = Database.database().reference(withPath: path)
+                ref.observeSingleEvent(of: .value, with: {snapshot in
+                    if snapshot.value != nil
+                    {
+                        meLong = (snapshot.value as? Double)!
+                        
+                        path = "Events/" + eventDateTimeString + "/" + eventUID + "/Lat"
+                        ref = Database.database().reference(withPath: path)
+                        ref.observeSingleEvent(of: .value, with: {snapshot in
+                            if snapshot.value != nil
+                            {
+                                eventLat = (snapshot.value as? Double)!
+                                
+                                 path = "Events/" + eventDateTimeString + "/" + eventUID + "/Long"
+                                ref = Database.database().reference(withPath: path)
+                                ref.observeSingleEvent(of: .value, with: {snapshot in
+                                    if snapshot.value != nil
+                                    {
+                                        eventLong = (snapshot.value as? Double)!
+                                        
+                                        let meLoc = CLLocation(latitude: (meLat as? Double)!, longitude: (meLong as? Double)!)
+                                        let eventLoc = CLLocation(latitude: (eventLat as? Double)!, longitude: (eventLong as? Double)!)
+                                        
+                                        var distance = meLoc.distance(from: eventLoc)
+                                        distance = distance * 0.000621371
+                                        distance = round(distance * 10) / 10
+                                        completion(distance)
+                                        
+                                        
+                                    }
+                                })
+                                
+                                
+                            }
+                        })
+                    }
+                })
+                
+            }
+        })
+    }
+            
+    func checkIfUserIsHosting(userUID : String, eventID : String, eventDateTimeID: String, completion : @escaping
+        (_ isHosting : Bool) -> Void)
+    {
+        var isHosting = false
+        let path = "Events/" + eventDateTimeID + "/" + eventID + "/Organizer"
+        let ref = Database.database().reference(withPath: path)
+        ref.observeSingleEvent(of : .value, with: {snapshot in
+            if(snapshot.value != nil)
+            {
+                print(snapshot.value)
+                if((snapshot.value) as! String == userUID)
+                {
+                    isHosting = true
+                }
+                print(isHosting)
+                completion(isHosting)
+            }
+            
+        })
+        
+    }
 }

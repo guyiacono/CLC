@@ -51,29 +51,29 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         
         userModel.getUnderConnections(withUID: currentUserID,completion: {(list)
             in
-            if (list.count >= 0)
+            
+            self.connections = list
+            self.connectionsSorted = self.connections
+            self.acceptedConnectionsSorted.removeAll()
+            self.unacceptedConnectionsSorted.removeAll()
+            self.unacceptedConnectionsSorted.removeAll()
+            self.acceptedConnectionsSorted.removeAll()
+            
+            for pair in self.connectionsSorted!
             {
-                self.connections = list
-                self.connectionsSorted = self.connections
-                self.acceptedConnectionsSorted.removeAll()
-                self.unacceptedConnectionsSorted.removeAll()
-                self.unacceptedConnectionsSorted.removeAll()
-                self.acceptedConnectionsSorted.removeAll()
-                
-                for pair in self.connectionsSorted!
+                if(pair["Request"] == "Accepted")
                 {
-                    if(pair["Request"] == "Accepted")
-                    {
-                        self.acceptedConnectionsSorted.append(pair)
-                    }
-                    else
-                    {
-                        self.unacceptedConnectionsSorted.append(pair)
-                    }
+                    self.acceptedConnectionsSorted.append(pair)
                 }
-                self.connectionsTable.reloadData()
-                
+                else
+                {
+                    self.unacceptedConnectionsSorted.append(pair)
+                }
             }
+            self.connectionsTable.reloadData()
+            
+            
+            
         })
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

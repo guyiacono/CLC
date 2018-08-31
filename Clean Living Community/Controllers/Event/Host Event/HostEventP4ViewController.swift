@@ -11,8 +11,9 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
+import CoreLocation
 
-class HostEventP4ViewController: UIViewController
+class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,CLLocationManagerDelegate
 {
     
     var eventModel = EventModel.sharedInstance
@@ -38,6 +39,15 @@ class HostEventP4ViewController: UIViewController
     @IBOutlet weak var townCityField: UITextField!
     @IBOutlet weak var stateField: UITextField!
     @IBOutlet weak var zipField: UITextField!
+    var selectedField: UITextField?
+    
+    let statePicker = UIPickerView()
+    let states = [ "AK","AL","AR","AS","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID","IL","IN","KS",
+                   "KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH",
+                   "OK","OR","PA","PR","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"]
+    
+    
+    
     
     
     
@@ -46,28 +56,43 @@ class HostEventP4ViewController: UIViewController
     {
         if(addressField.text != "" && townCityField.text != "" && stateField.text != "" && zipField.text != "")
         {
-
-            userModel.findUserProfileInfo(uid: signedInID!, completion: { (person) in
-                
-                let name = person["First Name"]! + " " + person["Last Name"]!
-                sender.isEnabled = false
-                self.eventModel.createNewEvent(name: name, date: self.date!, subtitle: self.subtitle!, time: self.time!, address: self.addressField.text!, city: self.townCityField.text!, lat: "", long: "", state: self.stateField.text!, zip: self.zipField.text!, organizer: self.signedInID!, image1: self.photo1!, image2: self.photo2!, image3: self.photo3!, location: self.locationNameField.text!, category: self.category!, organizerName: name) { (success) in
-                    if(success)
-                    {
-                        //self.performSegue(withIdentifier: "toStart", sender: self)
-                        //sender.isEnabled = true
-                        self.createDismissAlert(title: "Gathering Status", message: "Gathering Created!")
-                        
-                    }
+            var address = "1 Infinite Loop, Cupertino, CA 95014"
+            address = addressField.text! + ", " + townCityField.text! + ", " + stateField.text! + " " + zipField.text!
+            print(address)
+            
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                guard
+                    let placemarks = placemarks,
+                    let location = placemarks.first?.location
                     else
-                    {
-                        self.createAlert(title: "Gathering Status", message: "Gathering Creation Failed")
-                        sender.isEnabled = true
-                    }
+                {
+                    self.createAlert(title: "Unable to Find Location", message: "The location inputted was not able to be found by location services. Please ensure you have entered all information correctly")
+                        return
                 }
-            })
-            
-            
+                
+                // Use your location
+                
+                self.userModel.findUserProfileInfo(uid: self.signedInID!, completion: { (person) in
+                    
+                    let name = person["First Name"]! + " " + person["Last Name"]!
+                    sender.isEnabled = false
+                    self.eventModel.createNewEvent(name: name, date: self.date!, subtitle: self.subtitle!, time: self.time!, address: self.addressField.text!, city: self.townCityField.text!, lat: location.coordinate.latitude, long: location.coordinate.longitude, state: self.stateField.text!, zip: self.zipField.text!, organizer: self.signedInID!, image1: self.photo1!, image2: self.photo2!, image3: self.photo3!, location: self.locationNameField.text!, category: self.category!, organizerName: name) { (success) in
+                        if(success)
+                        {
+                            //self.performSegue(withIdentifier: "toStart", sender: self)
+                            //sender.isEnabled = true
+                            self.createDismissAlert(title: "Gathering Status", message: "Gathering Created!")
+                            
+                        }
+                        else
+                        {
+                            self.createAlert(title: "Gathering Status", message: "Gathering Creation Failed")
+                            sender.isEnabled = true
+                        }
+                    }
+                })
+            }
         }
         else
         {
@@ -80,6 +105,9 @@ class HostEventP4ViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         finishButton.isEnabled = true
+        statePicker.delegate = self
+        statePicker.dataSource = self
+        stateField.inputView = statePicker
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
 
@@ -129,6 +157,48 @@ class HostEventP4ViewController: UIViewController
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    // BEGIN PICKER METHODS
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int
+    {
+        return 1
+    }
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return states.count
+    }
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        
+        return fullState[row]
+        
+    }
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        stateField.text = states[row]
+        self.view.endEditing(true)
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        selectedField = textField
+    }
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        switch selectedField
+        {
+        case stateField: stateField.resignFirstResponder()
+        case locationNameField: locationNameField.resignFirstResponder()
+        case zipField: zipField.resignFirstResponder()
+        case addressField: addressField.resignFirstResponder()
+        case townCityField: townCityField.resignFirstResponder()
+        default: locationNameField.resignFirstResponder()
+        }
+        
+    }
+    
+    
+    
     
     
     // BEGIN KEYBOARD METHODS
@@ -196,6 +266,63 @@ class HostEventP4ViewController: UIViewController
     }
     
 
+    // BEGIN FULL STATE ARRAY
+    
+    let fullState = [ "AK - Alaska",
+                      "AL - Alabama",
+                      "AR - Arkansas",
+                      "AS - American Samoa",
+                      "AZ - Arizona",
+                      "CA - California",
+                      "CO - Colorado",
+                      "CT - Connecticut",
+                      "DC - District of Columbia",
+                      "DE - Delaware",
+                      "FL - Florida",
+                      "GA - Georgia",
+                      "GU - Guam",
+                      "HI - Hawaii",
+                      "IA - Iowa",
+                      "ID - Idaho",
+                      "IL - Illinois",
+                      "IN - Indiana",
+                      "KS - Kansas",
+                      "KY - Kentucky",
+                      "LA - Louisiana",
+                      "MA - Massachusetts",
+                      "MD - Maryland",
+                      "ME - Maine",
+                      "MI - Michigan",
+                      "MN - Minnesota",
+                      "MO - Missouri",
+                      "MS - Mississippi",
+                      "MT - Montana",
+                      "NC - North Carolina",
+                      "ND - North Dakota",
+                      "NE - Nebraska",
+                      "NH - New Hampshire",
+                      "NJ - New Jersey",
+                      "NM - New Mexico",
+                      "NV - Nevada",
+                      "NY - New York",
+                      "OH - Ohio",
+                      "OK - Oklahoma",
+                      "OR - Oregon",
+                      "PA - Pennsylvania",
+                      "PR - Puerto Rico",
+                      "RI - Rhode Island",
+                      "SC - South Carolina",
+                      "SD - South Dakota",
+                      "TN - Tennessee",
+                      "TX - Texas",
+                      "UT - Utah",
+                      "VA - Virginia",
+                      "VI - Virgin Islands",
+                      "VT - Vermont",
+                      "WA - Washington",
+                      "WI - Wisconsin",
+                      "WV - West Virginia",
+                      "WY - Wyoming"]
     
     
     

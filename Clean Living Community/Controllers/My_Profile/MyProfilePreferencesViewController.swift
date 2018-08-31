@@ -24,22 +24,26 @@ class MyProfilePreferencesViewController: UIViewController
     {
         super.viewDidLoad()
         displayedUser = userModel.findUser(uid: currentUserID!)
-        if(displayedUser.pref1 == "Yes")
-        {
-            pref1.selectedSegmentIndex = 0
+        userModel.returnUserObject(UID: currentUserID!) { (user) in
+            self.displayedUser = user
+            if(self.self.displayedUser.pref1 == "Yes")
+            {
+                self.pref1.selectedSegmentIndex = 0
+            }
+            else
+            {
+                self.self.pref2.selectedSegmentIndex = 1
+            }
+            if(self.self.displayedUser.pref2 == "Yes")
+            {
+                self.pref2.selectedSegmentIndex = 0
+            }
+            else
+            {
+                self.pref2.selectedSegmentIndex = 1
+            }
         }
-        else
-        {
-            pref2.selectedSegmentIndex = 1
-        }
-        if(displayedUser.pref2 == "Yes")
-        {
-            pref2.selectedSegmentIndex = 0
-        }
-        else
-        {
-            pref2.selectedSegmentIndex = 1
-        }
+        
         // Do any additional setup after loading the view.
     }
 

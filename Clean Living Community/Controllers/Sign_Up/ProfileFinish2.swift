@@ -211,7 +211,14 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func nextButtonAction(_ sender: UIButton)
     {
-        performSegue(withIdentifier: "toProfileFinish3", sender: self)
+        if(eduField.text != "" && religiousField.text != "" && relationField.text != "" && orientationField.text != "" && spiritualField.text != "" && smokeField.text != "" && supportField.text != "")
+        {
+            performSegue(withIdentifier: "toProfileFinish3", sender: self)
+        }
+        else
+        {
+            createAlert(title: "Profile Information Incomplete", message: "Please complete all the fields")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -236,6 +243,16 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
             destinationVC.smk = smokeField.text
             destinationVC.sup = supportField.text
         }
+    }
+    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     

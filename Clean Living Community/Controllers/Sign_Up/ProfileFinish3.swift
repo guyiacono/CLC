@@ -85,8 +85,6 @@ class ProfileFinish3: UIViewController
     }
     
     
-    
-    
     // BEGIN KEYBOARD METHODS
     
     

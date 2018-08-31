@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Foundation
 import FirebaseAuth
+import CoreLocation
 
 extension UITextField {
     func setBottomBorder(bottom_border : String) {
@@ -35,10 +36,11 @@ extension UITextField {
     }
 }
 
-class Sign_In: UIViewController
+class Sign_In: UIViewController, CLLocationManagerDelegate
 {
     let usermodel = UserModel.sharedInstance
     
+    let manager = CLLocationManager()
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -59,12 +61,13 @@ class Sign_In: UIViewController
                         //print(self.usermodel.users)
                     }
                 })
+                self.attemptToUpdateLocation()
                 self.performSegue(withIdentifier: "loginpass", sender: Sign_In.self)
                 print("login success")
             }
             else
             {
-                print("login failed")
+                self.createAlert(title: "Login Failed", message: "Invalid Email Address or Password")
             }
         }
     }
@@ -74,11 +77,22 @@ class Sign_In: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        manager.delegate = self
         
         // Do any additional setup after loading the view.
 
         email.setBottomBorder(bottom_border: "teal")
         password.setBottomBorder(bottom_border: "blue")
+        
+        /*
+        usermodel.writeQuestionair(UID: "Y0jUv3EvPMVK5kPIZZN06EdZr8R2", val: 0)
+        usermodel.writeQuestionair(UID: "SyZ3lSFp9dh4w1KNHuM8Td4iEup1",val: 1)
+        usermodel.writeQuestionair(UID: "KytbcDtvuobNNHyg52o5DBPpsxt1",val: 2)
+        usermodel.writeQuestionair(UID: "Dl9VO62eIwbaeJT1ENdk1WoiWVq1",val: 3)
+        usermodel.writeQuestionair(UID: "QhDnh9qWygN5Nyghdfaz2cDjFIG3",val: 4)
+        usermodel.writeQuestionair(UID: "f6iD5G0bPESuKhlTocShD24Xnay2",val: 2)
+        usermodel.writeQuestionair(UID: "r6PWN4yItAfxAnTUU21u2h4hZUl2", val: 0)
+        */
         
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
@@ -90,8 +104,38 @@ class Sign_In: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
+    func attemptToUpdateLocation()
+    {
+        if(CLLocationManager.locationServicesEnabled())
+        {
+            self.manager.requestLocation()
+        }
+    }
     
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        if let location = locations.first
+        {
+            let uid = Auth.auth().currentUser?.uid as? String
+            print("Found user's location: \(location)")
+            usermodel.updateLocation(uid: uid!, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to update user location: \(error.localizedDescription)")
+    }
+    
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     //BEGIN KEYBOARD METHODS
     

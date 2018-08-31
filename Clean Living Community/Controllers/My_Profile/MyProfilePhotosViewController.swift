@@ -25,9 +25,14 @@ class MyProfilePhotosViewController: UIViewController
     {
         super.viewDidLoad()
         displayedUser = userModel.findUser(uid: currentUserID!)
-        setImageFromURl(stringImageUrl: displayedUser.url1!, forImage: photo1)
-        setImageFromURl(stringImageUrl: displayedUser.url2!, forImage: photo2)
-        setImageFromURl(stringImageUrl: displayedUser.url3!, forImage: photo3)
+        userModel.returnUserObject(UID: currentUserID!) { (user) in
+            self.displayedUser = user
+            
+            self.setImageFromURl(stringImageUrl: self.displayedUser.url1!, forImage: self.photo1)
+            self.setImageFromURl(stringImageUrl: self.displayedUser.url2!, forImage: self.photo2)
+            self.setImageFromURl(stringImageUrl: self.displayedUser.url3!, forImage: self.photo3)
+        }
+        
 
         photo1.setRadiusBorder(content: photo1)
         photo2.setRadiusBorder(content: photo2)

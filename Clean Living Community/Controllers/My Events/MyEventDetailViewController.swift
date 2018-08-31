@@ -1,8 +1,8 @@
 //
-//  EventDetailViewController.swift
+//  MyEventDetailViewController.swift
 //  Clean Living Community
 //
-//  Created by Michael Karolewicz on 8/16/18.
+//  Created by Michael Karolewicz on 8/31/18.
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class EventDetailViewController: UIViewController
+class MyEventDetailViewController: UIViewController
 {
 
     var eventModel = EventModel.sharedInstance
@@ -32,6 +32,7 @@ class EventDetailViewController: UIViewController
     
     @IBOutlet weak var descriptionField: UITextView!
     
+    @IBOutlet weak var rsvpButton: UIButton!
     
     @IBAction func photosAction(_ sender: UIButton)
     {
@@ -39,35 +40,17 @@ class EventDetailViewController: UIViewController
     }
     @IBAction func rsvpAction(_ sender: UIButton)
     {
-        print("RSVP Button pressed")
-        userModel.checkIfRSVP(userUID: signedInID!, eventUID: eventID!) { (dateTime) in
-            if(dateTime == "")
+        userModel.unRSVPFromEvent(userUID: signedInID!, eventUID: eventID!, eventDateTime: dateTimeString!, completion: {(success) in
+            if(success)
             {
-                print("found datetime = nil")
-                self.userModel.findUserProfileInfo(uid: self.signedInID!) { (user) in
-                    
-                    let name = user["First Name"]! + " " + user["Last Name"]!
-                    self.eventModel.rsvp(personUID: self.signedInID!, personName: name, eventUID: self.eventID!, dateTime: self.dateTimeString!, completion: { (success) in
-                        if(success)
-                        {
-                            self.createAlert(title: "RSVP Status", message: "RSVP Success!")
-                        }
-                        else
-                        {
-                            self.createAlert(title: "RSVP Status", message: "RSVP Failed!")
-                        }
-                    })
-                    
-                }
+                self.createAlert(title: "RSVP Status", message: "Un-RSVP Successful!")
             }
             else
             {
-                self.createAlert(title: "RSVP Status", message: "RSVP Already Sent!")
+                self.createAlert(title: "RSVP Status", message: "Un-RSVP Failed!")
             }
             
-        }
-        
-        
+        })
         
     }
     @IBAction func goingAction(_ sender: UIButton)
@@ -106,12 +89,18 @@ class EventDetailViewController: UIViewController
             self.totalAddress.text = "Address : " + totalAddress1 + totalAddress2 + totalAddress3 + totalAddress4
             self.time.text = "time: " + self.thisEvent["Time"]!
             self.location.text = "location: " + self.thisEvent["Location_Title"]!
-
+            
+            if(self.thisEvent["Organizer"]! == self.signedInID)
+            {
+                self.rsvpButton.isHidden = true
+                self.rsvpButton.isEnabled = false
+            }
+            
         }
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -127,15 +116,15 @@ class EventDetailViewController: UIViewController
         }))
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 
 }
