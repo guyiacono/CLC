@@ -104,6 +104,9 @@
                                         <state key="normal" title="FORGOT PASSWORD">
                                             <color key="titleColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="resetPasswordTapped:" destination="0tZ-Ma-L2h" eventType="touchUpInside" id="o7u-3n-UVD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1714,25 +1717,25 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-H9-wSW">
                                 <rect key="frame" x="0.0" y="132" width="414" height="555"/>
                                 <connections>
-                                    <segue destination="Dfs-P9-Spl" kind="embed" id="Dl3-Pb-pui"/>
+                                    <segue destination="Dfs-P9-Spl" kind="embed" identifier="basicSegue" id="Dl3-Pb-pui"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CkE-0I-BgG">
                                 <rect key="frame" x="0.0" y="132" width="414" height="555"/>
                                 <connections>
-                                    <segue destination="31c-N1-i1g" kind="embed" id="NUY-cH-dXW"/>
+                                    <segue destination="31c-N1-i1g" kind="embed" identifier="personalSegue" id="NUY-cH-dXW"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuE-9q-mzw">
                                 <rect key="frame" x="0.0" y="132" width="414" height="555"/>
                                 <connections>
-                                    <segue destination="YMJ-nG-9zm" kind="embed" id="GgP-hk-zv5"/>
+                                    <segue destination="YMJ-nG-9zm" kind="embed" identifier="bioSegue" id="GgP-hk-zv5"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWL-MV-Byd">
                                 <rect key="frame" x="0.0" y="132" width="414" height="555"/>
                                 <connections>
-                                    <segue destination="Ely-zS-oky" kind="embed" id="MfM-He-XSi"/>
+                                    <segue destination="Ely-zS-oky" kind="embed" identifier="photoSegue" id="MfM-He-XSi"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35F-9B-BeQ">
@@ -1755,7 +1758,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wjr-Vd-zz9">
                                 <rect key="frame" x="0.0" y="132" width="414" height="555"/>
                                 <connections>
-                                    <segue destination="mm8-mu-hDo" kind="embed" id="GMb-eW-5Vd"/>
+                                    <segue destination="mm8-mu-hDo" kind="embed" identifier="settingsSegue" id="GMb-eW-5Vd"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -2955,6 +2958,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="firstDidEnd:" destination="Dfs-P9-Spl" eventType="editingDidEnd" id="4ES-rw-cMM"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -2987,6 +2993,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="lastDidEnd:" destination="Dfs-P9-Spl" eventType="editingDidEnd" id="yst-U5-Asj"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -3019,6 +3028,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="DOBdidEnd:" destination="Dfs-P9-Spl" eventType="editingDidEnd" id="Q6a-1F-Rh7"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -3051,6 +3063,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="hometownDidEnd:" destination="Dfs-P9-Spl" eventType="editingDidEnd" id="5g8-hl-RAv"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -3083,6 +3098,9 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="DORdidEnd:" destination="Dfs-P9-Spl" eventType="editingDidEnd" id="TsE-iu-PVr"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -3150,7 +3168,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5f-2G-Zqa" userLabel="Hide Location">
                                         <rect key="frame" x="15" y="0.0" width="384" height="200"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to hide your location (distance away) from other users searching for connections?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q92-CF-xXE">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like allow the your location data to be used to find nearby connections and events?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q92-CF-xXE">
                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="37.333333333333336"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3163,6 +3181,9 @@
                                                     <segment title="No"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="pref1LocationChanged:" destination="mm8-mu-hDo" eventType="valueChanged" id="Nvr-fj-hCF"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <constraints>
@@ -3191,6 +3212,9 @@
                                                     <segment title="No"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.1333333333" green="0.8862745098" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="pref2MentorChanged:" destination="mm8-mu-hDo" eventType="valueChanged" id="BGK-0c-hBW"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <constraints>
@@ -3418,6 +3442,7 @@
                                             <action selector="eduChanged:" destination="31c-N1-i1g" eventType="editingDidEnd" id="ZtX-RG-juU"/>
                                             <action selector="eduChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="k7G-3J-CxT"/>
                                             <action selector="eduChanged:" destination="oJF-7x-jNe" eventType="editingDidBegin" id="wU7-oB-O2a"/>
+                                            <action selector="educationDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="Ph5-ee-ZIv"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3456,6 +3481,7 @@
                                             <action selector="relationChanged:" destination="31c-N1-i1g" eventType="editingDidEnd" id="7nx-Tn-VPn"/>
                                             <action selector="relationChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="8z0-wg-hmQ"/>
                                             <action selector="relationChanged:" destination="oJF-7x-jNe" eventType="editingDidBegin" id="ESH-7u-tO5"/>
+                                            <action selector="relationDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="aT1-Cc-Plk"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3493,6 +3519,7 @@
                                             <action selector="orientationChanged:" destination="oJF-7x-jNe" eventType="editingDidBegin" id="PKI-AZ-F3i"/>
                                             <action selector="orientationChanged:" destination="31c-N1-i1g" eventType="editingDidEnd" id="TVQ-EE-ske"/>
                                             <action selector="orientationChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="ulQ-kF-daH"/>
+                                            <action selector="orientationDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="sFK-J0-wZw"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3530,6 +3557,7 @@
                                             <action selector="religiousChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="03c-SU-qyy"/>
                                             <action selector="religiousChanged:" destination="oJF-7x-jNe" eventType="editingDidBegin" id="UPY-ie-bTB"/>
                                             <action selector="religiousChanged:" destination="31c-N1-i1g" eventType="editingDidEnd" id="pjY-PQ-dpa"/>
+                                            <action selector="religiousDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="8W4-Lu-a12"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3567,6 +3595,7 @@
                                             <action selector="spiritualChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="G2c-ET-Gpx"/>
                                             <action selector="spiritualChanged:" destination="oJF-7x-jNe" eventType="editingDidBegin" id="plx-HL-YFd"/>
                                             <action selector="spiritualChanged:" destination="31c-N1-i1g" eventType="editingDidEnd" id="yEC-JI-inM"/>
+                                            <action selector="spiritualDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="fS6-OM-FRo"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3602,6 +3631,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="smokeChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="tDB-9m-dRY"/>
+                                            <action selector="smokerDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="3B2-He-kRh"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3639,6 +3669,7 @@
                                             <action selector="supportChanged:" destination="oJF-7x-jNe" eventType="editingDidBegin" id="FgY-gc-UZj"/>
                                             <action selector="supportChanged:" destination="31c-N1-i1g" eventType="editingDidBegin" id="oHQ-6k-YQ3"/>
                                             <action selector="supportChanged:" destination="31c-N1-i1g" eventType="editingDidEnd" id="uPA-5X-Znb"/>
+                                            <action selector="supportDidEnd:" destination="31c-N1-i1g" eventType="editingDidEnd" id="eVw-up-bY3"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -3702,7 +3733,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.84999999999999998" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t5n-zP-Eh8">
-                                <rect key="frame" x="15" y="45" width="384" height="460"/>
+                                <rect key="frame" x="15" y="45" width="384" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -3712,7 +3743,7 @@
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XOo-AD-97y" firstAttribute="trailing" secondItem="t5n-zP-Eh8" secondAttribute="trailing" constant="15" id="2Yw-Vn-stl"/>
-                            <constraint firstItem="XOo-AD-97y" firstAttribute="bottom" secondItem="t5n-zP-Eh8" secondAttribute="bottom" constant="50" id="5MG-6h-KTX"/>
+                            <constraint firstItem="XOo-AD-97y" firstAttribute="bottom" secondItem="t5n-zP-Eh8" secondAttribute="bottom" constant="185" id="5MG-6h-KTX"/>
                             <constraint firstItem="t5n-zP-Eh8" firstAttribute="top" secondItem="XOo-AD-97y" secondAttribute="top" constant="25" id="c4a-rg-hC2"/>
                             <constraint firstItem="t5n-zP-Eh8" firstAttribute="leading" secondItem="XOo-AD-97y" secondAttribute="leading" constant="15" id="pPW-mp-hQ7"/>
                         </constraints>
@@ -3724,7 +3755,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bia-Pv-Znv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6318" y="2956"/>
+            <point key="canvasLocation" x="6317.3913043478269" y="2955.5706521739135"/>
         </scene>
         <!--My Profile Photos View Controller-->
         <scene sceneID="tKt-et-GeB">
@@ -3770,6 +3801,22 @@
                                             <constraint firstAttribute="height" constant="75" id="UlJ-gh-Ke5"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVl-fc-sAL">
+                                        <rect key="frame" x="225" y="51" width="75" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="button"/>
+                                        <connections>
+                                            <action selector="buttonPhoto3:" destination="Ely-zS-oky" eventType="touchUpInside" id="ILk-CB-vY0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVc-Qr-85v">
+                                        <rect key="frame" x="0.0" y="51" width="75" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="buttonPhoto2:" destination="Ely-zS-oky" eventType="touchUpInside" id="sbX-zu-oRj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="TnX-sy-4Rt" firstAttribute="centerY" secondItem="IP2-ci-SEW" secondAttribute="centerY" constant="15" id="03g-P5-1G4"/>
@@ -3781,6 +3828,14 @@
                                     <constraint firstAttribute="width" constant="300" id="pt5-xC-cfA"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNe-52-MRi">
+                                <rect key="frame" x="57" y="63" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPhoto1:" destination="Ely-zS-oky" eventType="touchUpInside" id="aEe-tW-kJx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1333333333" green="0.1647058824" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -3795,6 +3850,9 @@
                         <viewLayoutGuide key="safeArea" id="LIC-tF-8J6"/>
                     </view>
                     <connections>
+                        <outlet property="button1" destination="yNe-52-MRi" id="6oq-6x-qMT"/>
+                        <outlet property="button2" destination="vVc-Qr-85v" id="MPR-9m-yRO"/>
+                        <outlet property="button3" destination="QVl-fc-sAL" id="5Pw-jF-P9Q"/>
                         <outlet property="photo1" destination="Va9-QR-q2W" id="yQH-HC-S32"/>
                         <outlet property="photo2" destination="dn0-1X-SM5" id="cVm-2H-96M"/>
                         <outlet property="photo3" destination="TnX-sy-4Rt" id="Hsh-6F-ZyU"/>
@@ -3802,7 +3860,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9H-Og-41u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6318" y="3726"/>
+            <point key="canvasLocation" x="6317.3913043478269" y="3725.951086956522"/>
         </scene>
         <!--Gathering Category-->
         <scene sceneID="R7q-UU-Ghi">

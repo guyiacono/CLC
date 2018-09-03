@@ -137,6 +137,60 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    @IBAction func resetPasswordTapped(_ sender: UIButton)
+    {
+        var loginTextField: UITextField?
+        let alertController = UIAlertController(title: "Password Recovery", message: "Please enter your email address", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            
+            if (loginTextField?.text != "")
+            {
+                
+                Auth.auth().sendPasswordReset(withEmail: (loginTextField?.text!)!, completion: { (error) in
+                    if (error == nil)
+                    {
+                        
+                        self.showErrorAlert(title: "Password reset", msg: "Check your inbox to reset your password")
+                        
+                    }
+                    else
+                    {
+                        print(error)
+                        self.showErrorAlert(title: "Unidentified email address", msg: "Please re-enter the email you registered with")
+                    }
+                })
+            }
+            print("textfield is empty")
+            
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            
+        }
+        alertController.addAction(ok)
+        alertController.addAction(cancel)
+        alertController.addTextField { (textField) -> Void in
+            // Enter the textfiled customization code here.
+            loginTextField = textField
+            loginTextField?.placeholder = "Enter your login ID"
+        }
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    func showErrorAlert(title: String, msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)}
+    
+    
+    
+    
+    
+    
+    
     //BEGIN KEYBOARD METHODS
     
     

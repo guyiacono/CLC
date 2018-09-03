@@ -11,6 +11,12 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+protocol personalDelegate
+{
+    func returnPersonal(personalInfo: [String : String])
+}
+
+
 class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate
 {
     let currentUserID = Auth.auth().currentUser?.uid
@@ -25,6 +31,9 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     let smokepicker = UIPickerView()
     let supportpicker = UIPickerView()
     
+    var personalDelegate : personalDelegate?
+    var tempDict = [String:String]()
+
     var selectedfield: UITextField?
     @IBOutlet weak var eduField: UITextField!
     @IBOutlet weak var relationField: UITextField!
@@ -38,18 +47,22 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     @IBAction func eduChanged(_ sender: UITextField)
     {
         selectedfield = eduField
+
     }
     @IBAction func relationChanged(_ sender: UITextField)
     {
         selectedfield = relationField
+
     }
     @IBAction func orientationChanged(_ sender: UITextField)
     {
         selectedfield = orientationField
+
     }
     @IBAction func religiousChanged(_ sender: UITextField)
     {
         selectedfield = religiousField
+
     }
     @IBAction func spiritualChanged(_ sender: UITextField)
     {
@@ -81,6 +94,9 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        handleDoneButtonOnKeyboard()
+        handleViewAdjustmentsFromKeyboard()
         
         edupicker.delegate = self
         edupicker.dataSource = self
@@ -117,6 +133,20 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
             self.smokeField.text = self.displayedUser.smoker
             self.orientationField.text = self.displayedUser.orientation
             self.supportField.text = self.displayedUser.support
+            
+           
+            if (self.personalDelegate != nil)
+            {
+                self.tempDict["edu"] = self.eduField.text
+                self.tempDict["rel"] = self.relationField.text
+                self.tempDict["religion"] = self.religiousField.text
+                self.tempDict["spt"] = self.spiritualField.text
+                self.tempDict["smoke"] = self.smokeField.text
+                self.tempDict["ori"] = self.orientationField.text
+                self.tempDict["sup"] = self.supportField.text
+                self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+            }
+            
         }
         
        
@@ -217,7 +247,133 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     
-    @IBOutlet weak var datepicker: UIDatePicker!
+    
+    
+   
+    @IBAction func educationDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["edu"] = self.eduField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    
+    @IBAction func relationDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["rel"] = self.relationField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    
+    
+    @IBAction func orientationDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["ori"] = self.orientationField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    
+    @IBAction func religiousDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["religion"] = self.religiousField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    
+    @IBAction func spiritualDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["spt"] = self.spiritualField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    @IBAction func smokerDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["smoke"] = self.smokeField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    @IBAction func supportDidEnd(_ sender: UITextField)
+    {
+        self.tempDict["sup"] = self.supportField.text
+        self.personalDelegate?.returnPersonal(personalInfo: self.tempDict)
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // BEGIN KEYBOARD METHODS
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        view.endEditing(true)
+    }
+    
+    func handleDoneButtonOnKeyboard()
+    {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.doneClicked))
+        toolbar.setItems([flexibleSpace,doneButton], animated: false)
+        eduField.inputAccessoryView = toolbar
+        relationField.inputAccessoryView = toolbar
+        religiousField.inputAccessoryView = toolbar
+        spiritualField.inputAccessoryView = toolbar
+        smokeField.inputAccessoryView = toolbar
+        supportField.inputAccessoryView = toolbar
+        orientationField.inputAccessoryView = toolbar
+    }
+    @objc func doneClicked()
+    {
+        view.endEditing(true)
+    }
+    
+    func handleViewAdjustmentsFromKeyboard()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    @objc func keyboardWillShow(notification: Notification)
+    {
+        if(smokeField.isEditing || supportField.isEditing || spiritualField.isEditing)
+        {
+            guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+            {
+                return
+            }
+            self.parent?.view.frame.origin.y = -1 * keyboard.height
+        }
+        else if(eduField.isEditing || relationField.isEditing || religiousField.isEditing || orientationField.isEditing)
+        {
+            self.parent?.view.frame.origin.y = 0
+        }
+        
+    }
+    @objc func keyboardWillHide(notification: Notification)
+    {
+        guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+        {
+            return
+        }
+        if(self.parent?.view.frame.origin.y != 0)
+        {
+            self.parent?.view.frame.origin.y += keyboard.height
+        }
+    }
+    
+    
+    
     /*
      // MARK: - Navigation
      

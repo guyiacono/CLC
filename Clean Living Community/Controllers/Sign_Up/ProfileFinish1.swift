@@ -47,11 +47,6 @@ class ProfileFinish1: UIViewController {
         recoveryDatePicker?.datePickerMode = .date
         recoveryDate.inputView = recoveryDatePicker
         
-        
-        
-        
-        
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileFinish1.viewTapped(gesture:)))
         
         view.addGestureRecognizer(tapGesture)
