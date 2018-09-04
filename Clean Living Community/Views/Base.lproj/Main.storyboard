@@ -3404,9 +3404,11 @@
                     <navigationItem key="navigationItem" id="vGX-Fc-BqD"/>
                     <connections>
                         <outlet property="logoutButton" destination="QRf-pS-hOu" id="By1-Y7-ngC"/>
+                        <segue destination="nHc-Gj-VDK" kind="unwind" identifier="toSignInFromLogout" unwindAction="unwindFromLogoutWithSegue:" id="Bd7-Pf-MU2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pd9-Al-OtI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nHc-Gj-VDK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5780" y="4714"/>
         </scene>

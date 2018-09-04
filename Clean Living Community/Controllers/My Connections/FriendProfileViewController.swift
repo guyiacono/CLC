@@ -33,7 +33,7 @@ class FriendProfileViewController: UIViewController {
         if(segmentedStatus == 1)
         {
             let me = userModel.findUser(uid: signedInID!)
-            userModel.sendFriendRequest(withFriendUID: thisUser?.key, withMyUID: signedInID, withMyPhotoURL: me!.url1, withMyName: (me?.first)! + " " + (me?.last)!, withRequestStatus: "Accepted") { (success) in
+            userModel.sendFriendRequest(withFriendUID: thisUser?.key, withMyUID: signedInID, withMyPhotoURL: me!.urlThumb, withMyName: (me?.first)! + " " + (me?.last)!, withRequestStatus: "Accepted") { (success) in
                 if(success)
                 {
                     self.userModel.sendFriendRequest(withFriendUID: self.signedInID, withMyUID: self.thisUser?.key, withMyPhotoURL: self.thisUser?.url1, withMyName: (self.thisUser?.first)! + " " + (self.thisUser?.last)!, withRequestStatus: "Accepted", completion: { (success2) in

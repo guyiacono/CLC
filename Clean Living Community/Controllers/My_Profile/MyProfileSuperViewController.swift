@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MyProfileSuperViewController: UIViewController, firstDelegate, personalDelegate, photoDelegate, bioDelegate, preferenceDelegate
 {
@@ -28,18 +29,51 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
     var photo1 : UIImage?
     var photo2 : UIImage?
     var photo3 : UIImage?
+    var photo1Changed : Bool?
+    var photo2Changed : Bool?
+    var photo3Changed : Bool?
     
     var bio : String?
     
     var pref1 : String?
     var pref2 : String?
     
+    var usermodel = UserModel.sharedInstance
+    let currentID = Auth.auth().currentUser?.uid
+    
     @IBOutlet weak var pages: UISegmentedControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBAction func save(_ sender: UIBarButtonItem)
     {
         self.view.endEditing(true)
-        print(checkIfAllInfoPresent())
+        self.view.isUserInteractionEnabled = false
+        saveButton.isEnabled = false
+        let myGroup = DispatchGroup()
+        if(checkIfAllInfoPresent())
+        {
+            myGroup.enter()
+            usermodel.updateProfileInfo(selfUID: currentID!, first: first!, last: last!, DOB: DOB!, hometown: hometown!, DOR: DOR!, edu: edu!, rel: rel!, religion: religion!, ori: ori!, spt: spt!, smoke: smoke!, support: sup!, photo1: photo1!, photo2: photo2!, photo3: photo3!, photo1Changed: photo1Changed!, photo2Changed: photo2Changed!, photo3Changed: photo3Changed!, bio: bio!, pref1: pref1!, pref2: pref2!) { (success) in
+                if(success)
+                {
+                    self.createAlert(title: "Profile Update", message: "Profile information updated!")
+                    self.photo1Changed = false
+                    self.photo2Changed = false
+                    self.photo3Changed = false
+                }
+                else
+                {
+                    self.createAlert(title: "Profile Update", message: "Profile information update failed, please try again")
+                }
+                myGroup.leave()
+            }
+        }
+        myGroup.notify(queue: DispatchQueue.main, execute:
+            {
+            self.saveButton.isEnabled = true
+            self.view.isUserInteractionEnabled = true   
+
+        })
+        
     }
 
     @IBAction func segmentChanged(_ sender: UISegmentedControl)
@@ -127,11 +161,15 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
         sup = personalInfo["sup"]
     }
 
-    func returnPhotos(photos: [String : UIImage])
+    func returnPhotos(photos: [String : UIImage], photosChanged: [String : Bool])
     {
         photo1 = photos["photo1"]
         photo2 = photos["photo2"]
         photo3 = photos["photo3"]
+
+        photo1Changed = photosChanged["photo1"]
+        photo2Changed = photosChanged["photo2"]
+        photo3Changed = photosChanged["photo3"]
 
     }
     func returnBio(bio: String)
@@ -190,6 +228,10 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
             print(bio)
             print(pref1)
             print(pref2)
+            print(photo1Changed)
+            print(photo2Changed)
+            print(photo3Changed)
+
             return true
         }
         else
@@ -212,8 +254,20 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
             print(bio)
             print(pref1)
             print(pref2)
+            print(photo1Changed)
+            print(photo2Changed)
+            print(photo3Changed)
             return false
         }
+    }
+    func createAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

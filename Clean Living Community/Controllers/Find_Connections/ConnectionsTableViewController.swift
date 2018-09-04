@@ -357,7 +357,7 @@ class ConnectionsTableViewController: UITableViewController{
             }
             else
             {
-                list.remove(at: index)
+                //list.remove(at: index)
                 arrayOfRemovedIndex.append(index)
                 //myGroup.leave()
             }
@@ -365,11 +365,13 @@ class ConnectionsTableViewController: UITableViewController{
         myGroup.notify(queue: DispatchQueue.main, execute:
             {
                 var amountRemoved = 0
+                
                 for value in arrayOfRemovedIndex
                 {
                     self.list.remove(at: value - amountRemoved)
                     amountRemoved = amountRemoved + 1
                 }
+                
                 for value in self.list.enumerated()
                 {
                     print(value)
@@ -567,7 +569,7 @@ class ConnectionsTableViewController: UITableViewController{
                     mySecondGroup.enter()
                     self.usermodel.findUserProfileInfo(uid: user.key, completion: { (info) in
                         name = info["First Name"]! + " " + info["Last Name"]!
-                        url = info["Photo1"]!
+                        url = info["Thumb"]!
                         mySecondGroup.leave()
                 })
                 mySecondGroup.notify(queue: DispatchQueue.main, execute:

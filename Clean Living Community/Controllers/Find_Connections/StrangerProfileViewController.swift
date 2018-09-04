@@ -51,7 +51,7 @@ class StrangerProfileViewController: UIViewController
             var me = usermodel.findUser(uid: signedInID!)
             usermodel.returnUserObject(UID: signedInID!, completion: { (me) in
                 
-                self.usermodel.sendFriendRequest(withFriendUID: self.thisUser?.key, withMyUID: self.signedInID, withMyPhotoURL: me.url1, withMyName: ((me.first) + " " + (me.last)), withRequestStatus: "Unaccepted") { (success) in
+                self.usermodel.sendFriendRequest(withFriendUID: self.thisUser?.key, withMyUID: self.signedInID, withMyPhotoURL: me.urlThumb, withMyName: ((me.first) + " " + (me.last)), withRequestStatus: "Unaccepted") { (success) in
                     if(success)
                     {
                         self.usermodel.getUnderConnections(withUID: self.thisUser?.key) { (list) in

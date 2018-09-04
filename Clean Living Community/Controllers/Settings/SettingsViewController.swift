@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
     func logout(){
         do {
             try Auth.auth().signOut()
-            self.dismiss(animated: true, completion: nil)
+             performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
         } catch let err {
             print(err)
         }

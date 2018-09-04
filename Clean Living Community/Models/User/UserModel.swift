@@ -12,6 +12,23 @@ import FirebaseAuth
 import FirebaseStorage
 import CoreLocation
 
+
+
+extension UIImage {
+    
+    func resize(withWidth newWidth: CGFloat) -> UIImage?
+    {
+        let scale = newWidth / self.size.width
+        let newHeight = self.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+}
+
 class UserModel
 {
     static let sharedInstance = UserModel()
@@ -88,17 +105,22 @@ class UserModel
         var photo1URL = ""
         var photo2URL = ""
         var photo3URL = ""
+        var thumbnailURL = ""
         
-       // Photo 1
-        let image1Ref = Storage.storage().reference().child("\(uid)/pic1.jpg")
-        var imageData = UIImageJPEGRepresentation(image1, 0.8)!
-        _ = image1Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+        
+        
+        
+        
+        let thumbRef = Storage.storage().reference().child("\(uid)/thumbnail.jpg")
+        let thumbnail = image1.resize(withWidth: 100)
+        var imageData = UIImageJPEGRepresentation(thumbnail!, 1.0)!
+        _ = thumbRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
             guard metadata != nil else
             {
                 print(error!)
                 return
             }
-            Storage.storage().reference().child("\(uid)/pic1.jpg").downloadURL{url, error in
+            Storage.storage().reference().child("\(uid)/thumbnail.jpg").downloadURL{url, error in
                 if let error = error
                 {
                     print(error)
@@ -106,74 +128,117 @@ class UserModel
                 else
                 {
                     guard let url = url?.absoluteString else {return}
-                    photo1URL = url
+                    thumbnailURL = url
                     
-                    // Photo 2
-
+                    // Photo 1
                     
-                    let image2Ref = Storage.storage().reference().child("\(uid)/pic2.jpg")
-                    imageData = UIImageJPEGRepresentation(image2, 0.8)!
-                    _ = image2Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                    let image1Ref = Storage.storage().reference().child("\(uid)/pic1.jpg")
+                    var imageData = UIImageJPEGRepresentation(image1, 0.8)!
+                    _ = image1Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
                         guard metadata != nil else
                         {
                             print(error!)
                             return
                         }
-                        Storage.storage().reference().child("\(uid)/pic2.jpg").downloadURL{url, error in
+                        Storage.storage().reference().child("\(uid)/pic1.jpg").downloadURL{url, error in
                             if let error = error
                             {
                                 print(error)
                             }
                             else
                             {
-                                photo2URL = (url?.absoluteString)!
+                                guard let url = url?.absoluteString else {return}
+                                photo1URL = url
+                                
+                                // Photo 2
                                 
                                 
-                                // Photo 3
-                                let image3Ref = Storage.storage().reference().child("\(uid)/pic3.jpg")
-                                imageData = UIImageJPEGRepresentation(image3, 0.8)!
-                                _ = image3Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                                let image2Ref = Storage.storage().reference().child("\(uid)/pic2.jpg")
+                                imageData = UIImageJPEGRepresentation(image2, 0.8)!
+                                _ = image2Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
                                     guard metadata != nil else
                                     {
                                         print(error!)
                                         return
                                     }
-                                    Storage.storage().reference().child("\(uid)/pic3.jpg").downloadURL{url, error in
+                                    Storage.storage().reference().child("\(uid)/pic2.jpg").downloadURL{url, error in
                                         if let error = error
                                         {
                                             print(error)
                                         }
                                         else
                                         {
+                                            photo2URL = (url?.absoluteString)!
                                             
                                             
-                                            photo3URL = (url?.absoluteString)!
+                                            // Photo 3
+                                            let image3Ref = Storage.storage().reference().child("\(uid)/pic3.jpg")
+                                            imageData = UIImageJPEGRepresentation(image3, 0.8)!
+                                            _ = image3Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                                                guard metadata != nil else
+                                                {
+                                                    print(error!)
+                                                    return
+                                                }
+                                                Storage.storage().reference().child("\(uid)/pic3.jpg").downloadURL{url, error in
+                                                    if let error = error
+                                                    {
+                                                        print(error)
+                                                    }
+                                                    else
+                                                    {
+                                                        
+                                                        
+                                                        photo3URL = (url?.absoluteString)!
+                                                        
+                                                        let usersRef = Database.database().reference(withPath: "Users")
+                                                        let newUser = User(fname: fname, lname: lname, dob: dob, home: home, edu: edu, orient: orient, recovery: recovery, relation: relation, rel: rel, spirit: spirit, smoke: smoke, sup: sup, p1: p1, p2: p2, key: uid, bio: bio, url1: photo1URL, url2: photo2URL, url3: photo3URL, urlThumb: thumbnailURL, questionair : questionair, lat: lat , long: long)
+                                                        
+                                                        var uRef = usersRef.child(uid).child("Profile")
+                                                        uRef.setValue(newUser.toAnyObject())
+                                                        
+                                                        
+                                                        uRef = usersRef.child(uid).child("Questionair")
+                                                        uRef.setValue(newUser.toQuestionairResults())
+                                                        
+                                                        print("user registered")
+                                                        completion(true)
+                                                        
+                                                    }
+                                                }
+                                            })
                                             
-                                            let usersRef = Database.database().reference(withPath: "Users")
-                                            let newUser = User(fname: fname, lname: lname, dob: dob, home: home, edu: edu, orient: orient, recovery: recovery, relation: relation, rel: rel, spirit: spirit, smoke: smoke, sup: sup, p1: p1, p2: p2, key: uid, bio: bio, url1: photo1URL, url2: photo2URL, url3: photo3URL, questionair : questionair, lat: lat , long: long)
-                                            
-                                            var uRef = usersRef.child(uid).child("Profile")
-                                            uRef.setValue(newUser.toAnyObject())
-                                            
-                                            
-                                            uRef = usersRef.child(uid).child("Questionair")
-                                            uRef.setValue(newUser.toQuestionairResults())
-                                            
-                                            print("user registered")
-                                            completion(true)
                                             
                                         }
                                     }
                                 })
                                 
-        
                             }
                         }
                     })
-        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             }
         })
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       // Photo 1
+        
         
     }
         
@@ -533,6 +598,199 @@ class UserModel
             completion(true)
         }
         )
+    }
+    
+    func updateProfileInfo(selfUID: String, first: String, last: String, DOB: String, hometown: String, DOR: String, edu: String, rel: String, religion: String, ori: String, spt: String, smoke: String, support: String, photo1: UIImage, photo2: UIImage, photo3: UIImage, photo1Changed: Bool, photo2Changed: Bool, photo3Changed: Bool, bio: String, pref1: String, pref2: String, completion: @escaping(Bool) -> Void)
+    {
+        let myGroup = DispatchGroup()
+       
+        var photo1URL : String?
+        var photo2URL : String?
+        var photo3URL : String?
+        var thumbnailURL : String?
+        
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMddyyyyHHmmss"
+        let stamp = dateFormatter.string(from: today)
+        
+        var path = "Users/" + selfUID + "/Profile/Photo1"
+        var ref = Database.database().reference(withPath : path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            if(snapshot != nil)
+            {
+                photo1URL = (snapshot.value as? String)!
+            }
+        })
+        if(photo1Changed)
+        {
+            let image1Ref = Storage.storage().reference().child("\(selfUID)/\(stamp)-1.jpg")
+            var imageData = UIImageJPEGRepresentation(photo1, 0.8)!
+            _ = image1Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                guard metadata != nil else
+                {
+                    print(error!)
+                    return
+                }
+                myGroup.enter()
+                Storage.storage().reference().child("\(selfUID)/\(stamp)-1.jpg").downloadURL{url, error in
+                    if let error = error
+                    {
+                        print(error)
+                    }
+                    else
+                    {
+                        guard let url = url?.absoluteString else {return}
+                        photo1URL = url
+                        var path = "Users/" + selfUID + "/Profile/Photo1"
+                        var ref = Database.database().reference(withPath : path)
+                        ref.setValue(photo1URL)
+                        var connectionUIDS = [String]()
+                        path = "Users/" + selfUID + "/Connections"
+                        ref = Database.database().reference(withPath : path)
+                        ref.observeSingleEvent(of: .value, with: {snapshot in
+                            for child in snapshot.children
+                            {
+                                let snap = child as? DataSnapshot
+                                connectionUIDS.append((snap?.key)!)
+                            }
+                            for uid in connectionUIDS
+                            {
+                                path = "Users/" + uid + "/Connections/" + selfUID
+                                var ref = Database.database().reference(withPath : path)
+                                ref.updateChildValues(["Name" : first + " " + last])
+                                ref.updateChildValues(["MainPhoto" : photo1URL])
+                            }
+                        })
+                        
+                        let thumbRef = Storage.storage().reference().child("\(selfUID)/thumbnail-\(stamp).jpg")
+                        let thumbnail = photo1.resize(withWidth: 100)
+                        var imageData = UIImageJPEGRepresentation(thumbnail!, 1.0)!
+                        _ = thumbRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                            guard metadata != nil else
+                            {
+                                print(error!)
+                                return
+                            }
+                            Storage.storage().reference().child("\(selfUID)/thumbnail-\(stamp).jpg").downloadURL{url, error in
+                                if let error = error
+                                {
+                                    print(error)
+                                }
+                                else
+                                {
+                                    guard let url = url?.absoluteString else {return}
+                                    thumbnailURL = url
+                                    var path = "Users/" + selfUID + "/Profile/Thumb"
+                                    var ref = Database.database().reference(withPath : path)
+                                    ref.setValue(thumbnailURL)
+                                    myGroup.leave()
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        
+        
+        path = "Users/" + selfUID + "/Profile/Photo2"
+        ref = Database.database().reference(withPath : path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            if(snapshot != nil)
+            {
+                photo2URL = (snapshot.value as? String)!
+            }
+        })
+        if(photo2Changed)
+        {
+            let image2Ref = Storage.storage().reference().child("\(selfUID)/\(stamp)-2.jpg")
+            var imageData = UIImageJPEGRepresentation(photo2, 0.8)!
+            _ = image2Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                guard metadata != nil else
+                {
+                    print(error!)
+                    return
+                }
+                myGroup.enter()
+                Storage.storage().reference().child("\(selfUID)/\(stamp)-2.jpg").downloadURL{url, error in
+                    if let error = error
+                    {
+                        print(error)
+                    }
+                    else
+                    {
+                        guard let url = url?.absoluteString else {return}
+                        photo2URL = url
+                        var path = "Users/" + selfUID + "/Profile/Photo2"
+                        var ref = Database.database().reference(withPath : path)
+                        ref.setValue(photo2URL)
+                        myGroup.leave()
+                    }
+                }
+            })
+        }
+        path = "Users/" + selfUID + "/Profile/Photo3"
+        ref = Database.database().reference(withPath : path)
+        ref.observeSingleEvent(of: .value, with: {snapshot in
+            if(snapshot != nil)
+            {
+                photo3URL = (snapshot.value as? String)!
+            }
+        })
+        if(photo3Changed)
+        {
+            print("photo 3 changed")
+            let image3Ref = Storage.storage().reference().child("\(selfUID)/\(stamp)-3.jpg")
+            var imageData = UIImageJPEGRepresentation(photo3, 0.8)!
+            _ = image3Ref.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                guard metadata != nil else
+                {
+                    print(error!)
+                    return
+                }
+                myGroup.enter()
+                Storage.storage().reference().child("\(selfUID)/\(stamp)-3.jpg").downloadURL{url, error in
+                    if let error = error
+                    {
+                        print(error)
+                    }
+                    else
+                    {
+                        guard let url = url?.absoluteString else {return}
+                        photo3URL = url
+                        print("setting photo 3 url")
+                        var path = "Users/" + selfUID + "/Profile/Photo3"
+                        var ref = Database.database().reference(withPath : path)
+                        ref.setValue(photo3URL)
+                        
+                        myGroup.leave()
+                    }
+                }
+            })
+        }
+
+        myGroup.notify(queue: DispatchQueue.main, execute:
+            {
+                path = "Users/" + selfUID + "/Profile"
+                var ref = Database.database().reference(withPath : path)
+                ref.updateChildValues(["Bio" : bio])
+                ref.updateChildValues(["DOB" : DOB])
+                ref.updateChildValues(["Education" : edu])
+                ref.updateChildValues(["First Name" : first])
+                ref.updateChildValues(["Hometown" : hometown])
+                ref.updateChildValues(["Last Name" : last])
+                ref.updateChildValues(["Orientation" : ori])
+                ref.updateChildValues(["Preference1" : pref1])
+                ref.updateChildValues(["Preference2" : pref2])
+                ref.updateChildValues(["Recovery Date" : DOR])
+                ref.updateChildValues(["Relationship" : rel])
+                ref.updateChildValues(["Religious" : religion])
+                ref.updateChildValues(["Spiritual" : spt])
+                ref.updateChildValues(["Smoker" : smoke])
+                ref.updateChildValues(["Support Groups" : support])
+                completion(true)
+        })
     }
 }
 

@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 protocol photoDelegate
 {
-    func returnPhotos(photos: [String : UIImage])
+    func returnPhotos(photos: [String : UIImage], photosChanged: [String : Bool])
 }
 
 class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate
@@ -28,6 +28,8 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
     
     var photoDelegate : photoDelegate?
     var tempDict = [String:UIImage]()
+    var tempDictChanged = [String:Bool]()
+
 
     var currentImageView: UIImageView?
     
@@ -47,7 +49,11 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
                 self.tempDict["photo1"] = self.photo1.image
                 self.tempDict["photo2"] = self.photo2.image
                 self.tempDict["photo3"] = self.photo3.image
-                self.photoDelegate?.returnPhotos(photos: self.tempDict)
+                self.tempDictChanged["photo1"] = false
+                self.tempDictChanged["photo2"] = false
+                self.tempDictChanged["photo3"] = false
+
+                self.photoDelegate?.returnPhotos(photos: self.tempDict, photosChanged: self.tempDictChanged)
 
             }
         }
@@ -109,17 +115,21 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
         if(currentImageView == photo1)
         {
             tempDict["photo1"] = photo1.image
-            photoDelegate?.returnPhotos(photos: tempDict)
+            tempDictChanged["photo1"] = true
+            photoDelegate?.returnPhotos(photos: tempDict, photosChanged: tempDictChanged)
         }
         else if(currentImageView == photo2)
         {
             tempDict["photo2"] = photo2.image
-            photoDelegate?.returnPhotos(photos: tempDict)
+            tempDictChanged["photo2"] = true
+            photoDelegate?.returnPhotos(photos: tempDict, photosChanged: tempDictChanged)
+
         }
         else if (currentImageView == photo3)
         {
             tempDict["photo3"] = photo3.image
-            photoDelegate?.returnPhotos(photos: tempDict)
+            tempDictChanged["photo3"] = true
+            photoDelegate?.returnPhotos(photos: tempDict, photosChanged: tempDictChanged)
         }
 
         self.dismiss(animated: true, completion: nil)

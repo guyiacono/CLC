@@ -37,6 +37,7 @@ struct User
     var url1: String?
     var url2: String?
     var url3: String?
+    var urlThumb: String?
     
     let questionair: [Int]
     
@@ -79,7 +80,7 @@ struct User
         url1 = snapshotValue["Photo1"] as! String
         url2 = snapshotValue["Photo2"] as! String
         url3 = snapshotValue["Photo3"] as! String
-        
+        urlThumb = snapshotValue["Thumb"] as! String
         lastLat = snapshotValue["lastLat"] as! Double
         lastLong = snapshotValue["lastLong"] as! Double
         
@@ -98,7 +99,7 @@ struct User
         ref = snapshot.ref
  
     }
-    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, url1: String, url2: String, url3: String, questionair: [Int], lat: Double, long: Double)
+    init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, url1: String, url2: String, url3: String, urlThumb: String, questionair: [Int], lat: Double, long: Double)
     {
         self.first = fname
         self.last = lname
@@ -120,7 +121,7 @@ struct User
         self.url1 = url1
         self.url2 = url2
         self.url3 = url3
-        
+        self.urlThumb = urlThumb
         self.lastLat = lat
         self.lastLong = long
         self.ref = nil
@@ -148,6 +149,7 @@ struct User
                 "Photo1": url1,
                 "Photo2": url2,
                 "Photo3": url3,
+                "Thumb" : urlThumb,
                 "lastLat" : lastLat,
                 "lastLong" : lastLong
                 

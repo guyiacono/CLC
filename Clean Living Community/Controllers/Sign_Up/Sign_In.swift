@@ -187,7 +187,8 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
     
     
     
-    
+    @IBAction func unwindFromLogout(segue:UIStoryboardSegue) { }
+
     
     
     

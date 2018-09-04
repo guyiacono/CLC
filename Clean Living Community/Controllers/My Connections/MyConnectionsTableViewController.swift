@@ -98,7 +98,6 @@ class MyConnectionsTableViewController: UITableViewController
         
         cell.datalabel.text = connectionsSorted![indexPath.row]["Name"]
         sortedConnectionUIDS.append((connectionsSorted![indexPath.row]["UID"])!)
-        print(sortedConnectionUIDS)
         return cell
        
  
@@ -108,7 +107,6 @@ class MyConnectionsTableViewController: UITableViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         var sentUser : User?
-        print(sortedConnectionUIDS)
         for uid in sortedConnectionUIDS
         {
             if(uid == sortedConnectionUIDS[indexPath.row])
