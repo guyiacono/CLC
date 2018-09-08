@@ -23,7 +23,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var connectionsTable: UITableView!
     
-    
+    // populate the table differently based on which segment is selected
     @IBOutlet weak var myConnectionsSegmentedControl: UISegmentedControl!
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl)
@@ -49,6 +49,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         imageView.contentMode = .scaleAspectFill
         connectionsTable.tableFooterView = UIView(frame: CGRect.zero)
         
+        // get all the user's connections
         userModel.getUnderConnections(withUID: currentUserID,completion: {(list)
             in
             
@@ -61,8 +62,10 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
             
             for pair in self.connectionsSorted!
             {
+                // depending on whether the request was accepted or not
                 if(pair["Request"] == "Accepted")
                 {
+                    // append to the respective array
                     self.acceptedConnectionsSorted.append(pair)
                 }
                 else
@@ -70,6 +73,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
                     self.unacceptedConnectionsSorted.append(pair)
                 }
             }
+            // reload the table
             self.connectionsTable.reloadData()
             
             
@@ -94,6 +98,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        // return different number of rows based on segment selected
         if(myConnectionsSegmentedControl.selectedSegmentIndex == 0 )
         {
             return (acceptedConnectionsSorted.count)
@@ -112,6 +117,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
         // Configure the cell...
         cell.backgroundColor = .clear
         
+        // if segment = 0 , display user's accepted connections
         if(myConnectionsSegmentedControl.selectedSegmentIndex == 0)
         {
             setImageFromURl(stringImageUrl: acceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
@@ -126,6 +132,7 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
         }
+        // if segment = 1, display user's pending connections
         else
         {
             setImageFromURl(stringImageUrl: unacceptedConnectionsSorted[indexPath.row]["MainPhoto"]!, forImage: cell.photo)
@@ -142,15 +149,18 @@ class MyConnectionsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        // send this user to the next screen
         var sentUser : User?
        
         if(myConnectionsSegmentedControl.selectedSegmentIndex == 0)
         {
+            // find the user at the indexpath in accepted connections
             let otherUserUID = acceptedConnectionsSorted[indexPath.row]["UID"]
             sentUser = userModel.findUser(uid: otherUserUID!)
         }
         else
         {
+            // find the user at the index path in pending connections
             let otherUserUID = unacceptedConnectionsSorted[indexPath.row]["UID"]
             sentUser = userModel.findUser(uid: otherUserUID!)
         }

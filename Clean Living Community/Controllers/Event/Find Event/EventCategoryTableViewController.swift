@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
+// this class does the same thing as HostEventCategoryTableViewController
 class EventCategoryTableViewController: UITableViewController {
 
     

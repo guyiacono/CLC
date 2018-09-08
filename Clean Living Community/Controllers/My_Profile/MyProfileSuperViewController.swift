@@ -12,6 +12,7 @@ import FirebaseAuth
 class MyProfileSuperViewController: UIViewController, firstDelegate, personalDelegate, photoDelegate, bioDelegate, preferenceDelegate
 {
 
+    // all the possible fields that can be changed
     var first : String?
     var last: String?
     var DOB : String?
@@ -41,20 +42,26 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
     var usermodel = UserModel.sharedInstance
     let currentID = Auth.auth().currentUser?.uid
     
+    // segementd control determines which screen is shown
     @IBOutlet weak var pages: UISegmentedControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    // save changes made to the profile on all screens
     @IBAction func save(_ sender: UIBarButtonItem)
     {
         self.view.endEditing(true)
+        // disable user interaction while saving
         self.view.isUserInteractionEnabled = false
         saveButton.isEnabled = false
         let myGroup = DispatchGroup()
+        // make sure all the fields have finish their initial loading
         if(checkIfAllInfoPresent())
         {
             myGroup.enter()
+            // update the profile info
             usermodel.updateProfileInfo(selfUID: currentID!, first: first!, last: last!, DOB: DOB!, hometown: hometown!, DOR: DOR!, edu: edu!, rel: rel!, religion: religion!, ori: ori!, spt: spt!, smoke: smoke!, support: sup!, photo1: photo1!, photo2: photo2!, photo3: photo3!, photo1Changed: photo1Changed!, photo2Changed: photo2Changed!, photo3Changed: photo3Changed!, bio: bio!, pref1: pref1!, pref2: pref2!) { (success) in
                 if(success)
                 {
+                    // create an alert saying so
                     self.createAlert(title: "Profile Update", message: "Profile information updated!")
                     self.photo1Changed = false
                     self.photo2Changed = false
@@ -69,6 +76,7 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
         }
         myGroup.notify(queue: DispatchQueue.main, execute:
             {
+            // allow user interaction when done
             self.saveButton.isEnabled = true
             self.view.isUserInteractionEnabled = true   
 
@@ -80,6 +88,7 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
     {
         self.view.endEditing(true)
         switch pages.selectedSegmentIndex
+        //change which view is visible based on value of selectedSegmentIndex
         {
         case 0:
             basicInfo.isHidden = false
@@ -119,6 +128,7 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
         }
     }
     
+    // possible views
     @IBOutlet weak var basicInfo: UIView!
     @IBOutlet weak var personalInfo: UIView!
     @IBOutlet weak var biography: UIView!
@@ -141,7 +151,7 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // delegate methods gets info from all the fields and the container views
     func returnFirst(basicInfo: [String : String])
     {
         first = basicInfo["first"]
@@ -181,10 +191,13 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
         self.pref1 = prefInfo["pref1"]
         self.pref2 = prefInfo["pref2"]
     }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let viewController = segue.destination as? MyProfileBasicInfoViewController, segue.identifier == "basicSegue"
         {
+            // when loading other views, set the delegates for those views
             viewController.firstDelegate = self
         }
             
@@ -206,6 +219,8 @@ class MyProfileSuperViewController: UIViewController, firstDelegate, personalDel
         }
  
     }
+    // check to make sure that there is info in all the fields that could be possibly changed
+    // prevents user from hitting save before everything has loaded and wiping their profile
     func checkIfAllInfoPresent() -> Bool
     {
         if(first != nil && last != nil && hometown != nil && DOB != nil && DOR != nil && edu != nil && rel != nil && religion != nil && spt != nil && smoke != nil && ori != nil && sup != nil && photo1 != nil && photo2 != nil && photo3 != nil && bio != nil && pref1 != nil && pref2 != nil)

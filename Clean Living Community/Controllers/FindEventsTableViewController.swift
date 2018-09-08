@@ -6,6 +6,8 @@
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
+// ignore this class, it isn't used
+
 import UIKit
 
 class FindEventsTableViewController: UITableViewController {

@@ -10,17 +10,13 @@ import UIKit
 
 class HostEventCategoryTableViewController: UITableViewController {
 
+    // possible categories for events
     let categories = ["Arts", "Exercise", "Food", "Hobbies", "Leisure", "Music", "Outdoors", "Travel" ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,14 +40,14 @@ class HostEventCategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCategoryTableViewCell
         
-        // Configure the cell...
-        
+        // popualte the cells with the possibel event categories
         cell.nameLabel.text = categories[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        // send the selected category to the next screen
         performSegue(withIdentifier: "toEventP1", sender: categories[indexPath.row])
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

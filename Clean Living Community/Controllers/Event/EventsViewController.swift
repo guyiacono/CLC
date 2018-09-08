@@ -20,11 +20,12 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var findEvent: UIButton!
     @IBOutlet weak var hostEvent: UIButton!
     
+    // if the user selects find, start the find flow
     @IBAction func findAction(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toFindCategory", sender: self)
     }
-    
+    // if the user selects host, start the host flow
     @IBAction func hostAction(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toHostCategory", sender: self)

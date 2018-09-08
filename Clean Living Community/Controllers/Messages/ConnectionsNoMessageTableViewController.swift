@@ -23,23 +23,27 @@ class ConnectionsNoMessageTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // get all the users connections
         userModel.getUnderConnections(withUID: signedInUser?.uid) { (list) in
             
             self.connections = list
             print("get under connections \(list)")
+            // get all the user's messages
             self.userModel.listAllMessages(withUID: self.signedInUser?.uid, completion: { (messageList) in
                 self.withMessage = messageList
                 self.connectionsWithoutMessage.removeAll()
                 print("messageList \(messageList)")
                 
+                // for each connection
                 for connection in self.connections
                 {
                     for message in self.withMessage
                     {
                         let uid = connection["UID"]
+                        // if there is no message witht that connection
                         if(self.withMessage[uid!] == nil && connection["Request"] == "Accepted")
                         {
-                            
+                            // append to the list
                             self.connectionsWithoutMessage.append(connection)
                         }
                     }
@@ -85,6 +89,8 @@ class ConnectionsNoMessageTableViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ConnectionWithNoMessageTableViewCell
 
+        // populate the cell fields with the other user's profile data
+        
         cell.profilePhoto.image = nil
         let connection = connectionsWithoutMessage[indexPath.row]
         cell.name.text = connection["Name"]
@@ -95,6 +101,7 @@ class ConnectionsNoMessageTableViewController: UITableViewController
 
         return cell
     }
+    // if the user was selected, move to the conversation with that user
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let newUserPair = connectionsWithoutMessage[indexPath.row]

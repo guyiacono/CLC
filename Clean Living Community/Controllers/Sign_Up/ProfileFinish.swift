@@ -6,6 +6,7 @@
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
+// Ignore this class, it isn't used
 import UIKit
 
 class ProfileFinish: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate

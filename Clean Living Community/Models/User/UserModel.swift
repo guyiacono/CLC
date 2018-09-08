@@ -13,7 +13,7 @@ import FirebaseStorage
 import CoreLocation
 
 
-
+// exention for UIimage class for easy resizing of photos uploaded by users
 extension UIImage {
     
     func resize(withWidth newWidth: CGFloat) -> UIImage?
@@ -31,12 +31,13 @@ extension UIImage {
 
 class UserModel
 {
+    // ensures only one usermodel can be instantiated
     static let sharedInstance = UserModel()
     var uid = ""
     var userInfo: User?
     var users = [User]()
     
-    
+    // don't use this method, not useful
     func getUserInfo (uid: String, completion: @escaping(_ user : User) -> Void)
     {
         let userPath = "Users/" + uid + "/Profile"
@@ -48,6 +49,10 @@ class UserModel
        
     }
     
+    // loops through the list of users in the database and finds and returns one based on UID. Ususally not
+    // a good idea to use because it relies on addition to the users array instead of simply being present
+    // Usermodel.listallusers must be called before this method, or else it will return nil
+    // returns user as user object
     func findUser(uid: String) -> User?
     {
         var founduser: User?
@@ -66,32 +71,45 @@ class UserModel
         return(nil)
     }
     
+    // returns user's profile info in a dictionary using key value pairs
+    // the key is the same name as the field title in the database
+    // EX: a user's first name would be <dictornary name>["First Name"]
+    // finds user directly by UID, not by looping through all users looking for a match
     func findUserProfileInfo(uid: String, completion: @escaping (_ user : [String : String]) -> Void)
     {
+        // prepare the path of the user info we want
         let path = "Users/" + uid + "/Profile"
         let ref = Database.database().reference(withPath: path)
         ref.observeSingleEvent(of: .value, with: {snapshot in
             
+            // create a dictionary to hold the user data
             var tempDict = [String : String]()
+            // for each field in the user profile
             for child in snapshot.children
             {
+                // create a key value pair
                 let data = child as? DataSnapshot
                 tempDict[(data?.key)!] = data?.value as? String
             }
+            // return the dictionary through completion so it can be used synchronously
             completion(tempDict)
             
         })
     }
     
+    // function to register a user for the first time when creating a profile
     func registerUser (withEmail email: String, withPassword password: String, withFirst fname: String, withLast lname: String, withDOB dob: String, withTown home: String, withEdu edu: String, withOrientation orient: String, withRecovery recovery: String, withRomance relation: String, withReligion rel: String, withSpiritual spirit: String, isSmoke smoke: String, attendSupport sup: String, withOpt1 p1: String, withOpt2 p2: String, withBio bio: String,  withImage1 image1: UIImage, withImage2 image2: UIImage, withImage3 image3: UIImage, withQuestionair questionair : [Int], withLat lat: Double, withLong long: Double, completion: @escaping(Bool)->Void)
     {
+        // create the user in firebase
         Auth.auth().createUser(withEmail: email, password: password) {myuser,error in
             if error == nil {
                let uid = myuser?.user.uid
+                // set the user profile info
                 self.addUserPofile(uid: uid!, withEmail: email, withFirst: fname, withLast: lname, withDOB: dob, withTown: home, withEdu: edu, withOrientation: orient, withRecovery: recovery, withRomance: relation, withReligion: rel, withSpiritual: spirit, isSmoke: smoke, attendSupport: sup, withOpt1: p1, withOpt2: p2, withBio: bio, withImage1: image1, withImage2: image2, withImage3: image3, withQuestionair: questionair, withLat: lat, withLong: long, completion: {(success)
                     in
                     if(success)
                     {
+                        // return true when done
                         completion(true)
                     }
                 })
@@ -100,6 +118,7 @@ class UserModel
         }
         
     }
+    // set the user profile information at the path Users/Profile/
     func addUserPofile(uid: String, withEmail email: String, withFirst fname: String, withLast lname: String, withDOB dob: String, withTown home: String, withEdu edu: String, withOrientation orient: String, withRecovery recovery: String, withRomance relation: String, withReligion rel: String, withSpiritual spirit: String, isSmoke smoke: String, attendSupport sup: String, withOpt1 p1: String, withOpt2 p2: String, withBio bio: String, withImage1 image1: UIImage, withImage2 image2: UIImage, withImage3 image3: UIImage, withQuestionair questionair : [Int], withLat lat: Double, withLong long: Double, completion: @escaping(Bool)->Void)
     {
         var photo1URL = ""
@@ -108,9 +127,9 @@ class UserModel
         var thumbnailURL = ""
         
         
+        // deal with images first
         
-        
-        
+        //put the image in storage section of Firebase
         let thumbRef = Storage.storage().reference().child("\(uid)/thumbnail.jpg")
         let thumbnail = image1.resize(withWidth: 100)
         var imageData = UIImageJPEGRepresentation(thumbnail!, 1.0)!
@@ -120,6 +139,7 @@ class UserModel
                 print(error!)
                 return
             }
+            // get the url of the image for reference
             Storage.storage().reference().child("\(uid)/thumbnail.jpg").downloadURL{url, error in
                 if let error = error
                 {
@@ -129,6 +149,7 @@ class UserModel
                 {
                     guard let url = url?.absoluteString else {return}
                     thumbnailURL = url
+                    // when done, move to the next photo
                     
                     // Photo 1
                     
@@ -191,17 +212,23 @@ class UserModel
                                                         
                                                         photo3URL = (url?.absoluteString)!
                                                         
+                                                        
                                                         let usersRef = Database.database().reference(withPath: "Users")
+                                                        // create the a user object
                                                         let newUser = User(fname: fname, lname: lname, dob: dob, home: home, edu: edu, orient: orient, recovery: recovery, relation: relation, rel: rel, spirit: spirit, smoke: smoke, sup: sup, p1: p1, p2: p2, key: uid, bio: bio, url1: photo1URL, url2: photo2URL, url3: photo3URL, urlThumb: thumbnailURL, questionair : questionair, lat: lat , long: long)
                                                         
+                                                        // set the path of the info
                                                         var uRef = usersRef.child(uid).child("Profile")
+                                                        // write the info
                                                         uRef.setValue(newUser.toAnyObject())
                                                         
-                                                        
+                                                        // set the path for the questionair answers
                                                         uRef = usersRef.child(uid).child("Questionair")
+                                                        // write the answers
                                                         uRef.setValue(newUser.toQuestionairResults())
                                                         
                                                         print("user registered")
+                                                        //return true when done
                                                         completion(true)
                                                         
                                                     }
@@ -243,7 +270,8 @@ class UserModel
     }
         
         
-        
+    // populates the users array with user objects.
+    // Does not update automatically, must be called to update array
     func listAllUsers(completion: @escaping(Bool)->Void)
     {
         users.removeAll()
@@ -261,6 +289,9 @@ class UserModel
         )
     }
     
+    // returns the list of users without the user specified
+    // uses the user array
+    // requires listAllUsers to be called first
     func listAllUsersExcept(withUID UID: String!) -> [User]
     {
         print(users)
@@ -274,6 +305,9 @@ class UserModel
         }
         return(list)
     }
+    
+    // returns an array of dictionaries containing all the data about a users connections
+    // for each connection, there is a dictionary that contains their name, photo url, request status, and UID
     
     func getUnderConnections(withUID UID : String!,completion: @escaping(_ list: [[String : String]]) -> Void)
     {
@@ -304,7 +338,7 @@ class UserModel
         )
     }
     
-    
+    // does the same as above function, but doesn't update automatically. Takes a snapshot of the Databse instead
     func getUnderConnectionsSnapshot(withUID UID : String!,completion: @escaping(_ list: [[String : String]]) -> Void)
     {
         
@@ -336,7 +370,7 @@ class UserModel
     
     
     
-    
+    // writes friend request data to the user recieving the request
     func sendFriendRequest(withFriendUID: String!, withMyUID: String!, withMyPhotoURL : String!, withMyName: String!, withRequestStatus: String, completion: @escaping(Bool)->Void )
     {
         let path = "Users/" + withFriendUID + "/Connections/" + withMyUID
@@ -348,6 +382,8 @@ class UserModel
         completion(true)
        
     }
+    // returns an dictionary of all the message locations available to specified user
+    // key is the other person's id, value is the message's id
     func listAllMessages(withUID UID : String!,completion: @escaping(_ list: [String: String]) -> Void)
     {
         
@@ -372,6 +408,8 @@ class UserModel
         )
     }
     
+    // writes to user's events node that they are going to a certain event
+    // key is the event ID, value is the event's datetime
     func updateEvents(userUID: String, eventID: String, eventDateTimeString: String,completion:  @escaping(Bool) -> Void)
     {
         let path = "Users/" + userUID + "/Events"
@@ -379,6 +417,9 @@ class UserModel
         ref.updateChildValues([eventID : eventDateTimeString])
         completion(true)
     }
+    // gets a dictionary of all the events pertianing to a user
+    // key is the event ID and value is the event's datetime
+    // is a snapshot, won't update in real time
     func getEventList(userUID: String, completion : @escaping (_ list : [String : String]) -> Void)
     {
         var events = [String: String]()
@@ -398,6 +439,7 @@ class UserModel
         })
     }
     
+    // does same as above function, but will update return value if database changes
     func getEventListObserve(userUID: String, completion: @escaping(_ list : [String : String]) -> Void)
     {
         var events = [String: String]()
@@ -416,6 +458,8 @@ class UserModel
             completion(events)
         })
     }
+    // determines whether or not a users is RSVP'd to an event by attempting to find the event's datetime in
+    // the users list of events
     func checkIfRSVP(userUID: String, eventUID: String, completion: @escaping (_ dateTime: String) -> Void)
     {
         print("checking RSVP Status")
@@ -431,6 +475,8 @@ class UserModel
             completion(dateTime!)
         }
     }
+    // updates a user's location value data
+    // does not update on its own
     func updateLocation(uid: String, latitude: Double, longitude: Double)
     {
         let path = "Users/" + uid + "/Profile"
@@ -441,6 +487,7 @@ class UserModel
         ref.updateChildValues(["lastLong" : longitude])
     }
     
+    // checks if two users are connected by looking for the other user's UID in the current user's list of connections
     func checkIfConnection(meUID: String, friendUID: String, completion: @escaping (_ check: Bool) -> Void)
     {
         var check = true
@@ -461,6 +508,8 @@ class UserModel
         })
     }
     
+    // calculates the distance between two users, in miles, based off their location data in the database
+    // rounded to one decimal place
     func distanceBetweenUsers(meUID: String, otherUID: String, completion: @escaping (_ distance: Double)->Void)
     {
         var meLat = 0.0
@@ -519,6 +568,7 @@ class UserModel
         })
     }
     
+    // sets the values of the user's questionair results in the correct location
     func writeQuestionair(UID: String, val: Int)
     {
         var path = "Users/" + UID + "/Questionair"
@@ -533,6 +583,9 @@ class UserModel
         }
         
     }
+    // returns an array of the user's questionair results
+    // the index-1 is the question number
+    // EX: the value at index 45 is the answer to question #46
     func getQuestionairAnswers(UID: String, completion: @escaping (_ answers: [Int])->Void)
     {
         var questionArray = [Int]()
@@ -548,6 +601,8 @@ class UserModel
         })
     }
     
+    // directly gets a user based on data path and returns that user as a user object
+    // use this method when you need to get user data
     func returnUserObject(UID: String, completion: @escaping(User)->Void)
     {
         users.removeAll()
@@ -561,6 +616,8 @@ class UserModel
         )
     }
     
+    // removes the user from an event by removing their UID from the appropriate section of the event and removing
+    // the event UID from their event list
     func unRSVPFromEvent(userUID : String, eventUID : String, eventDateTime : String, completion: @escaping (Bool) -> Void)
     {
         var path = "Events/" + eventDateTime + "/" + eventUID + "/Attending/" + userUID
@@ -571,7 +628,9 @@ class UserModel
         
         completion(true)
     }
- 
+    
+    // removes the data from onther user's connection data
+    // then removes other user's data from current user's connection data
     func disconnectFromUser(myUID : String, theirUID: String, completion: @escaping (Bool) -> Void)
     {
         var path = "Users/" + myUID + "/Connections/" + theirUID
@@ -583,6 +642,7 @@ class UserModel
         completion(true)
 
     }
+    // populates the users array and listens for changes
     func listAllUsersObserve(completion: @escaping(Bool)->Void)
     {
         users.removeAll()
@@ -599,7 +659,8 @@ class UserModel
         }
         )
     }
-    
+    // method for updating user's profile info, almost the same code as creating it
+    // only major difference is that each of the photo updates run in different threads to make the code neater
     func updateProfileInfo(selfUID: String, first: String, last: String, DOB: String, hometown: String, DOR: String, edu: String, rel: String, religion: String, ori: String, spt: String, smoke: String, support: String, photo1: UIImage, photo2: UIImage, photo3: UIImage, photo1Changed: Bool, photo2Changed: Bool, photo3Changed: Bool, bio: String, pref1: String, pref2: String, completion: @escaping(Bool) -> Void)
     {
         let myGroup = DispatchGroup()
@@ -649,6 +710,7 @@ class UserModel
                         path = "Users/" + selfUID + "/Connections"
                         ref = Database.database().reference(withPath : path)
                         ref.observeSingleEvent(of: .value, with: {snapshot in
+                            // photo also has to be updated in other user's locations
                             for child in snapshot.children
                             {
                                 let snap = child as? DataSnapshot
@@ -662,7 +724,7 @@ class UserModel
                                 ref.updateChildValues(["MainPhoto" : photo1URL])
                             }
                         })
-                        
+                        // if main photo is updated, need a new thumbnail as well
                         let thumbRef = Storage.storage().reference().child("\(selfUID)/thumbnail-\(stamp).jpg")
                         let thumbnail = photo1.resize(withWidth: 100)
                         var imageData = UIImageJPEGRepresentation(thumbnail!, 1.0)!
@@ -769,7 +831,7 @@ class UserModel
                 }
             })
         }
-
+        
         myGroup.notify(queue: DispatchQueue.main, execute:
             {
                 path = "Users/" + selfUID + "/Profile"

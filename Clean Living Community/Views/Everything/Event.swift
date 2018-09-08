@@ -11,8 +11,10 @@ import FirebaseDatabase
 import FirebaseCore
 import FirebaseAuth
 
+// same format as user class, see comments there
 struct Event
 {
+    
     let key: String?
     
     let date: String?

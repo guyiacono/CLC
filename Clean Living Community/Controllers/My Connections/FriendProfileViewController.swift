@@ -30,6 +30,7 @@ class FriendProfileViewController: UIViewController {
     @IBOutlet weak var disconnect: UIButton!
     @IBAction func disconnectAction(_ sender: UIButton)
     {
+        // if comming from status as a stranger, possible accept a friend request
         if(segmentedStatus == 1)
         {
             let me = userModel.findUser(uid: signedInID!)
@@ -45,6 +46,7 @@ class FriendProfileViewController: UIViewController {
                 }
             }
         }
+            // if coming from status as a friend, possible disconnect
         else
         {
             userModel.disconnectFromUser(myUID: signedInID!, theirUID: (thisUser?.key)!) { (success) in
@@ -83,17 +85,22 @@ class FriendProfileViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // populate fields with other user's profile data
+        
         name.text = (thisUser?.first)! + " " +  (thisUser?.last)!
         bio.text = thisUser?.bio
         print((thisUser?.DOB)!)
         age.text = "Age: " + calculateAge(withDOB: (thisUser?.DOB)!)
         setImageFromURl(stringImageUrl: (thisUser?.url1)!, forImage: profileImage)
+        // change button text based on whether or not current use is a friend
         if(segmentedStatus == 1)
         {
+            // if not friends, we could connect
             disconnect.setTitle("Connect", for: UIControlState.normal)
         }
         else
         {
+            // if firends, we could stop being friends
             disconnect.setTitle("Disconnect", for: UIControlState.normal)
         }
         
@@ -115,16 +122,19 @@ class FriendProfileViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        // send other user as user object to another controller
         if(segue.identifier == "toFriendProfileDetail")
         {
             let destinationVC = segue.destination as! StrangerProfileInfoViewController
             destinationVC.viewedUser = sender as? User
         }
+        // send other user as user object to message controller
         if(segue.identifier == "toMessageFromProfile")
         {
             var destinationVC = segue.destination as! ConversationViewController
             destinationVC.otherUser = thisUser
             
+            // see if a message between them can be found too
             userModel.listAllMessages(withUID: signedInID, completion: {(list)
                 in
                 if(list[(self.thisUser?.key)!] != nil)
@@ -132,6 +142,7 @@ class FriendProfileViewController: UIViewController {
                   
                     destinationVC.thisMessageUID = list[(self.thisUser?.key)!]
                 }
+                // if not, get ready to create one for the first time
                 else
                 {
                     destinationVC.thisMessageUID = nil
@@ -139,6 +150,7 @@ class FriendProfileViewController: UIViewController {
                 }
             })
         }
+        // segue to a table view controller of this user's events
         if(segue.identifier == "toHistory")
         {
             var destinationVC = segue.destination as! EventHistoryTableViewController
@@ -146,6 +158,7 @@ class FriendProfileViewController: UIViewController {
         }
         
     }
+    
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
     {
         
@@ -155,6 +168,7 @@ class FriendProfileViewController: UIViewController {
             }
         }
     }
+    // calculate the age of the other user based on their birthday (which is invisible to the current user
     func calculateAge(withDOB DOB: String) -> String
     {
         let formatter = DateFormatter()
@@ -167,6 +181,7 @@ class FriendProfileViewController: UIViewController {
         return (String(components.year!))
     }
 
+    // generic alert with a custom title, body, and an ok button that dismisses the alert
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)

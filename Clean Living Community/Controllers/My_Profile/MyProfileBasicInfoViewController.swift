@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-
+// protocol to return info about this view to super view controller
 protocol firstDelegate
 {
     func returnFirst(basicInfo: [String : String])
@@ -34,7 +34,7 @@ class MyProfileBasicInfoViewController: UIViewController
     var firstDelegate: firstDelegate?
     var tempDict = [String:String]()
 
-    
+    // define pickers
     var birthDatePicker : UIDatePicker?
     var recoveryDatePicker: UIDatePicker?
     
@@ -52,6 +52,7 @@ class MyProfileBasicInfoViewController: UIViewController
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
         
+        // fill text fields with user data
         userModel.returnUserObject(UID: currentUserID!, completion: { (user) in
             self.displayedUser = user
             self.firstName.text = self.displayedUser.first
@@ -59,6 +60,7 @@ class MyProfileBasicInfoViewController: UIViewController
             self.dateOfBirth.text = self.displayedUser.DOB
             self.hometown.text = self.displayedUser.hometown
             self.recoveryDate.text = self.displayedUser.recoveryDate
+            // send this data back to super view
             if (self.firstDelegate != nil)
             {
                 self.tempDict["first"] = self.firstName.text
@@ -70,6 +72,7 @@ class MyProfileBasicInfoViewController: UIViewController
             }
         })
         
+        // set the minimum and maximum dates for birthday and recovery date
         let todayMinus18 = Calendar.current.date(byAdding: .year, value: -18, to: Date())
         let minFormatter = DateFormatter()
         minFormatter.dateFormat = "MM/dd/YYYY"
@@ -91,6 +94,7 @@ class MyProfileBasicInfoViewController: UIViewController
         recoveryDatePicker?.datePickerMode = .date
         recoveryDate.inputView = recoveryDatePicker
         
+        // add tap gesture to allow dismissal of input view by tapping outside
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileFinish1.viewTapped(gesture:)))
         
         view.addGestureRecognizer(tapGesture)
@@ -131,6 +135,7 @@ class MyProfileBasicInfoViewController: UIViewController
         view.endEditing(true)
     }
     
+    // update super view controller with any new information changed 
     @IBAction func firstDidEnd(_ sender: UITextField)
     {
         self.tempDict["first"] = self.firstName.text

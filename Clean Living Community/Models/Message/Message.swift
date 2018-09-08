@@ -13,8 +13,15 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseStorage
 
+// same format as user class, see comments there
 struct Message
 {
+    /*
+     sender is the user that initiated the message
+     reciever is the user that didnt' initiate
+     lastDate is the datetime the last message in the conversation was sent at
+     lastText is the text of the last message that was sent in the conversation
+ */
     let key : String
     let sender : String?
     let receiver: String?

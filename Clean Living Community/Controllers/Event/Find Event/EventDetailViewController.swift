@@ -37,17 +37,21 @@ class EventDetailViewController: UIViewController
     {
         performSegue(withIdentifier: "toPhotos", sender: self)
     }
+    // if user attempts to rsvp
     @IBAction func rsvpAction(_ sender: UIButton)
     {
         print("RSVP Button pressed")
+        // check if they're already rsvp'd
         userModel.checkIfRSVP(userUID: signedInID!, eventUID: eventID!) { (dateTime) in
             if(dateTime == "")
             {
                 print("found datetime = nil")
+                // if not, rsvp them
                 self.userModel.findUserProfileInfo(uid: self.signedInID!) { (user) in
                     
                     let name = user["First Name"]! + " " + user["Last Name"]!
                     self.eventModel.rsvp(personUID: self.signedInID!, personName: name, eventUID: self.eventID!, dateTime: self.dateTimeString!, completion: { (success) in
+                        // create an alert informing about the rsvp status
                         if(success)
                         {
                             self.createAlert(title: "RSVP Status", message: "RSVP Success!")
@@ -75,6 +79,7 @@ class EventDetailViewController: UIViewController
         performSegue(withIdentifier: "toGoing", sender: self)
     }
     
+    // send required data to other screens
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toPhotos")
@@ -93,8 +98,9 @@ class EventDetailViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // get the event data
         eventModel.getEventDict(uid: eventID!, dateTime: dateTimeString!) { (dict) in
-            
+            // populate all the fields
             self.thisEvent = dict
             self.eventName.text = self.thisEvent["Event Name"]!
             self.date.text = "Date: " + self.thisEvent["Date"]!
@@ -117,7 +123,7 @@ class EventDetailViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // generic alert method with a custom title, message, and an ok button that dismisses the alert
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)

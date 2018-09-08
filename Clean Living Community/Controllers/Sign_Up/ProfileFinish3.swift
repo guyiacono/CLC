@@ -30,7 +30,7 @@ class ProfileFinish3: UIViewController
     
     var bio: String?
     
-
+    // a space for a user to write a biography
     @IBOutlet weak var bioSpace: UITextView!
     
  
@@ -52,6 +52,7 @@ class ProfileFinish3: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
+    // send all the info we have to the next screen
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func nextButtonAction(_ sender: UIButton)
     {

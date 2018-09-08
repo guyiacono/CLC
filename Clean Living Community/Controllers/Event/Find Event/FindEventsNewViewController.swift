@@ -25,16 +25,20 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapButton.isEnabled = false
         eventTable.dataSource = self
         eventTable.delegate = self
+        // get all the events in the database that haven't happened yet
         eventModel.returnAllEvents { (list) in
             if (list.count > 0)
             {
                 self.listOfEventsNoCategory = list
+                // check to see they have the same category
                 for event in self.listOfEventsNoCategory
                 {
                     if(event["Category"] == self.category!)
                     {
+                        // append them to the list
                         self.listOfEvents.append(event)
                     }
                 }
@@ -42,6 +46,7 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
                     if(success)
                     {
                         self.eventTable.reloadData()
+                        self.mapButton.isEnabled = true
                     }
                 })
                 
@@ -55,6 +60,18 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBOutlet weak var mapButton: UIButton!
+    @IBAction func mapAction(_ sender: UIButton)
+    {
+        // send to events to the map view
+        performSegue(withIdentifier: "toMap", sender: eventsSorted)
+    }
+    
+    
+    
+    
+    
     @IBOutlet weak var eventTable: UITableView!
     
     
@@ -69,6 +86,7 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        // for eeach event, populate cell data with that event
          let cell = eventTable.dequeueReusableCell(withIdentifier: "foundEventCell", for: indexPath) as! FindEventsTableViewCell
         let thisEvent = eventsSorted[indexPath.row]
         
@@ -86,7 +104,8 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
         let eventNum = indexPath.row
         performSegue(withIdentifier: "toEventDetail", sender: eventNum)
     }
-
+    
+// send event date to other screens that need it when segues triggered
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toEventDetail")
@@ -96,27 +115,41 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
             destinationVC.eventID = event["key"] as? String
             destinationVC.dateTimeString = event["DateTimeString"] as? String
         }
+        if(segue.identifier == "toMap")
+        {
+            let destinationVC = segue.destination as! EventMapViewController
+            let eventList = eventsSorted
+            destinationVC.listOfEvents = eventList
+            
+        }
     }
-  
+    
+    // sort the events by date for events under 25 miles away
+    // then sort events by distance for over 25 miles
     func sortEvents(completion : @escaping (Bool) -> Void)
     {
         let myGroup1 = DispatchGroup()
         let myGroup2 = DispatchGroup()
         var eventsUnder25 = [[String : String]]()
         var eventsOver25 = [[String : String]]()
+        // for each event
         for event in listOfEvents
         {
             myGroup1.enter()
+            // get the distance to the event
             eventModel.getDistanceToEvent(eventUID: event["key"]!, eventDateTimeString: event["DateTimeString"]!, userUID: currentID!) { (distance) in
                 
                 print(event["key"]! + " : " + String(distance))
                 
+                // if greater than 25
                 if(distance < 25)
                 {
+                    //append to resepctive array
                     eventsUnder25.append(event)
                 }
                 else
                 {
+                    // append to respective array
                     eventsOver25.append(event)
                 }
                 myGroup1.leave()
@@ -124,10 +157,13 @@ class FindEventsNewViewController: UIViewController,UITableViewDelegate,UITableV
         }
         myGroup1.notify(queue: DispatchQueue.main, execute:
             {
+                // for each event under 25 miles away
                 for event in eventsUnder25
                 {
+                    // put them first
                     self.eventsSorted.append(event)
                 }
+                // then stick the rest at the end
                 for events in eventsOver25
                 {
                     self.eventsSorted.append(events)

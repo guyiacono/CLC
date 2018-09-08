@@ -40,7 +40,8 @@ class ConnectionsTableViewController: UITableViewController{
         imageView.contentMode = .scaleAspectFill
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        
+        // possible connections are sorted by compatibiliy for those under 25 miles away, then by distance for thos over 25 miles away. Method titles say it all...
+        // The table uses list 10 to display
         usermodel.listAllUsers { (succ) in
             if(succ)
             {
@@ -87,40 +88,6 @@ class ConnectionsTableViewController: UITableViewController{
             
         }
         
-        
-        
-        
-        
-        /*
-        
-        usermodel.getUnderConnectionsSnapshot(withUID: currentUserID, completion: {(connectionList)
-            in
-            if (connectionList.count > 0)
-            {
-                print("connection list greater than zero")
-                self.currentConnections = connectionList
-                for person in self.currentConnections!
-                {
-                    for (index,user) in self.list.enumerated()
-                    {
-                        if(user.key == person["UID"]!)
-                        {
-                            self.list.remove(at: index)
-                        }
-                    }
-                }
-            }
-            self.tableView.reloadData()
-            
-            
-        })
-        */
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func didReceiveMemoryWarning() {
@@ -140,16 +107,6 @@ class ConnectionsTableViewController: UITableViewController{
         
         return list10.count
         
-        /*
-        for (index,person) in list.enumerated()
-        {
-            if(person.key == currentUserID)
-            {
-                list.remove(at: index)
-            }
-        }
-        return list.count
-         */
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -167,6 +124,8 @@ class ConnectionsTableViewController: UITableViewController{
         
         // Configure the cell...
         cell.backgroundColor = .clear
+        
+        // fill cell with user's personal info
         
         let personDict = list10[indexPath.row]
         
@@ -220,6 +179,7 @@ class ConnectionsTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        // get the selected user's uid
         selectedIndex = indexPath.row
         let arrayOfData = list10[selectedIndex]
         var sentUID = ""
@@ -231,8 +191,10 @@ class ConnectionsTableViewController: UITableViewController{
                 sentUID = pair.value
             }
         }
+        // find the user's user object
         usermodel.returnUserObject(UID: sentUID) { (user) in
             let sentUser = user
+            // send the object
             self.performSegue(withIdentifier: "profileInfoSegue", sender: sentUser)
         }
     }
@@ -256,68 +218,7 @@ class ConnectionsTableViewController: UITableViewController{
         }
     }
     
-    /*
-    
-    func getAllunder25Miles(completion: @escaping (Bool) -> Void)
-    {
-        list = usermodel.users
-        var amountRemoved = 0
-        
-        for(index, user ) in list.enumerated()
-        {
-            myGroup.enter()
-            if(user.key != currentUserID)
-            {
-                usermodel.checkIfConnection(meUID: currentUserID!, friendUID: user.key) { (check) in
-                    if(check == true)
-                    {
-                        self.list.remove(at: index)
-                        amountRemoved = amountRemoved+1
-                        self.myGroup.leave()
-                    }
-                    else
-                    {
-                        //self.myGroup2.enter()
-                        self.usermodel.distanceBetweenUsers(meUID: self.currentUserID!, otherUID: user.key, completion: { (distance) in
-                            if(distance <= 25)
-                            {
-                                print(user.key + " \(distance)")
-                                self.list2.append(user)
-                                self.list.remove(at: (index - amountRemoved))
-                                amountRemoved = amountRemoved+1
-                                self.myGroup.leave()
-                            }
-                            else
-                            {
-                                print(distance)
-                            }
-                            //self.myGroup.leave()
-                         
-                        })
-                       //self.myGroup.leave()
-                    }
-                    /*
-                    self.myGroup2.notify(queue: DispatchQueue.main, execute:{
-                        print("group 2 complete")
-                        self.myGroup.leave()
-                        
-                    }) */
-                }
-            }
-            else
-            {
-                //self.myGroup.leave()
-            }
-        }
-        myGroup.notify(queue: DispatchQueue.main, execute: {
-            print("Finished all requests.")
-            completion(true)
-
-        })
-    }
- 
- */
-    
+    //  get all the uses who it is possible to be connected with
     func getPossibleConnections(completion: @escaping (Bool) -> Void)
     {
         list = usermodel.users
@@ -325,21 +226,25 @@ class ConnectionsTableViewController: UITableViewController{
         var arrayOfRemovedIndex = [Int]()
         let myGroup = DispatchGroup()
         
+        // for each user
         for(index, user) in list.enumerated()
         {
             print(user.key)
             print(currentUserID)
-           
+           // if that user is not themself
             if(user.key != currentUserID!)
             {
                 myGroup.enter()
+                // and if they aren't already a connection
                 usermodel.checkIfConnection(meUID: currentUserID!, friendUID: user.key) { (success) in
                     if(!success)
                     {
+                        // and if they allowed other users to search for them
                         if(self.filterIndex == 1)
                         {
                             if(user.pref1 == "Yes")
                             {
+                                // move to the next step
                                 self.list2.append(user)
                             }
                             else
@@ -385,12 +290,15 @@ class ConnectionsTableViewController: UITableViewController{
         let myGroup = DispatchGroup()
         var amountRemoved = 0
         var arrayOfRemovedIndex = [Int]()
+        // for each possible connection
         for (index, user) in list2.enumerated()
         {
             myGroup.enter()
+            // if they are less than 25 miles away
             usermodel.distanceBetweenUsers(meUID: currentUserID!, otherUID: user.key) { (distance) in
                 if(distance <= 25)
                 {
+                    // move them to the next step
                     self.list3.append((user as? User)!)
                     amountRemoved = amountRemoved+1
                     arrayOfRemovedIndex.append(index)
@@ -413,13 +321,16 @@ class ConnectionsTableViewController: UITableViewController{
     func sortUnder25MileByCompatability(completion: @escaping (Bool) -> Void)
     {
         let myGroup = DispatchGroup()
+        // get my questionair anaswers
         usermodel.getQuestionairAnswers(UID: currentUserID!) { (meAnswers) in
             
             let compatibility = [String : Double]()
             var mySet = [Int]()
             var cumulativeVal = 0
+            //for each question I answered
             for (index, value) in meAnswers.enumerated()
             {
+                // add up a cumulative value every 10 questions
                 cumulativeVal = cumulativeVal + (value - 2)
                 if((index+1) % 10 == 0)
                 {
@@ -427,16 +338,19 @@ class ConnectionsTableViewController: UITableViewController{
                     cumulativeVal = 0
                 }
             }
-            
+            // for each user that is a possible connection and is less than 25 miles away
             for user in self.list3
             {
                 myGroup.enter()
+                // get their questionair answers
                 self.usermodel.getQuestionairAnswers(UID: user.key) { (questions) in
                     
                     var themSet = [Int]()
                     cumulativeVal = 0
+                    // for each of their questions
                     for (index, value) in questions.enumerated()
                     {
+                        // add up a cumulative value every 10 questions
                         cumulativeVal = cumulativeVal + (value - 2)
                         if((index+1) % 10 == 0)
                         {
@@ -445,12 +359,14 @@ class ConnectionsTableViewController: UITableViewController{
                         }
                     }
                     var cumulativeCompat = 0.0
+                    // compare the two datasets and come up with a number as compaibility
                     for (index,value) in mySet.enumerated()
                     {
                         cumulativeCompat = cumulativeCompat + abs(((Double(themSet[index]) - Double(value))/40.0))
                     }
                     cumulativeCompat = cumulativeCompat * 10
                     cumulativeCompat = round(cumulativeCompat * 10) / 10
+                    // append other persons key and that compatibility as a key value pair
                     self.list4[user.key] = cumulativeCompat
                     myGroup.leave()
                 }
@@ -469,10 +385,11 @@ class ConnectionsTableViewController: UITableViewController{
     {
         let myGroup = DispatchGroup()
         
-        
+        // for every user that was over 25 miles away
         for (index, user) in list2.enumerated()
         {
             myGroup.enter()
+            // get their distance away
             usermodel.distanceBetweenUsers(meUID: currentUserID!, otherUID: user.key) { (distance) in
                 
                 self.list6[user.key] = distance
@@ -481,6 +398,7 @@ class ConnectionsTableViewController: UITableViewController{
         }
         myGroup.notify(queue: DispatchQueue.main, execute:
             {
+                // and sort by it
                 self.list7 = self.list6.sorted(by: {$0.value < $1.value})
                 completion(true)
         })
@@ -488,11 +406,13 @@ class ConnectionsTableViewController: UITableViewController{
     func getCompatibilityOver25Miles(completion: @escaping (Bool) -> Void)
     {
         let myGroup = DispatchGroup()
+        // get my questionair answers
         usermodel.getQuestionairAnswers(UID: currentUserID!) { (meAnswers) in
             
             let compatibility = [String : Double]()
             var mySet = [Int]()
             var cumulativeVal = 0
+            // come up with a cumulative value every 10 questions
             for (index, value) in meAnswers.enumerated()
             {
                 cumulativeVal = cumulativeVal + (value - 2)
@@ -502,16 +422,19 @@ class ConnectionsTableViewController: UITableViewController{
                     cumulativeVal = 0
                 }
             }
-            
+            // for each user that was over 25 miles away
             for user in self.list7
             {
                 myGroup.enter()
+                // get their questionair answers
                 self.usermodel.getQuestionairAnswers(UID: user.key) { (questions) in
                     
                     var themSet = [Int]()
                     cumulativeVal = 0
+                    // for each of their answers
                     for (index, value) in questions.enumerated()
                     {
+                        //come up with a cumulative value every 10 questions
                         cumulativeVal = cumulativeVal + (value - 2)
                         if((index+1) % 10 == 0)
                         {
@@ -520,12 +443,16 @@ class ConnectionsTableViewController: UITableViewController{
                         }
                     }
                     var cumulativeCompat = 0.0
+                    // compare the two datasets
                     for (index,value) in mySet.enumerated()
                     {
                         cumulativeCompat = cumulativeCompat + abs(((Double(themSet[index]) - Double(value))/40.0))
                     }
+                    // come up with a number as compatibility
                     cumulativeCompat = cumulativeCompat * 10
                     cumulativeCompat = round(cumulativeCompat * 10) / 10
+                    // append that user's key and the compatibility as s key value pair
+                    // but don't sort by the compatibility
                     self.list8.append((key: user.key, value: cumulativeCompat))
                     myGroup.leave()
                 }
@@ -536,6 +463,7 @@ class ConnectionsTableViewController: UITableViewController{
             })
         }
     }
+    //merge the two lists
     func mergeUnderAndOver25Miles()
     {
         for pair in list5
@@ -549,6 +477,7 @@ class ConnectionsTableViewController: UITableViewController{
     }
     func getAllInfoInOneStructure(completion: @escaping (Bool) -> Void)
     {
+        // for each user in the merged list
         for user in list9
         {
             let myGroup = DispatchGroup()
@@ -559,6 +488,7 @@ class ConnectionsTableViewController: UITableViewController{
             var url = ""
             var uid = ""
             myGroup.enter()
+            // get the distance between me and them
             usermodel.distanceBetweenUsers(meUID: currentUserID!, otherUID: user.key) { (distance) in
                 distanceBetween = String(distance)
                 uid = user.key
@@ -567,11 +497,13 @@ class ConnectionsTableViewController: UITableViewController{
             myGroup.notify(queue: DispatchQueue.main, execute:
             {
                     mySecondGroup.enter()
+                    // get thier profile info
                     self.usermodel.findUserProfileInfo(uid: user.key, completion: { (info) in
                         name = info["First Name"]! + " " + info["Last Name"]!
                         url = info["Thumb"]!
                         mySecondGroup.leave()
                 })
+                // record it in an array of key valu pairs
                 mySecondGroup.notify(queue: DispatchQueue.main, execute:
                     {
                         var temp = [(key : String, value : String)]()

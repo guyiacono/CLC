@@ -24,6 +24,7 @@ class MessagesViewController: UITableViewController
     var otherUser : User?
    
     @IBOutlet weak var new: UIButton!
+    // start a new converstaion
     @IBAction func newPressed(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toConnectionsWithoutMessage", sender: Any?.self)
@@ -32,14 +33,17 @@ class MessagesViewController: UITableViewController
     
     override func viewDidLoad()
     {
+        
         userModel.listAllUsersObserve { (success) in
             if(success)
             {
+                // get all the messages with the current user
                 self.userModel.listAllMessages(withUID: self.currentUserID, completion: {(list)
                     in
                     if (list.count >= 0)
                     {
                         self.message = list
+                        // sort the messages
                         self.messagesSorted = (self.message?.sorted(by: {$0.value < $1.value}))!
                         self.messageModel.listAllMessages(completion: {(success)
                             in
@@ -83,33 +87,37 @@ class MessagesViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listofmessages", for: indexPath) as! ListofMessagesTableViewCell
         
-        print(messagesSorted![indexPath.row].key)
+        // find the user associated with this message
         var tempUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
-        print("tempUser:")
+        
         print(tempUser)
-        setImageFromURl(stringImageUrl: (tempUser?.url1)!, forImage: cell.photo)
+        // set the cell photo to their thumbnail
+        setImageFromURl(stringImageUrl: (tempUser?.urlThumb)!, forImage: cell.photo)
         cell.name.text = (tempUser?.first)! + " " + (tempUser?.last)!
        
-        
-        cell.preview.text = "sampleText"
+        // set the text preview to the conversation's last message
         cell.preview.text = messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastText
         
-        
+        // get the date format for the timestamp
         let formatter = DateFormatter()
         formatter.dateFormat = "MMddyyyyHHmmss"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         
+        // find the date the last message in the conversation was set at
         let dateString = ((messageModel.findMessage(uid:messagesSorted![indexPath.row].value)?.lastDate)!)
         
+        // convert the date to the format
         let dateObject = formatter.date(from: dateString)
        
         formatter.dateFormat = "MM/dd/yyyy"
         formatter.timeZone = TimeZone.current
-
+        
+        // set the date text
         let stringDate: String = formatter.string(from: dateObject!)
         cell.date.font = cell.date.font.withSize(10)
         cell.date.text = "\(stringDate)"
         
+        // append the message UID to an array of UIDs for later use
         sortedMessageUIDS.append(messagesSorted![indexPath.row].value)
         
         // Configure the cell...
@@ -127,14 +135,17 @@ class MessagesViewController: UITableViewController
         }
     }
     
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
+        // for each message in the table
         for uid in sortedMessageUIDS
         {
+            // if the uid corresponds to the index path
             if(uid == sortedMessageUIDS[indexPath.row])
             {
                 sentMessageUID = uid
+                // get the other user on the message
                 otherUser = userModel.findUser(uid: messagesSorted![indexPath.row].key)
                 print("other user " + (otherUser?.key)!)
                 
@@ -143,12 +154,15 @@ class MessagesViewController: UITableViewController
         performSegue(withIdentifier: "toConversation", sender: self)
         
     }
+    // send data to the conversation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "toConversation"
         {
             let destinationVC = segue.destination as! ConversationViewController
+            // send the conversation's UID
             destinationVC.thisMessageUID = sentMessageUID
+            // send the conversation's other participant
             destinationVC.otherUser = otherUser
         }
     }

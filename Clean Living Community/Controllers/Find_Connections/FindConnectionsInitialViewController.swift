@@ -22,7 +22,7 @@ class FindConnectionsInitialViewController: UIViewController
     {
         performSegue(withIdentifier: "toConnectionsTable", sender: filterControl.selectedSegmentIndex)
     }
-    
+    // pass the UIsegmentedControl index to indicate to teh next screen whether or not to filter people by mentorship only
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toConnectionsTable")

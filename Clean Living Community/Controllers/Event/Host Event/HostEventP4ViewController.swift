@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 import CoreLocation
+import Stripe
 
 class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,CLLocationManagerDelegate
 {
@@ -42,6 +43,7 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     var selectedField: UITextField?
     
     let statePicker = UIPickerView()
+    // possible values for state
     let states = [ "AK","AL","AR","AS","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID","IL","IN","KS",
                    "KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH",
                    "OK","OR","PA","PR","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"]
@@ -52,46 +54,42 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     
     @IBOutlet weak var finishButton: UIButton!
+    // finish accepting input and create event
     @IBAction func finishAction(_ sender: UIButton)
     {
+        // check to see if all fields are filled
         if(addressField.text != "" && townCityField.text != "" && stateField.text != "" && zipField.text != "")
         {
+            // create an address using input
             var address = "1 Infinite Loop, Cupertino, CA 95014"
             address = addressField.text! + ", " + townCityField.text! + ", " + stateField.text! + " " + zipField.text!
             print(address)
             
             let geoCoder = CLGeocoder()
+            // try to find coordinates for the address
             geoCoder.geocodeAddressString(address) { (placemarks, error) in
                 guard
                     let placemarks = placemarks,
                     let location = placemarks.first?.location
+                    // if geocoder can't find an address, display an error and return
                     else
                 {
                     self.createAlert(title: "Unable to Find Location", message: "The location inputted was not able to be found by location services. Please ensure you have entered all information correctly")
                         return
                 }
                 
-                // Use your location
                 
-                self.userModel.findUserProfileInfo(uid: self.signedInID!, completion: { (person) in
-                    
-                    let name = person["First Name"]! + " " + person["Last Name"]!
-                    sender.isEnabled = false
-                    self.eventModel.createNewEvent(name: name, date: self.date!, subtitle: self.subtitle!, time: self.time!, address: self.addressField.text!, city: self.townCityField.text!, lat: location.coordinate.latitude, long: location.coordinate.longitude, state: self.stateField.text!, zip: self.zipField.text!, organizer: self.signedInID!, image1: self.photo1!, image2: self.photo2!, image3: self.photo3!, location: self.locationNameField.text!, category: self.category!, organizerName: name) { (success) in
-                        if(success)
-                        {
-                            //self.performSegue(withIdentifier: "toStart", sender: self)
-                            //sender.isEnabled = true
-                            self.createDismissAlert(title: "Gathering Status", message: "Gathering Created!")
-                            
-                        }
-                        else
-                        {
-                            self.createAlert(title: "Gathering Status", message: "Gathering Creation Failed")
-                            sender.isEnabled = true
-                        }
-                    }
-                })
+                // Bring up payment screen
+
+                /*
+                let addCardViewController = STPAddCardViewController()
+                addCardViewController.delegate = self
+                navigationController?.pushViewController(addCardViewController, animated: true)
+                */
+                
+                // create an event with the found location data
+                self.createEvent(lat: location.coordinate.latitude, long: location.coordinate.longitude)
+                
             }
         }
         else
@@ -130,6 +128,7 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     */
 
+    // create a special alert that used when an event has successfully been created that segues back to the start of the flow
     func createDismissAlert (title: String, message: String)
     {
          let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -197,6 +196,28 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         
     }
     
+    func createEvent(lat : Double, long: Double)
+    {
+        self.userModel.findUserProfileInfo(uid: self.signedInID!, completion: { (person) in
+            
+            let name = person["First Name"]! + " " + person["Last Name"]!
+            //sender.isEnabled = false
+            self.eventModel.createNewEvent(name: name, date: self.date!, subtitle: self.subtitle!, time: self.time!, address: self.addressField.text!, city: self.townCityField.text!, lat: lat, long: long, state: self.stateField.text!, zip: self.zipField.text!, organizer: self.signedInID!, image1: self.photo1!, image2: self.photo2!, image3: self.photo3!, location: self.locationNameField.text!, category: self.category!, organizerName: name) { (success) in
+                if(success)
+                {
+                    //self.performSegue(withIdentifier: "toStart", sender: self)
+                    //sender.isEnabled = true
+                    self.createDismissAlert(title: "Gathering Status", message: "Gathering Created!")
+                    
+                }
+                else
+                {
+                    self.createAlert(title: "Gathering Status", message: "Gathering Creation Failed")
+                    //sender.isEnabled = true
+                }
+            }
+        })
+    }
     
     
     
@@ -239,14 +260,17 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     @objc func keyboardWillShow(notification: Notification)
     {
+        // move view when these fields are being edited
         if(zipField.isEditing || stateField.isEditing)
         {
             guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
             {
                 return
             }
+            // move view this much
             view.frame.origin.y = -1 * keyboard.height
         }
+            // don't move view if these fields are being edited
         else if (addressField.isEditing || townCityField.isEditing || locationNameField.isEditing)
         {
             view.frame.origin.y = 0
@@ -261,12 +285,14 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         }
         if(view.frame.origin.y != 0)
         {
+            // reset the view
             view.frame.origin.y += keyboard.height
         }
     }
     
 
-    // BEGIN FULL STATE ARRAY
+        // array of states that will appear in the picker view
+        // values of this array will not be written to the textfield
     
     let fullState = [ "AK - Alaska",
                       "AL - Alabama",
@@ -325,5 +351,36 @@ class HostEventP4ViewController: UIViewController,UIPickerViewDelegate,UIPickerV
                       "WY - Wyoming"]
     
     
+    // BEGIN STRIPE EXTENSIONS
     
+    
+    
+}
+extension HostEventP4ViewController: STPAddCardViewControllerDelegate {
+    
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addCardViewController(_ addCardViewController: STPAddCardViewController,
+                               didCreateToken token: STPToken,
+                               completion: @escaping STPErrorBlock)
+    {
+        
+        
+        StripeClient.shared.completeCharge(with: token, amount: 500) { result in
+            switch result {
+            // 1
+            case .success:
+                completion(nil)
+                
+                self.createAlert(title: "Event Payment Status", message: "Payment Successful!")
+            // 2
+            case .failure(let error):
+                self.createAlert(title: "Event Payment Status", message: "Payment Failed!")
+
+                completion(error)
+            }
+        }
+    }
 }

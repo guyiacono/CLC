@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.7.2)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
   - Firebase/AdMob (5.4.0):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.31.0)
@@ -149,9 +152,12 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.0)
+  - Stripe (13.0.3)
   - TGPControls (5.1.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - AlamofireImage (~> 3.3)
   - Firebase/AdMob
   - Firebase/Analytics
   - Firebase/Auth
@@ -164,10 +170,13 @@ DEPENDENCIES:
   - Firebase/Performance
   - Firebase/RemoteConfig
   - Firebase/Storage
+  - Stripe
   - TGPControls
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -192,9 +201,12 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - Stripe
     - TGPControls
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
@@ -219,8 +231,9 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
+  Stripe: 76c203e21555089b708e6cbe972a3e3baf1ab4d8
   TGPControls: 52c0770bee9c9aee364f1559cc627fc01ea5e8b2
 
-PODFILE CHECKSUM: 314fa7e49d170cc4c3a2df918b084221e5b15ba2
+PODFILE CHECKSUM: 705d71af4d5505e31644aeb4ad52da78f350286f
 
 COCOAPODS: 1.5.3

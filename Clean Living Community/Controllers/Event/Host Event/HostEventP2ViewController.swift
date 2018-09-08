@@ -17,6 +17,7 @@ class HostEventP2ViewController: UIViewController
     var time: String?
     var subtitle: String?
     
+    // area for user to write event description in
     var eventDescription: String?
 
     override func viewDidLoad()
@@ -36,6 +37,7 @@ class HostEventP2ViewController: UIViewController
     
     @IBOutlet weak var descriptionSpace: UITextView!
     
+    // make sure the user enters a description of some kind
     @IBAction func nextAction(_ sender: UIButton)
     {
         if(descriptionSpace.text != nil)
@@ -48,7 +50,7 @@ class HostEventP2ViewController: UIViewController
         }
     }
     
-    
+    // send all the information to the next screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toEventP3")
@@ -122,12 +124,14 @@ class HostEventP2ViewController: UIViewController
     }
     @objc func keyboardWillShow(notification: Notification)
     {
+        // move view up if descriptionSpace.isFirstResponder
         if(descriptionSpace.isFirstResponder)
         {
             guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
             {
                 return
             }
+            // move it up by 80 points
             view.frame.origin.y = -1 * 80
         }
         else
@@ -144,6 +148,7 @@ class HostEventP2ViewController: UIViewController
         }
         if(view.frame.origin.y != 0)
         {
+            // reset view when keyboard is dismissed
             view.frame.origin.y += 80
         }
     }

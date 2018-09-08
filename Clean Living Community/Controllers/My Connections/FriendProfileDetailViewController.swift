@@ -33,6 +33,8 @@ class FriendProfileDetailViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // populate the fields with the viewed user's detailed information
+        
         name.text = "Name: " + (viewedUser?.first)! + " " + (viewedUser?.last)!
         age.text = "Age: " + calculateAge(withDOB: (viewedUser?.DOB)!)
         education.text = "Education: " + (viewedUser?.education)!
@@ -56,6 +58,7 @@ class FriendProfileDetailViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // calculate Age based on the viewed user's brithday
     func calculateAge(withDOB DOB: String) -> String
     {
         let formatter = DateFormatter()

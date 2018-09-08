@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// this class displays the photos for events in three UIimageViews based on the URL stored in the event data
 class FindEventPhotosViewController: UIViewController
 {
     var thisEvent = [String : String]()

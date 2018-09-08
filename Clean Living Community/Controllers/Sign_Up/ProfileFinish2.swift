@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//
 
 class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate
 {
@@ -39,6 +40,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     @IBOutlet weak var smokeField: UITextField!
     @IBOutlet weak var supportField: UITextField!
     
+    // changed functions allows pickers to remain correct when going from editing one field to another without dismissing the input view
     @IBAction func eduChanged(_ sender: UITextField)
     {
         selectedfield = eduField
@@ -68,7 +70,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         selectedfield = supportField
     }
     
-    
+    // possible values for each pickerview
     let education = ["High School/GED","Some College/Bachelors Degree","Graduate Degree","PHD"]
     let religious = ["Yes","No"]
     let spiritual = ["Yes", "No"]
@@ -83,6 +85,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
 
         // Do any additional setup after loading the view.
         
+        // setting delegate and datasource
         edupicker.delegate = self
         edupicker.dataSource = self
         relationpicker.delegate = self
@@ -98,6 +101,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         supportpicker.delegate = self
         supportpicker.dataSource = self
         
+        // tie each text field to the correct picker
         eduField.inputView = edupicker
         relationField.inputView = relationpicker
         religiousField.inputView = religiouspicker
@@ -127,6 +131,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     {
         return 1
     }
+    // set number of rows in each pickerview
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         switch selectedfield
@@ -141,6 +146,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         default: return 1
         }
     }
+    // set row values for each pickerview
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         
@@ -156,6 +162,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         default: return education[row]
         }
     }
+    // determine what is put into the field when a pickerview value is selected
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         switch selectedfield
@@ -178,6 +185,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         self.view.endEditing(true)
         }
     }
+    // keep track of which field is being editied, allows for keeping the correct pickerview when going from editing one field to another without dismissing the picker view first
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         selectedfield = textField
@@ -199,18 +207,12 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     }
     
    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
+    // before moving on to the next screen
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func nextButtonAction(_ sender: UIButton)
     {
+        // make sure all the fields have been fileed
         if(eduField.text != "" && religiousField.text != "" && relationField.text != "" && orientationField.text != "" && spiritualField.text != "" && smokeField.text != "" && supportField.text != "")
         {
             performSegue(withIdentifier: "toProfileFinish3", sender: self)
@@ -221,6 +223,7 @@ class ProfileFinish2: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
         }
     }
     
+    // send all the information we have so far to the next screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toProfileFinish3")

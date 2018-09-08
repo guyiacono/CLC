@@ -58,6 +58,8 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         // Do any additional setup after loading the view.
     }
 
+    // see https://www.youtube.com/watch?v=EC1pZOXctV0 for how most of the photo selection code works
+    
     @IBOutlet weak var photoButton: UIButton!
     
     @IBAction func photoChanged(_ sender: UIButton)
@@ -118,6 +120,7 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         }
     }
     @IBOutlet weak var finish: UIButton!
+    // attempt to create a profile
     @IBAction func finishSurvey(_ sender: UIButton)
     {
         finish.isEnabled = false
@@ -127,18 +130,24 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         let recoveryDate = dateformatter.date(from: dor!)
         let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .month, .year])
         print(Calendar.current.dateComponents(components, from: today, to: recoveryDate!).year!)
+        // finish profile creation if user is not eligable to be a mentor
         if(Calendar.current.dateComponents(components, from: today, to: recoveryDate!).year! * -1 <= 3)
         {
+            // check if location services is on
             if(CLLocationManager.locationServicesEnabled())
             {
+                // update location
                 manager.requestLocation()
             }
+               // else show an error and stop progress
             else
             {
+                
                 createAlert(title: "Location Services", message: "The Clean Living Community requires Location Services to be enabled when creating a profile. This location is used to find nearby connections and events. Please go into Settings -> Privacy -> Location Services to enable")
                 finish.isEnabled = true
             }
         }
+        // if user is eligable to be a mentor, move to next scene
         else
         {
             performSegue(withIdentifier: "toProfileFinish5", sender: self)
@@ -146,6 +155,7 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
         
     }
     
+    // if location retrieval successful, create the account
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first
         {
@@ -153,7 +163,7 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
             signUp(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }
-    
+    // if not successful, show that and tell user to retry
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to find user's location: \(error.localizedDescription)")
         createAlert(title: "Location Services", message: "Failed to find location or Location Services is disabled for this application. The Clean Living Community requires Location Services to be enabled when creating a profile. This location is used to find nearby connections and events. Please check your location settings in Settings -> Privacy -> Location Services or try again in a different location")
@@ -175,18 +185,21 @@ class ProfileFinish4: UIViewController, UINavigationControllerDelegate,UIImagePi
     
     
     
-    
+    // sign up user with all the infromation we collected
     func signUp(latitude: Double, longitude: Double)
     {
         usermodel.registerUser(withEmail: email!, withPassword: password!, withFirst: fname!, withLast: lname!, withDOB: dob!, withTown: home!, withEdu: edu!, withOrientation: ori!, withRecovery: dor!, withRomance: rel!, withReligion: reli!, withSpiritual: spt!, isSmoke: smk!, attendSupport: sup!, withOpt1: "No", withOpt2: "Yes", withBio: bio!, withImage1: profileImage1.image!, withImage2: profileImage2!, withImage3: profileImage3!, withQuestionair: qAnswer!, withLat: latitude, withLong: longitude, completion: {(success)
             in
+            // once the registration was successful
             if (success)
             {
+                // sign them in
                 Auth.auth().signIn(withEmail: self.email!, password: self.password!)
                 {user, error in
                     if error == nil && user != nil
                     {
                         print("should sign in immediately")
+                        // and segue them into the app
                         self.performSegue(withIdentifier: "noMentorSegue", sender: ProfileFinish4.self)
                     }
                     else

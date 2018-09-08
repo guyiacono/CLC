@@ -20,6 +20,9 @@ pod 'Firebase/Messaging'
 pod 'Firebase/Performance'
 pod 'Firebase/RemoteConfig'
 pod 'Firebase/Storage'
+pod 'Stripe'
+pod 'Alamofire', '~> 4.5'
+pod 'AlamofireImage', '~> 3.3'
 
 
   target 'Clean Living CommunityTests' do

@@ -17,6 +17,7 @@ class MessageModel
     static let sharedInstance = MessageModel()
     var messages = [Message]()
     
+    // finds and returns a message in the messages array by UID
     func findMessage(uid: String) -> Message?
     {
         var foundMessage: Message?
@@ -31,6 +32,8 @@ class MessageModel
         }
         return(nil)
     }
+    // populates the messages array with all the conversations in firebase
+    // listens for changes, will update in real time
     func listAllMessages(completion: @escaping(Bool)->Void)
     {
         
@@ -50,6 +53,9 @@ class MessageModel
         }
         )
     }
+    // returns an array of dictionaries containing all the message data for a conversation
+    // each dictionary contains the sender, datetime, and text body of a message
+    // the dictionary is ordered by datetime
     func getMessageData(messageID: String, completion: @escaping([[String : String]]) -> Void)
     {
         var messageText = [[String : String]]()
@@ -76,6 +82,7 @@ class MessageModel
         )
         
     }
+    // writes a new message for a conversation
     func sendNewText(messageID: String, dateTime: String, senderUID: String, text: String, completion: @escaping (Bool) -> Void)
     {
         var path = "Messages/" + (messageID) + "/" + dateTime
@@ -92,29 +99,22 @@ class MessageModel
         
     }
     
-    
+    // creates a new message node for users that have never messaged before
     func createNewMessage(sender: String, receiver: String, completion: @escaping ( _ newMessageID : String) -> Void)
     {
         
        let path = "Messages"
         
          let ref = Database.database().reference(withPath : path).childByAutoId()
-        // print(ref.key)
-        // path = "Messages/" + (ref.key)
-        // ref = Database.database().reference(withPath : path)
-        
-       // let ref = Database.database().reference(withPath: path)
-       
-        // let data = ["Sender": sender, "Receiver": receiver] as Any
-        
-        // ref.child("message_34343").setValue(data)
-        
+
         ref.updateChildValues(["Sender" : sender])
         ref.updateChildValues(["Receiver" : receiver])
         completion(ref.key)
     
     }
     
+    // given two user's finds whether or not there is a message between them
+    // try not to use this, if there are lots of messages it could get inefficient
     func findMessageBetween(sender: String, receiver: String) -> String?
     {
         //print(self.messages)
@@ -130,6 +130,8 @@ class MessageModel
         return(nil)
        
     }
+    // sets appropriate message data inside the two user's message sections. Key is the other user's ID, value is
+    // the message ID
     func setMessageWith(signedInUID: String, otherPersonUID: String, messageID: String, completion: @escaping (Bool) -> Void)
     {
         var path = "Users/" + (signedInUID) + "/Messages/"

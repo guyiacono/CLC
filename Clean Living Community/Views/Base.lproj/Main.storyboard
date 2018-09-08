@@ -2577,7 +2577,7 @@
                                     <color key="titleColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="TxO-4I-KIe" kind="show" id="Xaw-k4-E2X"/>
+                                    <action selector="mapAction:" destination="FZR-H0-vio" eventType="touchUpInside" id="OBT-0O-qjv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2586,7 +2586,9 @@
                     </view>
                     <connections>
                         <outlet property="eventTable" destination="emF-iW-9UJ" id="qGg-Ph-4eg"/>
+                        <outlet property="mapButton" destination="O4a-Gx-7oY" id="Zln-Rx-3Rw"/>
                         <segue destination="tId-vl-JlF" kind="show" identifier="toEventDetail" id="D2u-JM-UpD"/>
+                        <segue destination="TxO-4I-KIe" kind="show" identifier="toMap" id="WWw-tz-keY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYB-1w-gri" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2665,6 +2667,7 @@
                     </view>
                     <connections>
                         <outlet property="map" destination="U0z-25-R3t" id="Gc0-MJ-ax2"/>
+                        <segue destination="tId-vl-JlF" kind="show" identifier="mapToDetail" id="58r-or-EbL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPm-hZ-Hh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -14010,10 +14013,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="dbZ-IU-2mw"/>
         <segue reference="7Eu-Ya-80N"/>
+        <segue reference="58r-or-EbL"/>
         <segue reference="SVo-M4-Njn"/>
         <segue reference="GBe-eT-K2q"/>
-        <segue reference="dUS-1c-WW3"/>
-        <segue reference="uU2-pa-D9I"/>
+        <segue reference="9fP-oj-dOp"/>
+        <segue reference="Nxg-hD-wWo"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.32549019610000002" green="0.66274509800000003" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

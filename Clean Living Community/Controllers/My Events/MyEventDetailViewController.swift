@@ -34,10 +34,12 @@ class MyEventDetailViewController: UIViewController
     
     @IBOutlet weak var rsvpButton: UIButton!
     
+    // segue to screen to show large photos
     @IBAction func photosAction(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toPhotos", sender: self)
     }
+    // rsvp's user to the event, creates an alert informing the user of the result
     @IBAction func rsvpAction(_ sender: UIButton)
     {
         userModel.unRSVPFromEvent(userUID: signedInID!, eventUID: eventID!, eventDateTime: dateTimeString!, completion: {(success) in
@@ -53,11 +55,13 @@ class MyEventDetailViewController: UIViewController
         })
         
     }
+    // segues the user to a list of other users going to the event in a tableview
     @IBAction func goingAction(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toGoing", sender: self)
     }
     
+    // set the necessary data in classes that can be segued to
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toPhotos")
@@ -76,8 +80,10 @@ class MyEventDetailViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // find the event data
         eventModel.getEventDict(uid: eventID!, dateTime: dateTimeString!) { (dict) in
             
+            // populate the fields with the event data
             self.thisEvent = dict
             self.eventName.text = self.thisEvent["Event Name"]!
             self.date.text = "Date: " + self.thisEvent["Date"]!
@@ -106,7 +112,7 @@ class MyEventDetailViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // generic method for creating an alert with a custom title, custom message, and ok button
     func createAlert(title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)

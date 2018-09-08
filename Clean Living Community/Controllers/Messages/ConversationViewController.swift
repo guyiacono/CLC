@@ -30,6 +30,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var entryField: UITextField!
     
+    // update this value whenever the text field is changed so sending while editting doesn't send nil
     @IBAction func entryFieldChanged(_ sender: UITextField)
     {
         textContents = sender.text
@@ -40,19 +41,25 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func sendAction(_ sender: UIButton)
     {
+        // check to see if the users are connected, if not don't send the message
         userModel.checkIfConnection(meUID: signedInUserID!, friendUID: (otherUser?.key)!) { (isConnection) in
             if(isConnection == true)
             {
+                // make the entry field is enabled false (to prevent button mashing)
                 self.entryField.isEnabled = false
+                // make sure a blank message isn't being sent
                 if (self.textContents != "" && self.textContents != nil)
                 {
+                    // delete the entered text from the field
                     self.entryField.text = ""
                     let today = Date()
                     
+                    // get the datetime right now in UTC
                     let printDate = self.convertToUTC(date: today)!
                     
                     if(self.thisMessageUID != nil)
                     {
+                        // send the new message
                         self.messageModel.sendNewText(messageID: self.thisMessageUID!, dateTime: printDate, senderUID: self.signedInUserID!, text: self.textContents!, completion: {(success)
                             in
                             if (success)
@@ -63,19 +70,22 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                             }
                         })
                     }
-                        
+                    // if there was no conversation already in existance
                     else
                     {
-                        
+                        // create one
                         self.messageModel.createNewMessage(sender: self.signedInUserID!, receiver:(self.otherUser?.key)!,completion:  { (newUID) in
+                            // create a new UID
                             if(newUID != nil)
                             {
                                 self.thisMessageUID = newUID
-                                
+                                // send the first text
                                 self.messageModel.sendNewText(messageID: self.thisMessageUID!, dateTime: printDate, senderUID: self.signedInUserID!, text: self.textContents!, completion: {(success)
                                     in
                                     if (success)
                                     {
+                                        // store the message id and the other person's key in each others message
+                                        // sections in the database
                                         self.messageModel.setMessageWith(signedInUID: self.signedInUserID!, otherPersonUID: (self.otherUser?.key)!, messageID: self.thisMessageUID!, completion: {(success2)
                                             in
                                             if(success2)
@@ -91,12 +101,14 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
                         )}
                     
                     
-                    
+                    // clear the field
                     self.textContents = ""
+                    // allow messages to be sent again
                     self.entryField.isEnabled = true
                     
                 }
             }
+            // if not connected, show alert saying so
             else
             {
                 self.createAlert(title: "Unable to Send", message: "You can only send messages to your connections!")
@@ -118,13 +130,17 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         handleDoneButtonOnKeyboard()
         table.dataSource = self
         table.delegate = self
+        // prepare the other user's photo for use in the table cells
         let otherURL = otherUser?.url1
         setImageFromURl(stringImageUrl: otherURL!, forImage: otherUserPhoto)
         
+        // get all the messages
         messageModel.listAllMessages(completion: {(success)
         in
+            // if there is a message object for this conversation
             if (success && self.thisMessageUID != nil)
             {
+                // find this message and prepare the table
                 self.messageModel.getMessageData(messageID: self.thisMessageUID!, completion: {(list)
                     in
                     if (list.count >= 0)
@@ -152,6 +168,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        // if there are not messages in this conversation, there are not sections
         if(messageText != nil)
         {
             return messageText!.count
@@ -167,10 +184,10 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         let cell = table.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! ConversationTableViewCell
         cell.otherPhoto.image = nil
         
-        
+        // for each cell, get a message in the conversation
         let IDcontentSet = messageText![indexPath.row]
         
-       
+       // if the message was sent by this user
         if(IDcontentSet[(signedInUserID)!] != nil )
         {
             cell.messageText.text = IDcontentSet[signedInUserID!]
@@ -179,6 +196,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
             
             
         }
+            // if the message was sent by the other user
         else
         {
             cell.messageText.text = IDcontentSet[(otherUser?.key)!]
@@ -192,6 +210,7 @@ class ConversationViewController: UIViewController, UITableViewDataSource, UITab
         
     }
 
+    // automatically scrolls to the most recent message ( at the bottom) of the table
     func scrollToLastRow()
     {
         let indexPath = NSIndexPath(row: (messageText?.count)! - 1, section: 0)

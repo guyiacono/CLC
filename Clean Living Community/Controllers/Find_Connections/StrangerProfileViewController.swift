@@ -27,13 +27,15 @@ class StrangerProfileViewController: UIViewController
     @IBOutlet weak var Connect: UIButton!
     @IBOutlet weak var MoreInfo: UIButton!
     
-    
+    // move to the screen that shows the user more info about this user
     @IBAction func moreInfoButton(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toUserProfile", sender: thisUser)
     }
+    // send a connection request
     @IBAction func friendRequest(_ sender: UIButton)
     {
+        // check if user is already connected
         var foundRequestAlready = false
         for person in thisPersonsConnections!
         {
@@ -42,18 +44,23 @@ class StrangerProfileViewController: UIViewController
                 foundRequestAlready = true
             }
         }
+        // if yes, show an alert
         if(foundRequestAlready)
         {
             createAlert(title: "Connection Request Status", message: "Already sent a request!")
         }
         else
+        // if not
         {
+            // find the user object for me
             var me = usermodel.findUser(uid: signedInID!)
             usermodel.returnUserObject(UID: signedInID!, completion: { (me) in
                 
+                // send the other user a friend request with my data
                 self.usermodel.sendFriendRequest(withFriendUID: self.thisUser?.key, withMyUID: self.signedInID, withMyPhotoURL: me.urlThumb, withMyName: ((me.first) + " " + (me.last)), withRequestStatus: "Unaccepted") { (success) in
                     if(success)
                     {
+                        
                         self.usermodel.getUnderConnections(withUID: self.thisUser?.key) { (list) in
                             
                             self.thisPersonsConnections = list
@@ -110,6 +117,7 @@ class StrangerProfileViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // calculate this user's age based on birthday, which is invisible to the viewing user
     func calculateAge(withDOB DOB: String) -> String
     {
         let formatter = DateFormatter()

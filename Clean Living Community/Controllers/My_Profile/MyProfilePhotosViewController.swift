@@ -11,8 +11,11 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+// protocal to send info about this view to super view controller
 protocol photoDelegate
 {
+    // in addition to the photos themselves, include whether they were changed to avoid unnessary overwriting
+    // this will reduce the time it takes to save
     func returnPhotos(photos: [String : UIImage], photosChanged: [String : Bool])
 }
 
@@ -36,6 +39,7 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // get users photos and display them
         displayedUser = userModel.findUser(uid: currentUserID!)
         userModel.returnUserObject(UID: currentUserID!) { (user) in
             self.displayedUser = user
@@ -44,6 +48,7 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
             self.setImageFromURl(stringImageUrl: self.displayedUser.url2!, forImage: self.photo2)
             self.setImageFromURl(stringImageUrl: self.displayedUser.url3!, forImage: self.photo3)
             
+            // send this information to super view controller
             if(self.photoDelegate != nil)
             {
                 self.tempDict["photo1"] = self.photo1.image
@@ -71,6 +76,12 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    // see https://www.youtube.com/watch?v=EC1pZOXctV0 for how most of this code works
+    
+    
+    // photo 1 changed
     @IBOutlet weak var button1: UIButton!
     @IBAction func buttonPhoto1(_ sender: UIButton)
     {
@@ -82,6 +93,7 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
         image1.allowsEditing = true
         self.present(image1, animated: true)
     }
+    // photo 2 changed
     @IBOutlet weak var button2: UIButton!
     @IBAction func buttonPhoto2(_ sender: UIButton)
     {
@@ -94,6 +106,7 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
         self.present(image2, animated: true)
 
     }
+    // photo 3 changed
     @IBOutlet weak var button3: UIButton!
     @IBAction func buttonPhoto3(_ sender: UIButton)
     {
@@ -105,13 +118,14 @@ class MyProfilePhotosViewController: UIViewController,UIImagePickerControllerDel
         self.present(image3, animated: true)
 
     }
-    
+    // handle updates to UIimageViews
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         if let image1 = info[UIImagePickerControllerOriginalImage] as? UIImage
         {
             self.currentImageView?.image = image1
         }
+        // based on which image view is is currently selected by currentImageView, only update that photo and respective views and dictionary slots
         if(currentImageView == photo1)
         {
             tempDict["photo1"] = photo1.image

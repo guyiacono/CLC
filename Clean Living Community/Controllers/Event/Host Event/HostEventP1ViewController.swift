@@ -27,6 +27,7 @@ class HostEventP1ViewController: UIViewController
     
     
     @IBOutlet weak var nextButton: UIButton!
+    // make user has filled all the required fields before continuing
     @IBAction func nextAction(_ sender: UIButton)
     {
          if(nameField.text != "" && dateField.text != "" && timeField.text != "")
@@ -48,7 +49,7 @@ class HostEventP1ViewController: UIViewController
         
         let todayPlusOne = Calendar.current.date(byAdding: .year, value: 1, to: Date())
         
-        
+        // sets data for pickers for time and date
         timePicker = UIDatePicker()
         timePicker?.addTarget(self, action: #selector(HostEventP1ViewController.timeChanged(timePicker:)), for: .valueChanged)
         timePicker?.datePickerMode = .time
@@ -64,12 +65,12 @@ class HostEventP1ViewController: UIViewController
         dateField.inputView = eventDatePicker
         
         
- 
+        // adds the ability to dismiss the keyboard and pickers by tapping outside of them
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileFinish1.viewTapped(gesture:)))
         
         view.addGestureRecognizer(tapGesture)
         
-    
+        // methods that prevent the keyboard from blocking text fields from view, see code at end of class
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
         // Do any additional setup after loading the view.
@@ -80,6 +81,7 @@ class HostEventP1ViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
+    // carry all information into the next class
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toEventP2")
@@ -98,6 +100,7 @@ class HostEventP1ViewController: UIViewController
     
     @objc func dateChanged(eventDatePicker: UIDatePicker)
     {
+        // deterimines the format of the date string and closes the picker when a date is selected
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "MM/dd/YYYY"
         dateField.text = dateformatter.string(from: eventDatePicker.date)
@@ -110,6 +113,7 @@ class HostEventP1ViewController: UIViewController
         timeField.text = dateformatter.string(from: timePicker.date)
         view.endEditing(true)
     }
+    // allows dismissal of input view by tapping outside of it
     @objc func viewTapped(gesture: UITapGestureRecognizer)
     {
         view.endEditing(true)
@@ -182,12 +186,14 @@ class HostEventP1ViewController: UIViewController
     }
     @objc func keyboardWillShow(notification: Notification)
     {
+        // move keyboard if timeField.isEditing
         if(timeField.isEditing)
         {
             guard let keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
             {
                 return
             }
+            // move the view up by keyboard.height amount
             view.frame.origin.y = -1 * keyboard.height
         }
         else if(nameField.isEditing || subtitleField.isEditing || dateField.isEditing)
@@ -204,6 +210,7 @@ class HostEventP1ViewController: UIViewController
         }
         if(view.frame.origin.y != 0)
         {
+            // reset the view to normal position when the keybaord is dismissed
             view.frame.origin.y += keyboard.height
         }
     }

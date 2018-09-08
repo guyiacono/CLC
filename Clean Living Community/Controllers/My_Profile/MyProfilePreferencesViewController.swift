@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+// send data about this view to super view controller
 protocol preferenceDelegate
 {
     func returnPref(prefInfo: [String : String])
@@ -36,7 +37,7 @@ class MyProfilePreferencesViewController: UIViewController
         super.viewDidLoad()
         
         
-        
+        // get and display the users's preference
         displayedUser = userModel.findUser(uid: currentUserID!)
         userModel.returnUserObject(UID: currentUserID!) { (user) in
             self.displayedUser = user
@@ -60,6 +61,7 @@ class MyProfilePreferencesViewController: UIViewController
                 self.pref2.selectedSegmentIndex = 1
                 self.pref2Value = "No"
             }
+            // send this information to super view controller
             if(self.prefDelegate != nil)
             {
                 self.tempDict["pref1"] = self.pref1Value
@@ -77,6 +79,7 @@ class MyProfilePreferencesViewController: UIViewController
         switch pref1.selectedSegmentIndex{
         case 0:
             tempDict["pref1"] = "Yes"
+            // keep super view controller updated with changes
             prefDelegate?.returnPref(prefInfo: tempDict)
 
         case 1:
@@ -89,6 +92,8 @@ class MyProfilePreferencesViewController: UIViewController
     
     @IBAction func pref2MentorChanged(_ sender: UISegmentedControl)
     {
+        // disallow changing of this preference if user does not meet the requirement for mentorship
+        // (recovery date was more than 3 years ago)
         var changeable = true
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "MM/dd/YYYY"
@@ -117,6 +122,7 @@ class MyProfilePreferencesViewController: UIViewController
             case 0:
                 
                 tempDict["pref2"] = "Yes"
+                // keep super view controller updated with changes
                 prefDelegate?.returnPref(prefInfo: tempDict)
                 
             case 1:

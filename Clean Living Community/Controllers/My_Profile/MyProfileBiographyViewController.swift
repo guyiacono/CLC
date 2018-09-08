@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+// protocol sending information about this view to super view controller
 protocol bioDelegate
 {
     func returnBio(bio : String)
@@ -31,12 +32,15 @@ class MyProfileBiographyViewController: UIViewController, UITextViewDelegate
         super.viewDidLoad()
         
         bio.delegate = self
+        // handle done button on keyboard and keyboard covering the text view
         handleViewAdjustmentsFromKeyboard()
         handleDoneButtonOnKeyboard()
         
+        // get user description and display it
         userModel.returnUserObject(UID: currentUserID!) { (user) in
             self.displayedUser = user
             self.bio.text = self.displayedUser.bio
+            // send this info to the super view controller
             if(self.bioDelegate != nil)
             {
                 self.bioDelegate?.returnBio(bio: self.bio.text)
@@ -52,7 +56,7 @@ class MyProfileBiographyViewController: UIViewController, UITextViewDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    // keep super view controller informed of updates to bio field
     func textViewDidEndEditing(_ textView: UITextView)
     {
         self.bioDelegate?.returnBio(bio: self.bio.text)

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
+// just a controller for visuals, nothing important going on here, except continueing to pass the email and passowrd strings through
 import UIKit
 
 class SurveyIntroViewController: UIViewController

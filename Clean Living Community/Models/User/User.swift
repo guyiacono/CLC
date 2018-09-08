@@ -13,6 +13,9 @@ import FirebaseAuth
 
 struct User
 {
+    
+    // Instance properties of user that are most often needed
+    
     let key: String
     
    
@@ -41,7 +44,6 @@ struct User
     
     let questionair: [Int]
     
-   // var connections: [String]
    
     var mainPhoto: String?
     var connectionName: String?
@@ -53,14 +55,11 @@ struct User
     
     let ref: DatabaseReference?
     
+    // maps instance variables to database fields for easy reference
     init(snapshot: DataSnapshot)
     {
         key = snapshot.key
         var snapshotValue = snapshot.childSnapshot(forPath: "/Profile").value as! [String: AnyObject]
-        
-        
-        
-
  
         first = snapshotValue["First Name"] as! String
         last = snapshotValue["Last Name"] as! String
@@ -85,20 +84,15 @@ struct User
         lastLong = snapshotValue["lastLong"] as! Double
         
       
-        //var snapshotValue2 = snapshot.childSnapshot(forPath: "/Questionair").value as! [Int: AnyObject]
         
-        /*
-        questionair = Array(repeating: 0, count: 0)
-        for i in 1...100
-        {
-            questionair[i-1] = snapshotValue["Q\(i+1)"] as! Int
-        }
- */
+        // questionair variable doesn't actually hold the correct values, but they usually aren't needed
+        // but still have to be instantiated
         questionair = Array(repeating: 0, count: 100)
         
         ref = snapshot.ref
  
     }
+    // constructor for user class
     init(fname: String, lname: String, dob: String, home: String, edu: String, orient: String, recovery: String, relation: String, rel: String, spirit: String, smoke: String, sup: String, p1: String, p2: String, key: String, bio: String, url1: String, url2: String, url3: String, urlThumb: String, questionair: [Int], lat: Double, long: Double)
     {
         self.first = fname
@@ -126,6 +120,8 @@ struct User
         self.lastLong = long
         self.ref = nil
     }
+    
+    // returns a dictionary of all the properties of the user, used in writing profile info to Database
     func toAnyObject() -> Any
     {
         return
@@ -156,6 +152,8 @@ struct User
                 
         ]
     }
+    
+    // returns a dictionairy of questionair results that is used to write results to the database
     func toQuestionairResults() -> Any
     {
         var answers : [String:Int] = [:]

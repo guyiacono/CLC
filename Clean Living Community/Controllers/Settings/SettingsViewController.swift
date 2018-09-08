@@ -30,6 +30,8 @@ class SettingsViewController: UIViewController {
     
     func logout(){
         do {
+            // try to sign out
+            // if sign out fails we don't want to visually log out
             try Auth.auth().signOut()
              performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
         } catch let err {

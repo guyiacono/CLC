@@ -25,6 +25,7 @@ class ProfileFinish1: UIViewController {
     
     override func viewDidLoad()
     {
+        // create minimum and maximum date values for date of birth and date of recovery
         super.viewDidLoad()
         let todayMinus18 = Calendar.current.date(byAdding: .year, value: -18, to: Date())
         let minFormatter = DateFormatter()
@@ -47,6 +48,7 @@ class ProfileFinish1: UIViewController {
         recoveryDatePicker?.datePickerMode = .date
         recoveryDate.inputView = recoveryDatePicker
         
+        // add tap gesture to allow dismissal of input view when pressed outside
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileFinish1.viewTapped(gesture:)))
         
         view.addGestureRecognizer(tapGesture)
@@ -62,6 +64,7 @@ class ProfileFinish1: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // datechanged functions allow pickers to remain correct when going from editing one field to another directly, with dismissing the input view first
     @objc func dateChanged(birthDatePicker: UIDatePicker)
     {
         let dateformatter = DateFormatter()
@@ -95,9 +98,11 @@ class ProfileFinish1: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    // before going to the next screen
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func pushNextButton(_ sender: UIButton)
     {
+        // make sure all the fields have been filled out
         if(firstName.text != "" && lastName.text != "" && dateOfBirth.text != "" && hometown.text != "" && recoveryDate.text != "")
         {
             performSegue(withIdentifier: "toProfileFinish2", sender: self)
@@ -109,7 +114,7 @@ class ProfileFinish1: UIViewController {
         }
         
     }
-    
+    // send all profile info up to this point to the next screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if (segue.identifier == "toProfileFinish2")

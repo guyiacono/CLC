@@ -55,6 +55,9 @@ class HostEventP3ViewController: UIViewController,UIImagePickerControllerDelegat
     
     
     
+    // a button lays on top of a UIImage view, when the button is pressed, start the flow of changing the photo
+    // I really don't know how any of this works
+    // followed this video https://www.youtube.com/watch?v=v8r_wD_P3B8
     
     @IBOutlet weak var button1: UIButton!
     @IBAction func buttonPhoto1(_ sender: UIButton)

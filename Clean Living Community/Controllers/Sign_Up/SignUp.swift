@@ -36,12 +36,15 @@ class SignUp: UIViewController {
     }
     @IBAction func signUp(_ sender: UIButton)
     {
+        // make sure there is valid input for each field
         if(emailField.text != "" && (passwordField.text?.count)! >= 6)
         {
             print(emailField.text)
             print(passwordField.text)
+            // send the information through to the next screen
             self.performSegue(withIdentifier: "signUpSucceed", sender: Sign_In.self)
         }
+            // if invalid input, show a message saying so
         else
         {
             print("signup failed")

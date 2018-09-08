@@ -57,8 +57,10 @@ class ProfileFinish5: UIViewController, CLLocationManagerDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // segmented control determines and option value when the account is created
     @IBOutlet weak var pref1Option: UISegmentedControl!
     
+    // see ProfileFinish4 about forcing location services on and signing up, its almost entirly the same code
     @IBOutlet weak var createButton: UIButton!
     @IBAction func createProfile(_ sender: UIButton)
     {
@@ -102,6 +104,7 @@ class ProfileFinish5: UIViewController, CLLocationManagerDelegate
     
     func signUp(latitude: Double, longitude: Double)
     {
+        // determined by selected segment index
         if(pref1Option.selectedSegmentIndex == 0)
         {
             pref1 = "Yes"
@@ -111,6 +114,7 @@ class ProfileFinish5: UIViewController, CLLocationManagerDelegate
             pref1 = "No"
         }
         
+        // notice withOpt1 uses pref1
         usermodel.registerUser(withEmail: email!, withPassword: password!, withFirst: fname!, withLast: lname!, withDOB: dob!, withTown: home!, withEdu: edu!, withOrientation: ori!, withRecovery: dor!, withRomance: rel!, withReligion: reli!, withSpiritual: spt!, isSmoke: smk!, attendSupport: sup!, withOpt1: pref1!, withOpt2: "Yes", withBio: bio!, withImage1: profileImage1!, withImage2: profileImage2!, withImage3: profileImage3!, withQuestionair: qAnswer!, withLat: latitude, withLong: longitude, completion: {(success)
             in
             if (success)

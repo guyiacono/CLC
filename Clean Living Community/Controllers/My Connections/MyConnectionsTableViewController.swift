@@ -6,6 +6,11 @@
 //  Copyright © 2018 Clean Living Community LLC. All rights reserved.
 //
 
+
+
+// ignore this class, it isn't used
+
+
 import UIKit
 import FirebaseCore
 import FirebaseAuth
@@ -22,7 +27,7 @@ class MyConnectionsTableViewController: UITableViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // for each of this user's connections
         userModel.getUnderConnections(withUID: currentUserID,completion: {(list)
             in
             if (list.count >= 0)
@@ -30,16 +35,6 @@ class MyConnectionsTableViewController: UITableViewController
                 self.connections = list
                 self.connectionsSorted = self.connections
                 
-                /*
-                self.connectionsSorted = (self.connections?.sorted(by: {,<#arg#> $0 as String: String["Name"] as! String < $1 as String: String["Name"] as! String}))!
-                
-                let connectionsSorted = connections.sort { left, right -> Bool in
-                    guard let rightKey = right["Name"] as? String else { return true }
-                    guard let leftKey = left["Name"] as? String else { return false }
-                    return leftKey < rightKey
-                }
- 
- */
                 self.tableView.reloadData()
                 
                 

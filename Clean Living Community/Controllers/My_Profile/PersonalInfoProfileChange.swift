@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+//  protocol returns information to super view controller about this view's fields
 protocol personalDelegate
 {
     func returnPersonal(personalInfo: [String : String])
@@ -43,7 +44,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     @IBOutlet weak var smokeField: UITextField!
     @IBOutlet weak var supportField: UITextField!
     
-    
+    // allow for switching pickerviews and saving of data while editing a textfield
     @IBAction func eduChanged(_ sender: UITextField)
     {
         selectedfield = eduField
@@ -82,7 +83,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     
     
     
-    
+    // possible values for each pickerview
     let education = ["High School/GED","Some College/Bachelors Degree","Graduate Degree","PHD"]
     let religious = ["Yes","No"]
     let spiritual = ["Yes", "No"]
@@ -95,9 +96,11 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     {
         super.viewDidLoad()
         
+        // handle moving the view if keyboard would cover the text fields
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
         
+        // set delegates and data sources for pickers
         edupicker.delegate = self
         edupicker.dataSource = self
         relationpicker.delegate = self
@@ -113,6 +116,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
         supportpicker.delegate = self
         supportpicker.dataSource = self
         
+        // sets the pickers to correct fields
         eduField.inputView = edupicker
         relationField.inputView = relationpicker
         religiousField.inputView = religiouspicker
@@ -124,6 +128,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
         var userlist = userModel.users
         displayedUser = userModel.findUser(uid: currentUserID!)
         
+        // get data about the user, and fill the text fields with that data
         userModel.returnUserObject(UID: currentUserID!) { (user) in
             self.displayedUser = user
             self.eduField.text = self.displayedUser.education
@@ -134,7 +139,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
             self.orientationField.text = self.displayedUser.orientation
             self.supportField.text = self.displayedUser.support
             
-           
+            // record and send this information back to the super view controller
             if (self.personalDelegate != nil)
             {
                 self.tempDict["edu"] = self.eduField.text
@@ -175,6 +180,7 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
     {
         return 1
     }
+    // finish setting up the pickerviews
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         switch selectedfield
@@ -226,6 +232,8 @@ class PersonalInfoProfileChange: UIViewController,UIPickerViewDelegate,UIPickerV
         self.view.endEditing(true)
         }
     }
+    
+    // allows for the picker to switch correctly when going from editing one field to another field directly
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         selectedfield = textField

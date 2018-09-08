@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 
+// this class presents a table view controller of all the users going to a specific event
 class PeopleGoingTableViewController: UITableViewController {
 
     var thisEvent = [String : String]()
@@ -21,12 +22,16 @@ class PeopleGoingTableViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // get all the users going to the event
         eventModel.ObserveAttending(eventUID: thisEvent["key"]!, dateTimeString: thisEvent["DateTimeString"]!) { (listOfAttendees) in
             let attendeesUnsorted = listOfAttendees
+            // sort them alphabetically
             let attendeesSorted = (Array(attendeesUnsorted).sorted {$0.1 < $1.1})
             self.attendees = attendeesSorted
+            // for each person attending
             for person in self.attendees
             {
+                // get and store their user objects
                 self.userModel.findUserProfileInfo(uid: person.key, completion: { (user) in
                     self.attendeesUsersSorted.append(user)
                     if(self.attendeesUsersSorted.count == self.attendees.count)
@@ -66,7 +71,7 @@ class PeopleGoingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "goingCell", for: indexPath) as! PeopleGoingTableViewCell
         
-        print(attendeesUsersSorted)
+        // for each cell, get a user and populate the cell fields with their data
         
         let user = attendeesUsersSorted[indexPath.row]
         
@@ -86,14 +91,18 @@ class PeopleGoingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        // get the user selected on the table
         let user = attendeesUsersSorted[indexPath.row]
+        // don't allow users to select themselves
         if(user["key"] != Auth.auth().currentUser?.uid)
         {
+            // segue to that user's public profile
             let userObject = userModel.findUser(uid: user["key"]!)
             performSegue(withIdentifier: "toProfile", sender: userObject)
         }
     }
     
+    // send information neccessary for the other user's public profile
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "toProfile")
@@ -103,6 +112,7 @@ class PeopleGoingTableViewController: UITableViewController {
         }
     }
     
+    // method to set UIimage view to an image located at a url
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
     {
         

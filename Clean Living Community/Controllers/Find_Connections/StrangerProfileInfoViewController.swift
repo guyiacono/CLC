@@ -21,7 +21,7 @@ extension UIImageView {
 class StrangerProfileInfoViewController: UIViewController
 {
     var viewedUser: User?
-    
+    // populate the fields with the user's profile data
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var age: UILabel!
     @IBOutlet weak var education: UILabel!

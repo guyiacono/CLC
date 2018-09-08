@@ -22,6 +22,7 @@ class EventHistoryTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // get all of this user's events
         userModel.getEventListObserve(userUID: thisUID!) { (userList) in
             
             let dateformatter = DateFormatter()
@@ -33,7 +34,7 @@ class EventHistoryTableViewController: UITableViewController
             dateformatter.dateFormat = "MMddyyyyHHmm"
            // let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .month, .year])
             
-            
+            // append them to a new array (so they can be sorted by date)
             for (key, value) in userList
             {
                 let valueDate = dateformatter.date(from: value)
@@ -46,10 +47,13 @@ class EventHistoryTableViewController: UITableViewController
  */
                 
             }
+            // sort the events by date
             self.stringDateSorted = (Array(self.stringDate).sorted {$0.1 < $1.1})
+            // for each event
             for set in self.stringDateSorted
             {
                 dateformatter.dateFormat = "MMddyyyyHHmm"
+                // get and record its data
                 self.eventModel.getEventDict(uid: set.key, dateTime: dateformatter.string(from: set.value), completion: { (eventDict) in
                     self.eventList.append(eventDict)
                     self.tableView.reloadData()
@@ -80,9 +84,9 @@ class EventHistoryTableViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! EventHistoryTableViewCell
         
-        
-        // Configure the cell...
-
+        // for each event
+        cell.eventImage.image = nil
+        // populate the cell fields with its data
         var event = eventList[indexPath.row]
         for (key , value) in event
         {
@@ -114,6 +118,7 @@ class EventHistoryTableViewController: UITableViewController
         return cell
     }
     
+    // method to fill UIImage view iwth an image at a specific url
     func setImageFromURl(stringImageUrl url: String, forImage image: UIImageView)
     {
         

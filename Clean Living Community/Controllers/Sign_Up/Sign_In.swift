@@ -46,14 +46,16 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var password: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
+    // if the user attempts to login
     @IBAction func login(_ sender: UIButton)
     {
-        //var success = usermodel.authenticate(withEmail: email.text!, withPassword: password.text!)
-        
+        // try and sign them in with the info in the email and passowrd fields
         Auth.auth().signIn(withEmail: email.text!, password: password.text!)
         {user, error in
+            // if there is no error
             if error == nil && user != nil
             {
+                
                 self.usermodel.listAllUsers(completion: {(success)
                     in
                     if (success)
@@ -61,7 +63,9 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
                         //print(self.usermodel.users)
                     }
                 })
+                // attempt to update their location data
                 self.attemptToUpdateLocation()
+                //sign them in and segue in
                 self.performSegue(withIdentifier: "loginpass", sender: Sign_In.self)
                 print("login success")
             }
@@ -83,17 +87,8 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
 
         email.setBottomBorder(bottom_border: "teal")
         password.setBottomBorder(bottom_border: "blue")
-        
-        /*
-        usermodel.writeQuestionair(UID: "Y0jUv3EvPMVK5kPIZZN06EdZr8R2", val: 0)
-        usermodel.writeQuestionair(UID: "SyZ3lSFp9dh4w1KNHuM8Td4iEup1",val: 1)
-        usermodel.writeQuestionair(UID: "KytbcDtvuobNNHyg52o5DBPpsxt1",val: 2)
-        usermodel.writeQuestionair(UID: "Dl9VO62eIwbaeJT1ENdk1WoiWVq1",val: 3)
-        usermodel.writeQuestionair(UID: "QhDnh9qWygN5Nyghdfaz2cDjFIG3",val: 4)
-        usermodel.writeQuestionair(UID: "f6iD5G0bPESuKhlTocShD24Xnay2",val: 2)
-        usermodel.writeQuestionair(UID: "r6PWN4yItAfxAnTUU21u2h4hZUl2", val: 0)
-        */
-        
+       
+       // make sure the keyboard doesn't cover either of the text fields
         handleDoneButtonOnKeyboard()
         handleViewAdjustmentsFromKeyboard()
         
@@ -103,7 +98,7 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    // have location services attempt to get the location
     func attemptToUpdateLocation()
     {
         if(CLLocationManager.locationServicesEnabled())
@@ -112,18 +107,20 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
         }
     }
     
-    
+    // if successful
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         if let location = locations.first
         {
+            // update user's location data
             let uid = Auth.auth().currentUser?.uid as? String
             print("Found user's location: \(location)")
             usermodel.updateLocation(uid: uid!, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }
-    
+    // if unsuccessful
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // mission failed, we'll get em next time
         print("Failed to update user location: \(error.localizedDescription)")
     }
     
@@ -137,25 +134,27 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    // function to reset the password
     @IBAction func resetPasswordTapped(_ sender: UIButton)
     {
         var loginTextField: UITextField?
+        // display an alert with an input field
         let alertController = UIAlertController(title: "Password Recovery", message: "Please enter your email address", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             
             if (loginTextField?.text != "")
             {
-                
+                // see if email address has an account
                 Auth.auth().sendPasswordReset(withEmail: (loginTextField?.text!)!, completion: { (error) in
                     if (error == nil)
                     {
-                        
+                        // if so, continue with the rest
                         self.showErrorAlert(title: "Password reset", msg: "Check your inbox to reset your password")
                         
                     }
                     else
                     {
+                        // if not, show that
                         print(error)
                         self.showErrorAlert(title: "Unidentified email address", msg: "Please re-enter the email you registered with")
                     }
@@ -193,6 +192,7 @@ class Sign_In: UIViewController, CLLocationManagerDelegate
     
     
     //BEGIN KEYBOARD METHODS
+    // Methods to handle a done button on the keyboard toolbar and moving the view up and down when the keyboard appears so that it does not cover the text fields
     
     
     

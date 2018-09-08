@@ -20,6 +20,9 @@ class EventModel
     static let sharedInstance = EventModel()
     var events = [Event]()
     
+    // finds events in the events array
+    // requires events array to be populated
+    // requires listAllEvents be run first
     func findEvent(uid: String) -> Event?
     {
         var foundEvent: Event?
@@ -36,7 +39,7 @@ class EventModel
     }
     
     
-    
+    // populates events array with event objects
     func listAllEvents(completion: @escaping (Bool) -> Void)
     {
         let path = "Events"
@@ -58,6 +61,10 @@ class EventModel
         })
     }
     
+    // returns an array of dictionarys, one dictionary per event
+    // each dictionary has the event's data in it as a key value pair
+    // does not listen for updates
+    
     func returnAllEvents(completion: @escaping ([[String : String]]) -> Void)
     {
         var eventsList = [[String : String]]()
@@ -75,11 +82,9 @@ class EventModel
                 dateformatter.dateFormat = "MM/dd/yyyy"
                 let today = Date()
                 
-                //print(dayOfEvent)
                 
-                
+                // events are only added to the list of events if they have not already passed
                 let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .month, .year])
-                //print(Calendar.current.dateComponents(components, from: today, to: dayOfEvent!).day!)
                 if(Calendar.current.dateComponents(components, from: today, to: dayOfEvent!).day!  >= 0)
                 {
                     let snap = child as! DataSnapshot
@@ -92,7 +97,13 @@ class EventModel
                         {
                             let info = fields as! DataSnapshot
                             tempdict[info.key] = info.value as? String
+                            if(info.key == "Lat" || info.key == "Long")
+                            {
+                                let val = info.value as! Double
+                                tempdict[info.key] = String(val)
+                            }
                         }
+                       
                         eventsList.append(tempdict)
                     }
                 }
@@ -102,6 +113,8 @@ class EventModel
         )
     }
     
+    // returns a dictionary of event data for a specific dateTime event UID combo
+    // is a snapshot and does not listen for changes
     func getEventDict(uid: String, dateTime: String, completion: @escaping(_ event : [String : String]) -> Void)
     {
         let path = "Events/" + dateTime + "/" + uid
@@ -118,7 +131,7 @@ class EventModel
         })
     }
     
-    
+    // creates an event in Firebase, similair structure to creating a user
     func createEvent(key: String, name: String, date: String, subtitle: String, time: String, address: String, city : String, lat: Double, long: Double, state: String, zip: String, organizer: String, image1: UIImage, image2: UIImage, image3: UIImage, location : String, category: String, daytimeString: String, organizerName: String, completion: @escaping (Bool) -> Void)
     {
         
@@ -196,13 +209,15 @@ class EventModel
                                             let dateID = formatter.string(from: eventDate!)
                                             
                                             
-                                            
+                                            // the path for events relies on datetime and a unique key so that
+                                            // when returned in a list form, events will already be sorted by date
                                             var path = "Events/" + daytimeString + "/" + key
                                             var ref = Database.database().reference(withPath : path)
                                             
                                             let newEvent = Event(key: key, date: date, name: name, subtitle: subtitle, time: time, address: address, city: city, lat: lat, long: long, state: state, zip: zip, organizer: organizer, url1: photo1URL, url2: photo2URL, url3: photo3URL, location: location, category: category,dateTimeString : daytimeString)
                                             ref.setValue(newEvent.createEvent())
                                             
+                                            // rsvp the creator of the event to their event
                                             self.rsvp(personUID: organizer, personName: organizerName, eventUID: key, dateTime: daytimeString, completion: { (success) in
                                                 if(success)
                                                 {
@@ -223,6 +238,7 @@ class EventModel
         
     }
     
+    // writes event data to the user's event section in the database
     func updateEvents(userUID: String, eventID: String, eventDateTimeString: String,completion:  @escaping(Bool) -> Void)
     {
         let path = "Users/" + userUID + "/Events"
@@ -231,7 +247,7 @@ class EventModel
         completion(true)
     }
     
-
+    // creates an event's uniuqe ID and path
     func createNewEvent(name: String, date: String, subtitle: String, time: String, address: String, city : String, lat: Double, long: Double, state: String, zip: String, organizer: String, image1: UIImage, image2: UIImage, image3: UIImage, location : String, category: String, organizerName: String, completion: @escaping (Bool) -> Void)
     {
         var formatter = DateFormatter()
@@ -260,7 +276,8 @@ class EventModel
         }
     }
         
-        
+    // RSVP's a person to an event (puts their user ID and name in the event's attending section, then the event's
+    // UID and datetiem in their event section)
     func rsvp(personUID : String, personName: String, eventUID: String, dateTime: String, completion: @escaping (Bool) -> Void)
     {
         var path = "Users/" + personUID + "/Events"
@@ -273,7 +290,10 @@ class EventModel
         
         completion(true)
     }
-        
+    
+    // returns a dictionary of the users that have RSVP'd to an event
+    // listens for changes
+    // key is the user's ID, value is their first and last name in one string
     func ObserveAttending(eventUID: String, dateTimeString : String, completion: @escaping (_ list: [String : String]) -> Void)
     {
         var attending = [String : String]()
@@ -290,7 +310,9 @@ class EventModel
         })
         
     }
-        
+    
+    // gets the distance (in miles) from a person to an event based on their location data in Firebase
+    // rounds to one decimal
     func getDistanceToEvent(eventUID: String, eventDateTimeString : String, userUID: String, completion: @escaping (_ distance : Double) -> Void)
     {
         var meLat = 0.0
@@ -348,7 +370,8 @@ class EventModel
             }
         })
     }
-            
+     // returns a boolean checking whether or not a user is the created a specific event
+    // checks if the user ID is the same as the ID listed in the event's Organizer field
     func checkIfUserIsHosting(userUID : String, eventID : String, eventDateTimeID: String, completion : @escaping
         (_ isHosting : Bool) -> Void)
     {
